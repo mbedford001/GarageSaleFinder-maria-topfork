@@ -8,6 +8,7 @@ import people.*;
  */
 public class UserFuncController {
 
+    DatabaseController dbc = new DatabaseController();
 
     /**
      * Method for a user to create an account. Username must not be null
@@ -21,7 +22,7 @@ public class UserFuncController {
     public void makeAccount(String firstName, String lastName, String username, String password, char type, char status){
         if (!(username.equals(null))){
             Account a = new User(firstName, lastName, username, password, type, status);
-            //ADD ACCOUNT TO THE DATABASE!!!!!!!
+            dbc.addAccount(a); //not yet functional
         }
     }
 }

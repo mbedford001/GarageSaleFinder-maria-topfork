@@ -8,9 +8,11 @@ import people.*;
  */
 public class AccountController {
 
+    DatabaseController dbc = new DatabaseController();
+
     /**
      * This method asks the database to grab the account associated with
-     * the Username and calls validatePassword() to check if the password
+     * the username and calls validatePassword() to check if the password
      * passed matches the password in the account
      *
      * @param username username passed by client
@@ -18,7 +20,7 @@ public class AccountController {
      * @return dummy account or null account associated with parameters
      */
     public Account login(String username, String password) {
-        Account dummy = new User("This", "is", "temporary", "dummy", 'U', 'Y'); //NEED TO GRAB ACCOUNT FROM DATABASE!!!!
+        Account dummy = dbc.getAccount(username);
         if (dummy != null) {
             if (isActive(dummy)){
                 boolean valid = validPassword(password, dummy.getPassword());
