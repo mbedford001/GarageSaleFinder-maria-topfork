@@ -2,7 +2,7 @@ package people;
 
 /**
  * Abstract class for creating an Account
- * @author Keiley Maahs
+ * @author ......
  * @version 9/29/2022
  */
 public abstract class Account {
@@ -17,12 +17,12 @@ public abstract class Account {
 
     /**
      * Constructor to initialize a new account
-     * @param firstName
-     * @param lastName
-     * @param username
-     * @param password
-     * @param type
-     * @param status
+     * @param firstName the first name of the account holder
+     * @param lastName the last name
+     * @param username the username
+     * @param password the password
+     * @param type the type of account holder ('U' or 'A')
+     * @param status the status of the account holder ('Y' or 'N')
      */
     public Account(String firstName, String lastName, String username, String password, char type, char status){
         this.firstName = firstName;
@@ -35,7 +35,7 @@ public abstract class Account {
 
     /**
      * Setter method to set the firstName
-     * @param firstName
+     * @param firstName the first name of the account holder
      */
     public void setFirstName(String firstName){
         this.firstName = firstName;
@@ -51,7 +51,7 @@ public abstract class Account {
 
     /**
      * Setter method to set the lastName
-     * @param lastName
+     * @param lastName the last name of the account holder
      */
     public void setLastName(String lastName){
         this.lastName = lastName;
@@ -59,7 +59,7 @@ public abstract class Account {
 
     /**
      * Getter method to get the lastName
-     * @return lastName
+     * @return lastName the last name of the account holder
      */
     public String getLastName(){
         return this.lastName;
@@ -67,7 +67,7 @@ public abstract class Account {
 
     /**
      * Setter method to set the username
-     * @param username
+     * @param username the username of the account holder
      */
     public void setUsername(String username) {
         this.username = username;
@@ -83,7 +83,7 @@ public abstract class Account {
 
     /**
      * Setter method to set the password
-     * @param password
+     * @param password the password of the account holder
      */
     public void setPassword(String password){
         this.password = password;
@@ -115,7 +115,7 @@ public abstract class Account {
 
     /**
      * Setter method to set the status of the account ("Y" for active, "N" for inactive)
-     * @param status
+     * @param status the status of the account
      */
     public void setStatus(char status) {
         this.status = status;
