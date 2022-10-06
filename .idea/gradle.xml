@@ -9,8 +9,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="/net/home/mbedford001/CSCI330/Project/GarageSaleFinder-maria-topfork" />
+            <option value="/net/home/mbedford001/CSCI330/Project/GarageSaleFinder-maria-topfork/app" />
           </set>
         </option>
       </GradleProjectSettings>

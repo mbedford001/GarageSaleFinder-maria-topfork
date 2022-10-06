@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="/net/home/mbedford001/CSCI330/Project/GarageSaleFinder-maria-topfork" vcs="Git" />
   </component>
 </project>
