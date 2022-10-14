@@ -1,6 +1,7 @@
 package com.example.garagesalefinder;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -45,7 +46,14 @@ public class Login extends AppCompatActivity {
                     Password.setError("Password is Required.");
                     return;
                 }
-                ac.login(email, password);
+                if(ac.login(email, password) != null){
+                    startActivity(new Intent(getApplicationContext(), Menu.class));
+                    finish();
+                }
+                else{//not the best way to display an error message for a non-existent user, but it suffices for now
+                    Email.setError("Email could be incorrect");
+                    Password.setError("Password could be incorrect");
+                }
                 progressBar.setVisibility(View.VISIBLE);//displays login progress bar
 
             }
