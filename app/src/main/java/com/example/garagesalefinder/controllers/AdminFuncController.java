@@ -1,4 +1,4 @@
-package controllers;
+package com.example.garagesalefinder.controllers;
 
 /**
  * Class with methods related to an admin's functionality

@@ -1,4 +1,4 @@
-package people;
+package com.example.garagesalefinder.people;
 
 /**
  * Abstract class for creating an Account
