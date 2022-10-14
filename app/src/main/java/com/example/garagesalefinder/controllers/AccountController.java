@@ -1,5 +1,5 @@
-package controllers;
-import people.*;
+package com.example.garagesalefinder.controllers;
+import com.example.garagesalefinder.people.*;
 
 /**
  * Class with methods related to account functions

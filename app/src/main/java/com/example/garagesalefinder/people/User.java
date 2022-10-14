@@ -1,5 +1,5 @@
 
-package people;
+package com.example.garagesalefinder.people;
 
 /**
  * Class extending Account to create a User account

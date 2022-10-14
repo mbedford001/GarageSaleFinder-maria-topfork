@@ -1,4 +1,4 @@
-package people;
+package com.example.garagesalefinder.people;
 
 /**
  * Class extending Account to create an Admin account
