@@ -8,8 +8,8 @@ import com.example.garagesalefinder.people.*;
  */
 public class AccountController {
 
+    //DataBaseHelperClass dbc = new DataBaseHelperClass(AccountController.this);
     DatabaseController dbc = new DatabaseController();
-
     /**
      * This method asks the database to grab the account associated with
      * the username and calls validatePassword() to check if the password
