@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.ResultSet;
 
 public class DataBaseHelperClass extends SQLiteOpenHelper {
     public Context context;
@@ -46,6 +47,15 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public DataBaseHelperClass(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
+
+        try {
+            createDatabase();
+
+        }
+        catch (IOException ioe){
+            System.out.println("IOException was thrown");
+        }
+        openDataBase();
     }
 
     /**
@@ -131,6 +141,26 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             }
         }
         return username;
+    }
+    /**
+     * This method asks the database to grab the account associated with
+     * the username and calls validatePassword() to check if the password
+     * passed matches the password in the account
+     *
+     * @param username username passed by client
+     * @param password password passed by client
+     * @return dummy account or null account associated with parameters
+     */
+    public boolean login(String username, String password) {
+        boolean access = false;
+        String[] args = {username, password};
+        String queryString = "SELECT count(*) from admin, regular_user" +
+                " WHERE username = ? and password = ?";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        if (cursor.moveToFirst()){
+            access = true;
+        }
+        return access;
     }
 
     @Override

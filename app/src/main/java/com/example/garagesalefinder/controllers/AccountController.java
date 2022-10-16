@@ -1,5 +1,9 @@
 package com.example.garagesalefinder.controllers;
 import com.example.garagesalefinder.people.*;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * Class with methods related to account functions
@@ -7,8 +11,7 @@ import com.example.garagesalefinder.people.*;
  * @version 9/29/2022
  */
 public class AccountController {
-
-    //DataBaseHelperClass dbc = new DataBaseHelperClass(AccountController.this);
+   // DataBaseHelperClass dbc = new DataBaseHelperClass(AccountController.this);
     DatabaseController dbc = new DatabaseController();
     /**
      * This method asks the database to grab the account associated with

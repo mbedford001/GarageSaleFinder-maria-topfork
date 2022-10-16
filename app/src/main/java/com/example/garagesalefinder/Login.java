@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.garagesalefinder.controllers.AccountController;
+import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 import com.example.garagesalefinder.people.*;
 
 public class Login extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class Login extends AppCompatActivity {
     ProgressBar progressBar;
 
     AccountController ac = new AccountController();
+    DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
 
     @SuppressLint("MissingInflatedId")
 
@@ -46,7 +48,9 @@ public class Login extends AppCompatActivity {
                     Password.setError("Password is Required.");
                     return;
                 }
-                if(ac.login(email, password) != null){
+                System.out.println("Username/email: " + email + "Password: " + password);
+                if(dbhc.login(email, password)){
+                    System.out.println("inside if statement! Username "+ email + "Password: "+password);
                     startActivity(new Intent(getApplicationContext(), Menu.class));
                     finish();
                 }
