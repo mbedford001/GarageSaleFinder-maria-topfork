@@ -19,7 +19,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public Context context;
     static SQLiteDatabase sqliteDataBase;
     //the Android's default system path of the application database /data/data/garagesalefinder/databases/
-    private final static String DB_PATH = "Context.getFilesDir().getPath()";
+    private final static String DB_PATH = "/data/data/com.example.garagesalefinder/databases/";
+
     //the database name
     private static final String DATABASE_NAME = "TheCorrectDatabase.db";
     //database version
@@ -46,15 +47,15 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      */
     public DataBaseHelperClass(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        this.context = context;
-
-        try {
-            createDatabase();
-
-        }
-        catch (IOException ioe){
-            System.out.println("IOException was thrown");
-        }
+        //this.context = context;
+        System.out.println("made it to constructor");
+        //try {
+          //  createDatabase();
+//
+  //      }
+    //    catch (IOException ioe){
+      //      System.out.println("IOException was thrown");
+        //}
         openDataBase();
     }
 
@@ -69,9 +70,10 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             //do nothing
         }
         else {
-            this.getWritableDatabase();
+            sqliteDataBase = this.getWritableDatabase();
             copyDataBase();
         }
+        sqliteDataBase.close();
     }
 
     /**
@@ -87,7 +89,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         //open your local db as the input stream
         InputStream myInput = context.getAssets().open(DATABASE_NAME);
         //path to the just created empty db
-        String outFileName = DB_PATH +DATABASE_NAME;
+        String outFileName = DB_PATH + DATABASE_NAME;
         //open the empty db as the output stream
         OutputStream myOutput = new FileOutputStream(outFileName);
         //transfer bytes from the input file to the output file
@@ -110,6 +112,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public void openDataBase() throws SQLException{
         //open the database
         String myPath = DB_PATH + DATABASE_NAME;
+        System.out.println("myPath: "+myPath);
         sqliteDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
     }
 
@@ -153,19 +156,62 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      */
     public boolean login(String username, String password) {
         boolean access = false;
-        String[] args = {username, password};
-        String queryString = "SELECT count(*) from admin, regular_user" +
-                " WHERE username = ? and password = ?";
+        String[] args = {username, password, username, password};
+        String queryString = "SELECT regular_user.username from admin, regular_user" +
+                " WHERE (admin.username = ? and admin.password = ?) or (regular_user.username = ? and regular_user.password = ?)";
+        sqliteDataBase = this.getWritableDatabase();
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
-        if (cursor.moveToFirst()){
+        System.out.println("The username from query: "+cursor.getString(1));
+        if (cursor.getString(1).equals(null)){
             access = true;
         }
+        sqliteDataBase.close();
         return access;
     }
 
+    /**
+     * This method is called the first time the database is accessed.
+     * It generates the tables for the database
+     * @param db
+     */
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        //no need to write the create table query since we are using pre-made database
+    public void onCreate(SQLiteDatabase db) {
+        /**
+       String createTable1 = "CREATE TABLE admin (fname TEXT NOT NULL, lname TEXT NOT NULL," +
+               "username TEXT NOT NULL UNIQUE, password TEXT NOT NULL, PRIMARY KEY(username))";
+       String createTable2 ="CREATE TABLE dates (sale_date DATE NOT NULL, post_title TEXT NOT NULL," +
+               "sale_post_username TEXT NOT NULL, FOREIGN KEY(sale_post_username, post_title) REFERENCES sale_posts (post_username,post_name), " +
+               "PRIMARY KEY(sale_date,post_title,sale_post_username))";
+       String createTable3 ="CREATE TABLE items ( post_title TEXT NOT NULL,item_title TEXT NOT NULL UNIQUE," +
+               "sale_post_username TEXT NOT NULL, item_category TEXT, item_image TEXT," +
+               "item_description TEXT, item_price TEXT, item_quantity TEXT, " +
+               "FOREIGN KEY(sale_post_username,post_title) REFERENCES sale_posts(post_username, post_name)," +
+               "PRIMARY KEY(post_title,item_title,sale_post_username))";
+       String createTable4 ="CREATE TABLE manages (admin_username TEXT NOT NULL, regular_user_username TEXT NOT NULL," +
+               "FOREIGN KEY(regular_user_username) REFERENCES regular_user(username)," +
+               "FOREIGN KEY(admin_username) REFERENCES admin(username)," +
+               "PRIMARY KEY(admin_username,regular_user_username))";
+       String createTable5 ="CREATE TABLE regular_user (fname TEXT NOT NULL, lname TEXT NOT NULL," +
+               "username TEXT NOT NULL UNIQUE, password TEXT NOT NULL, activate CHAR NOT NULL," +
+               "PRIMARY KEY(username))";
+       String createTable6 ="CREATE TABLE sale_posts (post_username TEXT NOT NULL," +
+               "post_name TEXT NOT NULL UNIQUE, sale_location TEXT NOT NULL, sale_description TEXT," +
+               "sale_time TEXT NOT NULL, price_range TEXT, image TEXT," +
+               "PRIMARY KEY(post_username,post_name)," +
+               "FOREIGN KEY(post_username) REFERENCES regular_user(username))";
+       String createTable7 ="CREATE TABLE save_posts (sale_post_username TEXT NOT NULL," +
+               "save_post_username TEXT NOT NULL, post_name TEXT NOT NULL," +
+               "FOREIGN KEY(save_post_username) REFERENCES regular_user(username)," +
+               "FOREIGN KEY(sale_post_username, post_name) REFERENCES sale_posts(post_username, post_name)," +
+               "PRIMARY KEY(sale_post_username,post_name,save_post_username))";
+       db.execSQL(createTable1);
+       db.execSQL(createTable2);
+       db.execSQL(createTable3);
+       db.execSQL(createTable4);
+       db.execSQL(createTable5);
+       db.execSQL(createTable6);
+       db.execSQL(createTable7);
+         */
     }
 
     @Override
@@ -177,3 +223,4 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return null;
     }
 }
+
