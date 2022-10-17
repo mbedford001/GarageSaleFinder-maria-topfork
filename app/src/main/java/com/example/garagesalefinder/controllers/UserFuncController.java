@@ -1,4 +1,5 @@
 package com.example.garagesalefinder.controllers;
+import com.example.garagesalefinder.Register;
 import com.example.garagesalefinder.people.*;
 
 /**
@@ -8,9 +9,7 @@ import com.example.garagesalefinder.people.*;
  */
 public class UserFuncController {
 
-    DatabaseController dbc = new DatabaseController();
-
-    /**
+    /**this
      * Method for a user to create an account. Username must not be null
      * @param firstName the first name of the user
      * @param lastName the last name of the user
@@ -19,10 +18,14 @@ public class UserFuncController {
      * @param type the type of account ('U')
      * @param status the status of the user ('Y' or 'N')
      */
-    public void makeAccount(String firstName, String lastName, String username, String password, char type, char status){
+
+ /**
+    public boolean makeAccount(String firstName, String lastName, String username, String password, char type, char status){
         if (!(username.equals(null))){
             Account a = new User(firstName, lastName, username, password, type, status);
-            dbc.addAccount(a); //not yet functional
+            dbhc.addAccount(a); //not yet functional
         }
+        return
     }
+*/
 }

@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.garagesalefinder.people.Account;
+import com.example.garagesalefinder.people.User;
 
 import java.io.IOException;
 import java.io.File;
@@ -19,7 +20,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public Context context;
     static SQLiteDatabase sqliteDataBase;
     //the Android's default system path of the application database /data/data/garagesalefinder/databases/
-    private final static String DB_PATH = "Context.getFilesDir().getPath()";
+    private final static String DB_PATH = "/data/data/com.example.garagesalefinder/databases/";
     //the database name
     private static final String DATABASE_NAME = "TheCorrectDatabase.db";
     //database version
@@ -47,7 +48,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public DataBaseHelperClass(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
-
+        System.out.println("1");
         try {
             createDatabase();
 
@@ -56,6 +57,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             System.out.println("IOException was thrown");
         }
         openDataBase();
+
     }
 
     /**
@@ -79,7 +81,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * @return true if it exists, false if it doesn't
      */
     public boolean checkDataBase(){
-        File databaseFile = new File(DB_PATH +DATABASE_NAME);
+        File databaseFile = new File("/data/data/com.example.garagesalefinder/databases/TheCorrectDatabase.db");
         return databaseFile.exists();
     }
 
@@ -111,6 +113,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         //open the database
         String myPath = DB_PATH + DATABASE_NAME;
         sqliteDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+        System.out.println("HELLO "+myPath);
     }
 
     /**
@@ -153,14 +156,32 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      */
     public boolean login(String username, String password) {
         boolean access = false;
-        String[] args = {username, password};
+        String[] args = {username, password, username, password};
         String queryString = "SELECT count(*) from admin, regular_user" +
-                " WHERE username = ? and password = ?";
+                " WHERE (admin.username = ? and admin.password = ?) or (regular_user.username=? and regular_user.password=?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
-        if (cursor.moveToFirst()){
+        System.out.println("cursor string: "+ cursor.moveToFirst());
+        if (cursor != null && cursor.moveToFirst()){
             access = true;
         }
         return access;
+    }
+
+
+
+    /**
+     *
+     *
+     */
+    public boolean addAccount(Account a) {
+        String queryString = "INSERT INTO regular_user (fname, lname, username, password, activate) VALUES " +
+                "(" + "\""+a.getFirstName() +"\""+ ", " +"\""+ a.getLastName() +"\""+ ", " +"\""+ a.getUsername() +"\""+ ", "+"\""+ a.getPassword() +"\""+ ", " +"\'"+ 'Y'+"\')";
+        String queryString2 = "INSERT INTO regular_user" +" (" + a.getFirstName() + ", " + a.getLastName() + ", " + a.getUsername() + ", "+ a.getPassword() + ", " + 'Y'+")" +
+                " VALUES (fname, lname, username, password, activate)";
+        System.out.println(queryString);
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, null);
+        sqliteDataBase.close();
+        return true;
     }
 
     @Override
