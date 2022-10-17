@@ -174,6 +174,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      *
      */
     public boolean addAccount(Account a) {
+        sqliteDataBase = this.getWritableDatabase();
         String queryString = "INSERT INTO regular_user (fname, lname, username, password, activate) VALUES " +
                 "(" + "\""+a.getFirstName() +"\""+ ", " +"\""+ a.getLastName() +"\""+ ", " +"\""+ a.getUsername() +"\""+ ", "+"\""+ a.getPassword() +"\""+ ", " +"\'"+ 'Y'+"\')";
         String queryString2 = "INSERT INTO regular_user" +" (" + a.getFirstName() + ", " + a.getLastName() + ", " + a.getUsername() + ", "+ a.getPassword() + ", " + 'Y'+")" +
