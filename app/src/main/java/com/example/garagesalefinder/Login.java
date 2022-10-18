@@ -1,5 +1,5 @@
 package com.example.garagesalefinder;
-
+import java.util.*;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,15 +19,16 @@ public class Login extends AppCompatActivity {
     ProgressBar progressBar;
 
     AccountController ac = new AccountController();
+
     DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
 
     @SuppressLint("MissingInflatedId")
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("We got here!");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);

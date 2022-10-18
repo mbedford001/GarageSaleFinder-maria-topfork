@@ -1,5 +1,6 @@
 package com.example.garagesalefinder.controllers;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +8,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.garagesalefinder.people.Account;
+import com.example.garagesalefinder.people.User;
 
 import java.io.IOException;
 import java.io.File;
@@ -20,7 +22,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     static SQLiteDatabase sqliteDataBase;
     //the Android's default system path of the application database /data/data/garagesalefinder/databases/
     private final static String DB_PATH = "/data/data/com.example.garagesalefinder/databases/";
-
     //the database name
     private static final String DATABASE_NAME = "TheCorrectDatabase.db";
     //database version
@@ -47,16 +48,17 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      */
     public DataBaseHelperClass(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        //this.context = context;
-        System.out.println("made it to constructor");
-        //try {
-          //  createDatabase();
-//
-  //      }
-    //    catch (IOException ioe){
-      //      System.out.println("IOException was thrown");
-        //}
+        this.context = context;
+        System.out.println("1");
+        try {
+            createDatabase();
+
+        }
+        catch (IOException ioe){
+            System.out.println("IOException was thrown");
+        }
         openDataBase();
+
     }
 
     /**
@@ -81,7 +83,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * @return true if it exists, false if it doesn't
      */
     public boolean checkDataBase(){
-        File databaseFile = new File(DB_PATH +DATABASE_NAME);
+        File databaseFile = new File("/data/data/com.example.garagesalefinder/databases/TheCorrectDatabase.db");
         return databaseFile.exists();
     }
 
@@ -114,6 +116,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         String myPath = DB_PATH + DATABASE_NAME;
         System.out.println("myPath: "+myPath);
         sqliteDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+        System.out.println("HELLO "+myPath);
     }
 
     /**
@@ -157,12 +160,12 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public boolean login(String username, String password) {
         boolean access = false;
         String[] args = {username, password, username, password};
-        String queryString = "SELECT regular_user.username from admin, regular_user" +
-                " WHERE (admin.username = ? and admin.password = ?) or (regular_user.username = ? and regular_user.password = ?)";
+        String queryString = "SELECT count(*) from admin, regular_user" +
+                " WHERE (admin.username = ? and admin.password = ?) or (regular_user.username=? and regular_user.password=?)";
         sqliteDataBase = this.getWritableDatabase();
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
-        System.out.println("The username from query: "+cursor.getString(1));
-        if (cursor.getString(1).equals(null)){
+        System.out.println("cursor string: "+ cursor.moveToFirst());
+        if (cursor != null && cursor.moveToFirst()){
             access = true;
         }
         sqliteDataBase.close();
@@ -170,11 +173,31 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
     /**
-     * This method is called the first time the database is accessed.
-     * It generates the tables for the database
-     * @param db
+     *
+     *
      */
-    @Override
+    public boolean addAccount(Account a) {
+        sqliteDataBase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        //values.put("fname", regular_user.getFirstName());
+
+
+        String queryString = "INSERT INTO regular_user (fname, lname, username, password, activate) VALUES " +
+                "(" + "\""+a.getFirstName() +"\""+ ", " +"\""+ a.getLastName() +"\""+ ", " +"\""+ a.getUsername() +"\""+ ", "+"\""+ a.getPassword() +"\""+ ", " +"\'"+ 'Y'+"\')";
+        String queryString2 = "INSERT INTO regular_user" +" (" + a.getFirstName() + ", " + a.getLastName() + ", " + a.getUsername() + ", "+ a.getPassword() + ", " + 'Y'+")" +
+                " VALUES (fname, lname, username, password, activate)";
+        System.out.println(queryString);
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, null);
+        sqliteDataBase.close();
+        return true;
+    }
+
+        /**
+         * This method is called the first time the database is accessed.
+         * It generates the tables for the database
+         * @param db
+         */
+        @Override
     public void onCreate(SQLiteDatabase db) {
         /**
        String createTable1 = "CREATE TABLE admin (fname TEXT NOT NULL, lname TEXT NOT NULL," +
