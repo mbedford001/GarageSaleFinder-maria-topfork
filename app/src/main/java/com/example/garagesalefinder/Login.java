@@ -1,5 +1,5 @@
 package com.example.garagesalefinder;
-
+import java.util.*;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,21 +17,32 @@ public class Login extends AppCompatActivity {
     EditText Email,Password;
     Button LoginBtn;
     ProgressBar progressBar;
+    Button ReturnBtn;
 
     AccountController ac = new AccountController();
+
     DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
 
     @SuppressLint("MissingInflatedId")
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("We got here!");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         Email = findViewById(R.id.email);
         Password = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
         LoginBtn = findViewById(R.id.btnLogin);
+        ReturnBtn = findViewById(R.id.btnReturn);
+
+        ReturnBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), Home.class));
+                finish();
+            }
+        });
 
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +61,7 @@ public class Login extends AppCompatActivity {
                 }
                 System.out.println("Username/email: " + email + "Password: " + password);
                 if(dbhc.login(email, password)){
-                    System.out.println("inside if statement! Username "+ email + "Password: "+password);
+                    System.out.println("Success! Inside if statement! Username "+ email + "Password: "+password);
                     startActivity(new Intent(getApplicationContext(), Menu.class));
                     finish();
                 }
