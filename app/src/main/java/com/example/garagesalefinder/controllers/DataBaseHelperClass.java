@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
-
+import java.util.*;
 import com.example.garagesalefinder.people.Account;
 import com.example.garagesalefinder.people.User;
 
@@ -160,16 +160,27 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      */
     public boolean login(String username, String password) {
         boolean access = false;
-        String[] args = {username, password, username, password};
-        String queryString = "SELECT count(*) from admin, regular_user" +
-                " WHERE (admin.username = ? and admin.password = ?) or (regular_user.username=? and regular_user.password=?)";
-        sqliteDataBase = this.getWritableDatabase();
+        String[] args = {username, password};
+
+        String queryString = "SELECT fname from admin" +
+                " WHERE (admin.username = ? and admin.password = ?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
         System.out.println("cursor string: "+ cursor.moveToFirst());
-        if (cursor != null && cursor.moveToFirst()){
+        String queryString2 = "SELECT fname from regular_user" +
+                " WHERE (regular_user.username=? and regular_user.password=?)";
+        Cursor cursor2 = sqliteDataBase.rawQuery(queryString2, args);
+        System.out.println("cursor string2: "+ cursor2.moveToFirst());
+
+        if (cursor.getCount()>=1 || cursor2.getCount()>=1) {
+            System.out.println("We found him. We logged in!"+cursor.getCount());
+            System.out.println("cursor2"+cursor2.getCount());
             access = true;
         }
-        //sqliteDataBase.close();
+
+        else{
+            System.out.println("Sad face. No log in.");
+        }
+        sqliteDataBase.close();
         return access;
     }
 
@@ -177,6 +188,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      *
      *
      */
+    /**
     public boolean addAccount(Account a) {
         sqliteDataBase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -192,14 +204,44 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         //sqliteDataBase.close();
         return true;
     }
-    public Cursor viewAccount(){
-        String args[]= {"dHill"};
+*/
+
+    public boolean addAccount(Account student) {
+        ContentValues values = new ContentValues();
+        values.put("fname", student.getFirstName());
+        values.put("lname", student.getLastName());
+        values.put("username", student.getUsername());
+        values.put("password", student.getPassword());
+        values.put("activate", "Y");
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert("regular_user", null, values);
+        db.close();
+        return true;
+    }
+/**
+    public boolean addPost(Post student, int d, int i) {
+        ContentValues values = new ContentValues();
+        values.put("post_username", post.getFirstName());
+        values.put("post_name", post.getLastName());
+        values.put("sale_location", post.getUsername());
+        values.put("sale_description", post.getPassword());
+        values.put("sale_time", "Y");
+        values.put("price_range", student.getPassword());
+        values.put("image", "Y");
+        while()
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert("regular_user", null, values);
+        db.close();
+        return true;
+    }
+ */
+
+    public void viewAccount(Account student){
         String queryString = "SELECT * from regular_user" +
-                " WHERE (regular_user.username = ?)";
-        sqliteDataBase = this.getWritableDatabase();
-        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
-        System.out.println("cursor string: "+ cursor.moveToFirst());
-        return cursor;
+                " WHERE (regular_user.username = "+ "\""+student.getUsername()+"\""+")";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(queryString, null);
+        System.out.print("Cursor for viewAccount: "+ cursor.moveToFirst());
     }
 
         /**
