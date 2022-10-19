@@ -36,6 +36,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     //static final String TABLE_7 = "save_posts";
 
 
+
     /**
      * Constructor
      * Takes and keeps a reference of the passed context in order to access
@@ -49,13 +50,13 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public DataBaseHelperClass(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
-        System.out.println("1");
+      //  System.out.println("1");
         try {
             createDatabase();
 
         }
         catch (IOException ioe){
-            System.out.println("IOException was thrown");
+           System.out.println("IOException was thrown");
         }
         openDataBase();
 
@@ -168,7 +169,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         if (cursor != null && cursor.moveToFirst()){
             access = true;
         }
-        sqliteDataBase.close();
+        //sqliteDataBase.close();
         return access;
     }
 
@@ -188,8 +189,17 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                 " VALUES (fname, lname, username, password, activate)";
         System.out.println(queryString);
         Cursor cursor = sqliteDataBase.rawQuery(queryString, null);
-        sqliteDataBase.close();
+        //sqliteDataBase.close();
         return true;
+    }
+    public Cursor viewAccount(){
+        String args[]= {"dHill"};
+        String queryString = "SELECT * from regular_user" +
+                " WHERE (regular_user.username = ?)";
+        sqliteDataBase = this.getWritableDatabase();
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        System.out.println("cursor string: "+ cursor.moveToFirst());
+        return cursor;
     }
 
         /**
