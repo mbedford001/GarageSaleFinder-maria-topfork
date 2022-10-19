@@ -17,6 +17,7 @@ public class Login extends AppCompatActivity {
     EditText Email,Password;
     Button LoginBtn;
     ProgressBar progressBar;
+    Button ReturnBtn;
 
     AccountController ac = new AccountController();
 
@@ -33,6 +34,15 @@ public class Login extends AppCompatActivity {
         Password = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
         LoginBtn = findViewById(R.id.btnLogin);
+        ReturnBtn = findViewById(R.id.btnReturn);
+
+        ReturnBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), Home.class));
+                finish();
+            }
+        });
 
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
