@@ -184,28 +184,12 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return access;
     }
 
+
     /**
-     *
-     *
+     * This method adds an account to the database
+     * @param student a user's account
+     * @return
      */
-    /**
-    public boolean addAccount(Account a) {
-        sqliteDataBase = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        //values.put("fname", regular_user.getFirstName());
-
-
-        String queryString = "INSERT INTO regular_user (fname, lname, username, password, activate) VALUES " +
-                "(" + "\""+a.getFirstName() +"\""+ ", " +"\""+ a.getLastName() +"\""+ ", " +"\""+ a.getUsername() +"\""+ ", "+"\""+ a.getPassword() +"\""+ ", " +"\'"+ 'Y'+"\')";
-        String queryString2 = "INSERT INTO regular_user" +" (" + a.getFirstName() + ", " + a.getLastName() + ", " + a.getUsername() + ", "+ a.getPassword() + ", " + 'Y'+")" +
-                " VALUES (fname, lname, username, password, activate)";
-        System.out.println(queryString);
-        Cursor cursor = sqliteDataBase.rawQuery(queryString, null);
-        //sqliteDataBase.close();
-        return true;
-    }
-*/
-
     public boolean addAccount(Account student) {
         ContentValues values = new ContentValues();
         values.put("fname", student.getFirstName());
