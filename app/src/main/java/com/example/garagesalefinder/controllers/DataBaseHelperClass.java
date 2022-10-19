@@ -230,12 +230,35 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
  */
 
+    public void searchByCategory(String category) {
+        String[] args = {category};
+         String queryString = "Select i.post_title FROM items i "+
+				  " WHERE i.item_category = ?";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(queryString,args );
+        //Set<Post> results = new Set<Post>()
+        //Post match;
+        while(cursor.moveToNext()){
+            String name = cursor.getString(0);
+            String[] args2 = {name};
+            String queryString2 = "Select s.post_username, s.post_name, s.sale_location, s.sale_description, s.sale_time, s.price_range, s.image FROM sale_posts s"+ " WHERE s.post_name = ?";
+            Cursor cursor2 = db.rawQuery(queryString2,args2);
+            do{
+                //match =  new Post(cursor2.getString(0), cursor2.getString(1),cursor2.getString(2),cursor2.getString(3),cursor2.getString(4),cursor2.getString(5),cursor2.getString(6));
+            }
+            while(cursor2.moveToNext());
+            //return results;
+        }
+    }
+
+
     public void viewAccount(Account student){
         String queryString = "SELECT * from regular_user" +
                 " WHERE (regular_user.username = "+ "\""+student.getUsername()+"\""+")";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
-        System.out.print("Cursor for viewAccount: "+ cursor.moveToFirst());
+
+
     }
 
     @Override
