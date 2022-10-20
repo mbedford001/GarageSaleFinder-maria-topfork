@@ -1,4 +1,4 @@
-package PostStuff;
+package com.example.garagesalefinder.PostStuff;
 
 import java.util.Date;
 
