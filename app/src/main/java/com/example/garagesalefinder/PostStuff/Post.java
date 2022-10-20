@@ -1,4 +1,4 @@
-package PostStuff;
+package com.example.garagesalefinder.PostStuff;
 
 import java.util.Date;
 
@@ -168,7 +168,7 @@ import java.util.Date;
      * @param image the image link
      * @return
      */
-    public String getImage(String image){
+    public String getImage(){
             return this.image;
         }
 }
