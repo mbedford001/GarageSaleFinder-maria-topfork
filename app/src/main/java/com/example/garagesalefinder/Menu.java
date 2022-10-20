@@ -23,6 +23,11 @@ public class Menu extends AppCompatActivity {
         finish();
     }
 
+    public void searchByLocation(View view){
+        startActivity(new Intent(getApplicationContext(), SearchByLocation.class));
+        finish();
+    }
+
 
 
 }

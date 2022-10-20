@@ -151,9 +151,10 @@
         android:layout_width="211dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="Return"
+        android:text="Return Home"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintLeft_toLeftOf="@id/btnReturn"
+        app:layout_constraintTop_toBottomOf="@id/btnReturn"
         tools:layout_editor_absoluteX="195dp"
         tools:layout_editor_absoluteY="832dp" />
 
