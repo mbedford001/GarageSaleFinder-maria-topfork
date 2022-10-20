@@ -6,4 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".Menu">
 
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.drawing.Sample"
+        tools:ignore="HardcodedText" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="15dp" >
+
+            <Button
+                android:id="@+id/createPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="createPosts"
+                android:text="Create Post" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button 2" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button 3" />
+
+        </TableRow>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

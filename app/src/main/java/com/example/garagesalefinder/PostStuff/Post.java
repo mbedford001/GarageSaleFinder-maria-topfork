@@ -7,7 +7,7 @@ import java.util.Date;
      * @author .......
      * @version 9/29/2022
      */
-    public abstract class Post {
+    public class Post {
 
         private String owner;
         private String location;
