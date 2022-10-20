@@ -168,7 +168,7 @@ import java.util.Date;
      * @param image the image link
      * @return
      */
-    public String getImage(String image){
+    public String getImage(){
             return this.image;
         }
 }
