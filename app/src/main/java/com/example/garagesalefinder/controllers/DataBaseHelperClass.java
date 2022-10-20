@@ -208,7 +208,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         //getOwner() might be the wrong thing to call since we should just know the
         //the right user based on who is loggedIn
         //fix username!! we need a shared preference or something
-        values.put("post_username", "dHill");
+        values.put("post_username", "mShort");
         values.put("post_name", post.getTitle());
         values.put("sale_location", post.getLocation());
         values.put("sale_description", post.getDescription());

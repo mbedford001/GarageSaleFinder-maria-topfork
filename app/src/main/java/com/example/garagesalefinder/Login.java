@@ -70,7 +70,6 @@ public class Login extends AppCompatActivity {
                     Password.setError("Password could be incorrect");
                 }
                 progressBar.setVisibility(View.VISIBLE);//displays login progress bar
-
             }
         });
     }
