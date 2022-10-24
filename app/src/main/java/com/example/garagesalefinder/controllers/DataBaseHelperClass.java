@@ -9,14 +9,14 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.*;
 import com.example.garagesalefinder.people.Account;
-import com.example.garagesalefinder.people.User;
 
 import java.io.IOException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.ResultSet;
+
+import com.example.garagesalefinder.PostStuff.Post;
 
 public class DataBaseHelperClass extends SQLiteOpenHelper {
     public Context context;
@@ -35,6 +35,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     //static final String TABLE_5 = "regular_user";
     //static final String TABLE_6 = "sale_posts";
     //static final String TABLE_7 = "save_posts";
+
+    private Account a;
 
 
     /**
@@ -163,35 +165,98 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         String queryString = "SELECT fname from admin" +
                 " WHERE (admin.username = ? and admin.password = ?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
-        System.out.println("cursor string: "+ cursor.moveToFirst());
+        //System.out.println("cursor string: "+ cursor.moveToFirst());
         String queryString2 = "SELECT fname from regular_user" +
                 " WHERE (regular_user.username=? and regular_user.password=?)";
         Cursor cursor2 = sqliteDataBase.rawQuery(queryString2, args);
-        System.out.println("cursor string2: "+ cursor2.moveToFirst());
 
         if (cursor.getCount()>=1 || cursor2.getCount()>=1) {
-            System.out.println("We found him. We logged in!"+cursor.getCount());
-            System.out.println("cursor2"+cursor2.getCount());
+
+            //System.out.println("We found him. We logged in!"+cursor.getCount());
+
             access = true;
+            String queryString3 = "SELECT fname from regular_user" +
+                    " WHERE (regular_user.username = ? and regular_user.password = ?)";
+            String queryString4 = "SELECT fname from admin" +
+                    " WHERE (admin.username = ? and admin.password = ?)";
+            Cursor cursor3 = sqliteDataBase.rawQuery(queryString3, args);
+            Cursor cursor4 = sqliteDataBase.rawQuery(queryString4, args);
+            if (cursor4.getCount() >= 1){
+
+                String queryString5 = "SELECT * from admin" +
+                        " WHERE (admin.username = ? and admin.password = ?)";
+
+                Cursor cursor5 = sqliteDataBase.rawQuery(queryString5, args);
+
+                //c1.moveToFirst();
+                cursor5.moveToFirst();
+                while(!cursor5.isAfterLast()){
+                    a = new com.example.garagesalefinder.people.Admin(cursor5.getString(0),cursor5.getString(1),cursor5.getString(2),cursor5.getString(3),'A','Y');
+                    cursor5.moveToNext();
+                }
+
+                cursor4.close();
+                cursor5.close();
+                cursor.close();
+                viewAccount(a);
+            }
+            else{
+                String queryString6 = "SELECT * from regular_user" +
+                        " WHERE (regular_user.username = ? and regular_user.password = ?)";
+                Cursor cursor6 = sqliteDataBase.rawQuery(queryString6, args);
+
+                //c1.moveToFirst();
+                cursor6.moveToFirst();
+                while(!cursor6.isAfterLast()){
+                    a = new com.example.garagesalefinder.people.User(cursor6.getString(0),cursor6.getString(1),cursor6.getString(2),cursor6.getString(3),'U','Y');
+                    cursor6.moveToNext();
+                }
+                cursor6.close();
+                viewAccount(a);
+            }
+            //System.out.println("cursor string2: "+ cursor2.moveToFirst());
+
         }
         else{
-            System.out.println("Sad face. No log in.");
+           System.out.println("-----------FAILED LOGIN-----------");
         }
+        searchByLocation("Sartell");
+        viewOwnPost("mShort","Monster Sale");
         sqliteDataBase.close();
         return access;
     }
 
 
-    public boolean addAccount(Account student) {
-        ContentValues values = new ContentValues();
-        values.put("fname", student.getFirstName());
-        values.put("lname", student.getLastName());
-        values.put("username", student.getUsername());
-        values.put("password", student.getPassword());
-        values.put("activate", "Y");
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert("regular_user", null, values);
-        db.close();
+    /**
+     * this method allows a user to view their own post so they can edit it if needed
+     * @param
+     * @return
+     * @author Maria Bedford
+     */
+    public boolean viewOwnPost(String username, String title){
+        //String[] args = {post.getOwner()};
+
+        String name = username;
+        String[] args = {name, title};
+        String queryString = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_username = ? and sale_posts.post_name =?)";
+        sqliteDataBase = this.getWritableDatabase();
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        System.out.println("---------------------");
+       // System.out.println("Cursor for viewPost: "+ cursor.moveToFirst());
+        System.out.println("Here is your Post: ");
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            System.out.println("get postname(): " + cursor.getString(1));
+            System.out.println("get location(): " + cursor.getString(2));
+            System.out.println("get description(): " + cursor.getString(3));
+            System.out.println("get time(): " + cursor.getString(4));
+            System.out.println("get range(): " + cursor.getString(5));
+            System.out.println("get image(): " + cursor.getString(6));
+            cursor.moveToNext();
+        }
+        System.out.println("---------------------");
+        sqliteDataBase.close();
         return true;
     }
 
@@ -207,26 +272,83 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         //getOwner() might be the wrong thing to call since we should just know the
         //the right user based on who is loggedIn
-        //fix username!! we need a shared preference or something
-        values.put("post_username", "mShort");
+        values.put("post_username", post.getOwner());
         values.put("post_name", post.getTitle());
         values.put("sale_location", post.getLocation());
         values.put("sale_description", post.getDescription());
         values.put("sale_time", post.getTime());
         values.put("price_range", post.getPriceRange());
         values.put("image", post.getImage());
+        //have to deal with items and dates
+        //that what the int d and int i might help with
+        //d and i should default to 0 in the UI
+        //maybe have dates get inputted as 1 long string broken up with commas
+        //and then i split on the comma and for a list of dates that can then be inserted
+        //1 by 1??
+        //int count=0;
+        //while(count < d){
+        //date.getDates();
+        //  values.put("date", );
+        //}
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert("sale_posts", null, values);
+        //viewOwnPost("mShort","Monster Sale");
+        viewOwnPost(post.getOwner(), post.getTitle());
         db.close();
         return true;
     }
 
-    public void viewAccount(Account student){
-        String queryString = "SELECT * from regular_user" +
-                " WHERE (regular_user.username = "+ "\""+student.getUsername()+"\""+")";
+
+    public boolean addAccount(Account student) {
+        ContentValues values = new ContentValues();
+        values.put("fname", student.getFirstName());
+        values.put("lname", student.getLastName());
+        values.put("username", student.getUsername());
+        values.put("password", student.getPassword());
+        values.put("activate", "Y");
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(queryString, null);
-        System.out.print("Cursor for viewAccount: "+ cursor.moveToFirst());
+        db.insert("regular_user", null, values);
+        db.close();
+        return true;}
+
+
+    public void viewAccount(Account student){
+        System.out.println("-------View Account-------");
+        System.out.println("First Name: "+a.getFirstName());
+        System.out.println("Last Name: "+a.getLastName());
+        System.out.println("Username: "+a.getUsername());
+        System.out.println("Password: "+a.getPassword());
+        System.out.println("Type(A for Admin/U for User): "+a.getType());
+        System.out.println("Status(Y for active/N for suspended): "+a.getStatus());
+        System.out.println("-------End of View Account-------");
+    }
+
+    public void searchByLocation(String location){
+        String[] args ={location};
+        String queryString2 = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.sale_location=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        System.out.println("--------Start of Search Results--------");
+        while(!cursor.isAfterLast()){
+           System.out.println("Title of Sale: "+cursor.getString(1));
+           System.out.println("Location of Sale: "+cursor.getString(2));
+           System.out.println("Description of Sale: "+cursor.getString(3));
+           System.out.println("Time of Sale: "+cursor.getString(4));
+           System.out.println("Price Range of Sale: "+cursor.getString(5));
+           System.out.println("------------------");
+           cursor.moveToNext();
+        }
+        System.out.println("----------End of Search Result-------------");
+        cursor.close();
+    }
+
+    public void searchByDate(Date date){
+        String[] args ={};
+        String queryString2 = "SELECT * from dates" +
+                " WHERE (sale_posts.sale_location=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
     }
 
     @Override
@@ -242,4 +364,5 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public Account getAccount(String username) {
         return null;
     }
+
 }

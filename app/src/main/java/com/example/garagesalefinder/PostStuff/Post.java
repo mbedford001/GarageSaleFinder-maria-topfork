@@ -165,7 +165,6 @@ import java.util.Date;
 
     /**
      * method to get the image link
-     * @param image the image link
      * @return
      */
     public String getImage(){

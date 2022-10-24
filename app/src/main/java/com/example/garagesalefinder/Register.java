@@ -35,7 +35,7 @@ public class Register extends AppCompatActivity {
         FirstName = findViewById(R.id.inputFName);
         LastName = findViewById(R.id.inputLName);
         Username = findViewById(R.id.inputUsername);
-        Password = findViewById(R.id.inputLName);
+        Password = findViewById(R.id.inputPassword);
         ReturnBtn = findViewById(R.id.btnReturn);
         ReturnHomeBtn = findViewById(R.id.btnReturnHome);
 
