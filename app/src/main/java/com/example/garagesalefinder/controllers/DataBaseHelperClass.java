@@ -1,6 +1,7 @@
 package com.example.garagesalefinder.controllers;
 
 import android.content.ContentValues;
+import com.example.garagesalefinder.PostStuff.Post;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -34,7 +35,9 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     //static final String TABLE_5 = "regular_user";
     //static final String TABLE_6 = "sale_posts";
     //static final String TABLE_7 = "save_posts";
+
     private Account a;
+
 
     /**
      * Constructor
@@ -168,6 +171,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         Cursor cursor2 = sqliteDataBase.rawQuery(queryString2, args);
 
         if (cursor.getCount()>=1 || cursor2.getCount()>=1) {
+
             //System.out.println("We found him. We logged in!"+cursor.getCount());
 
             access = true;
@@ -211,6 +215,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                 viewAccount(a);
             }
             //System.out.println("cursor string2: "+ cursor2.moveToFirst());
+
         }
         else{
            System.out.println("-----------FAILED LOGIN-----------");
@@ -220,6 +225,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.close();
         return access;
     }
+
 
     /**
      * this method allows a user to view their own post so they can edit it if needed
@@ -253,26 +259,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.close();
         return true;
     }
-
-    /**
-     *
-     *
-     */
-    /**
-     public boolean addAccount(Account a) {
-     sqliteDataBase = this.getWritableDatabase();
-     String queryString = "INSERT INTO regular_user (fname, lname, username, password, activate) VALUES " +
-     "(" + "\""+a.getFirstName() +"\""+ ", " +"\""+ a.getLastName() +"\""+ ", " +"\""+ a.getUsername() +"\""+ ", "+"\""+ a.getPassword() +"\""+ ", " +"\'"+ 'Y'+"\')";
-     String queryString2 = "INSERT INTO regular_user" +" (" + a.getFirstName() + ", " + a.getLastName() + ", " + a.getUsername() + ", "+ a.getPassword() + ", " + 'Y'+")" +
-     " VALUES (fname, lname, username, password, activate)";
-     System.out.println(queryString);
-     Cursor cursor = sqliteDataBase.rawQuery(queryString, null);
-     sqliteDataBase.close();
-     return true;
-     }
-     */
-
-
 
 
     /**
@@ -312,6 +298,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;
     }
 
+
     public boolean addAccount(Account student) {
         ContentValues values = new ContentValues();
         values.put("fname", student.getFirstName());
@@ -322,8 +309,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert("regular_user", null, values);
         db.close();
-        return true;
-    }
+        return true;}
 
 
     public void viewAccount(Account student){
@@ -378,4 +364,5 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public Account getAccount(String username) {
         return null;
     }
+
 }

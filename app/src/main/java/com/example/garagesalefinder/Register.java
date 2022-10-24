@@ -25,6 +25,7 @@ public class Register extends AppCompatActivity {
     EditText Username;
     EditText Password;
     Button ReturnBtn;
+    Button ReturnHomeBtn;
     DataBaseHelperClass dbhc = new DataBaseHelperClass(Register.this);
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,6 +37,15 @@ public class Register extends AppCompatActivity {
         Username = findViewById(R.id.inputUsername);
         Password = findViewById(R.id.inputPassword);
         ReturnBtn = findViewById(R.id.btnReturn);
+        ReturnHomeBtn = findViewById(R.id.btnReturnHome);
+
+        ReturnHomeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Home.class));
+                finish();
+            }
+        });
 
         ReturnBtn.setOnClickListener(new View.OnClickListener() {
             @Override

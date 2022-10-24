@@ -3,7 +3,9 @@ package com.example.garagesalefinder;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -64,6 +66,7 @@ public class Createpost extends AppCompatActivity {
                     return;
                 }
 
+
                 if (TextUtils.isEmpty(pTime)) {
                     time.setError("Time is required.");
                     return;
@@ -73,6 +76,7 @@ public class Createpost extends AppCompatActivity {
                 dbhc.addPost(p);
                 //startActivity(new Intent(getApplicationContext(), ViewPost.class));
                 //finish();
+
             }
         });
     }
