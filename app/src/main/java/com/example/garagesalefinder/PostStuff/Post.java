@@ -1,4 +1,4 @@
-package PostStuff;
+package com.example.garagesalefinder.PostStuff;
 
 import java.util.Date;
 
@@ -7,7 +7,7 @@ import java.util.Date;
      * @author .......
      * @version 9/29/2022
      */
-    public abstract class Post {
+    public class Post {
 
         private String owner;
         private String location;
@@ -165,10 +165,9 @@ import java.util.Date;
 
     /**
      * method to get the image link
-     * @param image the image link
      * @return
      */
-    public String getImage(String image){
+    public String getImage(){
             return this.image;
         }
 }

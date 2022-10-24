@@ -8,14 +8,14 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.*;
 import com.example.garagesalefinder.people.Account;
-import com.example.garagesalefinder.people.User;
 
 import java.io.IOException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.ResultSet;
+
+import com.example.garagesalefinder.PostStuff.Post;
 
 public class DataBaseHelperClass extends SQLiteOpenHelper {
     public Context context;
@@ -34,8 +34,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     //static final String TABLE_5 = "regular_user";
     //static final String TABLE_6 = "sale_posts";
     //static final String TABLE_7 = "save_posts";
-
-
+    private Account a;
 
     /**
      * Constructor
@@ -50,13 +49,13 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public DataBaseHelperClass(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
-      //  System.out.println("1");
+        System.out.println("1");
         try {
             createDatabase();
 
         }
         catch (IOException ioe){
-           System.out.println("IOException was thrown");
+            System.out.println("IOException was thrown");
         }
         openDataBase();
 
@@ -76,7 +75,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             sqliteDataBase = this.getWritableDatabase();
             copyDataBase();
         }
-        sqliteDataBase.close();
     }
 
     /**
@@ -92,7 +90,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         //open your local db as the input stream
         InputStream myInput = context.getAssets().open(DATABASE_NAME);
         //path to the just created empty db
-        String outFileName = DB_PATH + DATABASE_NAME;
+        String outFileName = DB_PATH +DATABASE_NAME;
         //open the empty db as the output stream
         OutputStream myOutput = new FileOutputStream(outFileName);
         //transfer bytes from the input file to the output file
@@ -115,7 +113,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public void openDataBase() throws SQLException{
         //open the database
         String myPath = DB_PATH + DATABASE_NAME;
-        System.out.println("myPath: "+myPath);
         sqliteDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
         System.out.println("HELLO "+myPath);
     }
@@ -165,23 +162,96 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         String queryString = "SELECT fname from admin" +
                 " WHERE (admin.username = ? and admin.password = ?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
-        System.out.println("cursor string: "+ cursor.moveToFirst());
+        //System.out.println("cursor string: "+ cursor.moveToFirst());
         String queryString2 = "SELECT fname from regular_user" +
                 " WHERE (regular_user.username=? and regular_user.password=?)";
         Cursor cursor2 = sqliteDataBase.rawQuery(queryString2, args);
-        System.out.println("cursor string2: "+ cursor2.moveToFirst());
 
         if (cursor.getCount()>=1 || cursor2.getCount()>=1) {
-            System.out.println("We found him. We logged in!"+cursor.getCount());
-            System.out.println("cursor2"+cursor2.getCount());
-            access = true;
-        }
+            //System.out.println("We found him. We logged in!"+cursor.getCount());
 
-        else{
-            System.out.println("Sad face. No log in.");
+            access = true;
+            String queryString3 = "SELECT fname from regular_user" +
+                    " WHERE (regular_user.username = ? and regular_user.password = ?)";
+            String queryString4 = "SELECT fname from admin" +
+                    " WHERE (admin.username = ? and admin.password = ?)";
+            Cursor cursor3 = sqliteDataBase.rawQuery(queryString3, args);
+            Cursor cursor4 = sqliteDataBase.rawQuery(queryString4, args);
+            if (cursor4.getCount() >= 1){
+
+                String queryString5 = "SELECT * from admin" +
+                        " WHERE (admin.username = ? and admin.password = ?)";
+
+                Cursor cursor5 = sqliteDataBase.rawQuery(queryString5, args);
+
+                //c1.moveToFirst();
+                cursor5.moveToFirst();
+                while(!cursor5.isAfterLast()){
+                    a = new com.example.garagesalefinder.people.Admin(cursor5.getString(0),cursor5.getString(1),cursor5.getString(2),cursor5.getString(3),'A','Y');
+                    cursor5.moveToNext();
+                }
+
+                cursor4.close();
+                cursor5.close();
+                cursor.close();
+                viewAccount(a);
+            }
+            else{
+                String queryString6 = "SELECT * from regular_user" +
+                        " WHERE (regular_user.username = ? and regular_user.password = ?)";
+                Cursor cursor6 = sqliteDataBase.rawQuery(queryString6, args);
+
+                //c1.moveToFirst();
+                cursor6.moveToFirst();
+                while(!cursor6.isAfterLast()){
+                    a = new com.example.garagesalefinder.people.User(cursor6.getString(0),cursor6.getString(1),cursor6.getString(2),cursor6.getString(3),'U','Y');
+                    cursor6.moveToNext();
+                }
+                cursor6.close();
+                viewAccount(a);
+            }
+            //System.out.println("cursor string2: "+ cursor2.moveToFirst());
         }
+        else{
+           System.out.println("-----------FAILED LOGIN-----------");
+        }
+        searchByLocation("Sartell");
+        viewOwnPost("mShort","Monster Sale");
         sqliteDataBase.close();
         return access;
+    }
+
+    /**
+     * this method allows a user to view their own post so they can edit it if needed
+     * @param
+     * @return
+     * @author Maria Bedford
+     */
+    public boolean viewOwnPost(String username, String title){
+        //String[] args = {post.getOwner()};
+
+        String name = username;
+        String[] args = {name, title};
+        String queryString = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_username = ? and sale_posts.post_name =?)";
+        sqliteDataBase = this.getWritableDatabase();
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        System.out.println("---------------------");
+       // System.out.println("Cursor for viewPost: "+ cursor.moveToFirst());
+        System.out.println("Here is your Post: ");
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            System.out.println("get postname(): " + cursor.getString(1));
+            System.out.println("get location(): " + cursor.getString(2));
+            System.out.println("get description(): " + cursor.getString(3));
+            System.out.println("get time(): " + cursor.getString(4));
+            System.out.println("get range(): " + cursor.getString(5));
+            System.out.println("get image(): " + cursor.getString(6));
+            cursor.moveToNext();
+        }
+        System.out.println("---------------------");
+        sqliteDataBase.close();
+        return true;
     }
 
     /**
@@ -189,22 +259,58 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      *
      */
     /**
-    public boolean addAccount(Account a) {
-        sqliteDataBase = this.getWritableDatabase();
+     public boolean addAccount(Account a) {
+     sqliteDataBase = this.getWritableDatabase();
+     String queryString = "INSERT INTO regular_user (fname, lname, username, password, activate) VALUES " +
+     "(" + "\""+a.getFirstName() +"\""+ ", " +"\""+ a.getLastName() +"\""+ ", " +"\""+ a.getUsername() +"\""+ ", "+"\""+ a.getPassword() +"\""+ ", " +"\'"+ 'Y'+"\')";
+     String queryString2 = "INSERT INTO regular_user" +" (" + a.getFirstName() + ", " + a.getLastName() + ", " + a.getUsername() + ", "+ a.getPassword() + ", " + 'Y'+")" +
+     " VALUES (fname, lname, username, password, activate)";
+     System.out.println(queryString);
+     Cursor cursor = sqliteDataBase.rawQuery(queryString, null);
+     sqliteDataBase.close();
+     return true;
+     }
+     */
+
+
+
+
+    /**
+     * Right now this method adds a post to the database
+     * but it doesn't add items or dates yet maybe add items should be it's own separate method
+     * since it has a lot of its own attributes
+     * @param post
+     * @return
+     */
+    public boolean addPost(Post post) {
         ContentValues values = new ContentValues();
-        //values.put("fname", regular_user.getFirstName());
-
-
-        String queryString = "INSERT INTO regular_user (fname, lname, username, password, activate) VALUES " +
-                "(" + "\""+a.getFirstName() +"\""+ ", " +"\""+ a.getLastName() +"\""+ ", " +"\""+ a.getUsername() +"\""+ ", "+"\""+ a.getPassword() +"\""+ ", " +"\'"+ 'Y'+"\')";
-        String queryString2 = "INSERT INTO regular_user" +" (" + a.getFirstName() + ", " + a.getLastName() + ", " + a.getUsername() + ", "+ a.getPassword() + ", " + 'Y'+")" +
-                " VALUES (fname, lname, username, password, activate)";
-        System.out.println(queryString);
-        Cursor cursor = sqliteDataBase.rawQuery(queryString, null);
-        //sqliteDataBase.close();
+        //getOwner() might be the wrong thing to call since we should just know the
+        //the right user based on who is loggedIn
+        values.put("post_username", post.getOwner());
+        values.put("post_name", post.getTitle());
+        values.put("sale_location", post.getLocation());
+        values.put("sale_description", post.getDescription());
+        values.put("sale_time", post.getTime());
+        values.put("price_range", post.getPriceRange());
+        values.put("image", post.getImage());
+        //have to deal with items and dates
+        //that what the int d and int i might help with
+        //d and i should default to 0 in the UI
+        //maybe have dates get inputted as 1 long string broken up with commas
+        //and then i split on the comma and for a list of dates that can then be inserted
+        //1 by 1??
+        //int count=0;
+        //while(count < d){
+        //date.getDates();
+        //  values.put("date", );
+        //}
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert("sale_posts", null, values);
+        //viewOwnPost("mShort","Monster Sale");
+        viewOwnPost(post.getOwner(), post.getTitle());
+        db.close();
         return true;
     }
-*/
 
     public boolean addAccount(Account student) {
         ContentValues values = new ContentValues();
@@ -218,98 +324,50 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.close();
         return true;
     }
-/**
-    public boolean addPost(Post student, int d, int i) {
-        ContentValues values = new ContentValues();
-        values.put("post_username", post.getFirstName());
-        values.put("post_name", post.getLastName());
-        values.put("sale_location", post.getUsername());
-        values.put("sale_description", post.getPassword());
-        values.put("sale_time", "Y");
-        values.put("price_range", student.getPassword());
-        values.put("image", "Y");
-        while()
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert("regular_user", null, values);
-        db.close();
-        return true;
-    }
- */
-
-    public void searchByCategory(String category) {
-        String[] args = {category};
-         String queryString = "Select i.post_title FROM items i "+
-				  " WHERE i.item_category = ?";
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(queryString,args );
-        //Set<Post> results = new Set<Post>()
-        //Post match;
-        while(cursor.moveToNext()){
-            String name = cursor.getString(0);
-            String[] args2 = {name};
-            String queryString2 = "Select s.post_username, s.post_name, s.sale_location, s.sale_description, s.sale_time, s.price_range, s.image FROM sale_posts s"+ " WHERE s.post_name = ?";
-            Cursor cursor2 = db.rawQuery(queryString2,args2);
-            do{
-                //match =  new Post(cursor2.getString(0), cursor2.getString(1),cursor2.getString(2),cursor2.getString(3),cursor2.getString(4),cursor2.getString(5),cursor2.getString(6));
-            }
-            while(cursor2.moveToNext());
-            //return results;
-        }
-    }
 
 
     public void viewAccount(Account student){
-        String queryString = "SELECT * from regular_user" +
-                " WHERE (regular_user.username = "+ "\""+student.getUsername()+"\""+")";
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(queryString, null);
-
-
+        System.out.println("-------View Account-------");
+        System.out.println("First Name: "+a.getFirstName());
+        System.out.println("Last Name: "+a.getLastName());
+        System.out.println("Username: "+a.getUsername());
+        System.out.println("Password: "+a.getPassword());
+        System.out.println("Type(A for Admin/U for User): "+a.getType());
+        System.out.println("Status(Y for active/N for suspended): "+a.getStatus());
+        System.out.println("-------End of View Account-------");
     }
 
-        /**
-         * This method is called the first time the database is accessed.
-         * It generates the tables for the database
-         * @param db
-         */
-        @Override
-    public void onCreate(SQLiteDatabase db) {
-        /**
-       String createTable1 = "CREATE TABLE admin (fname TEXT NOT NULL, lname TEXT NOT NULL," +
-               "username TEXT NOT NULL UNIQUE, password TEXT NOT NULL, PRIMARY KEY(username))";
-       String createTable2 ="CREATE TABLE dates (sale_date DATE NOT NULL, post_title TEXT NOT NULL," +
-               "sale_post_username TEXT NOT NULL, FOREIGN KEY(sale_post_username, post_title) REFERENCES sale_posts (post_username,post_name), " +
-               "PRIMARY KEY(sale_date,post_title,sale_post_username))";
-       String createTable3 ="CREATE TABLE items ( post_title TEXT NOT NULL,item_title TEXT NOT NULL UNIQUE," +
-               "sale_post_username TEXT NOT NULL, item_category TEXT, item_image TEXT," +
-               "item_description TEXT, item_price TEXT, item_quantity TEXT, " +
-               "FOREIGN KEY(sale_post_username,post_title) REFERENCES sale_posts(post_username, post_name)," +
-               "PRIMARY KEY(post_title,item_title,sale_post_username))";
-       String createTable4 ="CREATE TABLE manages (admin_username TEXT NOT NULL, regular_user_username TEXT NOT NULL," +
-               "FOREIGN KEY(regular_user_username) REFERENCES regular_user(username)," +
-               "FOREIGN KEY(admin_username) REFERENCES admin(username)," +
-               "PRIMARY KEY(admin_username,regular_user_username))";
-       String createTable5 ="CREATE TABLE regular_user (fname TEXT NOT NULL, lname TEXT NOT NULL," +
-               "username TEXT NOT NULL UNIQUE, password TEXT NOT NULL, activate CHAR NOT NULL," +
-               "PRIMARY KEY(username))";
-       String createTable6 ="CREATE TABLE sale_posts (post_username TEXT NOT NULL," +
-               "post_name TEXT NOT NULL UNIQUE, sale_location TEXT NOT NULL, sale_description TEXT," +
-               "sale_time TEXT NOT NULL, price_range TEXT, image TEXT," +
-               "PRIMARY KEY(post_username,post_name)," +
-               "FOREIGN KEY(post_username) REFERENCES regular_user(username))";
-       String createTable7 ="CREATE TABLE save_posts (sale_post_username TEXT NOT NULL," +
-               "save_post_username TEXT NOT NULL, post_name TEXT NOT NULL," +
-               "FOREIGN KEY(save_post_username) REFERENCES regular_user(username)," +
-               "FOREIGN KEY(sale_post_username, post_name) REFERENCES sale_posts(post_username, post_name)," +
-               "PRIMARY KEY(sale_post_username,post_name,save_post_username))";
-       db.execSQL(createTable1);
-       db.execSQL(createTable2);
-       db.execSQL(createTable3);
-       db.execSQL(createTable4);
-       db.execSQL(createTable5);
-       db.execSQL(createTable6);
-       db.execSQL(createTable7);
-         */
+    public void searchByLocation(String location){
+        String[] args ={location};
+        String queryString2 = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.sale_location=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        System.out.println("--------Start of Search Results--------");
+        while(!cursor.isAfterLast()){
+           System.out.println("Title of Sale: "+cursor.getString(1));
+           System.out.println("Location of Sale: "+cursor.getString(2));
+           System.out.println("Description of Sale: "+cursor.getString(3));
+           System.out.println("Time of Sale: "+cursor.getString(4));
+           System.out.println("Price Range of Sale: "+cursor.getString(5));
+           System.out.println("------------------");
+           cursor.moveToNext();
+        }
+        System.out.println("----------End of Search Result-------------");
+        cursor.close();
+    }
+
+    public void searchByDate(Date date){
+        String[] args ={};
+        String queryString2 = "SELECT * from dates" +
+                " WHERE (sale_posts.sale_location=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        //no need to write the create table query since we are using pre-made database
     }
 
     @Override
@@ -321,4 +379,3 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return null;
     }
 }
-
