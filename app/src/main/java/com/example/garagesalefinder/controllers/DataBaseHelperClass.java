@@ -221,6 +221,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
            System.out.println("-----------FAILED LOGIN-----------");
         }
         searchByLocation("Sartell");
+        SearchByDate("2023-05-21");
         viewOwnPost("mShort","Monster Sale");
         sqliteDataBase.close();
         return access;
@@ -343,13 +344,34 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         cursor.close();
     }
 
-    public void searchByDate(Date date){
-        String[] args ={};
-        String queryString2 = "SELECT * from dates" +
-                " WHERE (sale_posts.sale_location=?)";
-        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
-        cursor.moveToFirst();
+    /**
+     * Search the title of posts by date
+     * @param date a String that is the date of a post
+     * @return a String array that has all posts on that date
+     */
+    public ArrayList<String> SearchByDate(String date){
+        String[] args = {date};
+        ArrayList<String> posts = new ArrayList<>();
+        int count = 0;
+        String queryString = "SELECT post_title FROM dates" +
+                " WHERE sale_date = ?";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        System.out.println("The results of Search by date:");
+        System.out.println("cursor string: "+ cursor.moveToFirst());
+        if (cursor != null && cursor.moveToNext()){
+            do {
+                posts.add(cursor.getString(0));
+                System.out.println(posts.get(count));
+                count++;
+            } while (cursor.moveToNext());
+        } else {
+            System.out.println("No posts on this date!");
+        }
+        System.out.println("End of function Search by date...");
+
+        return posts;
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
