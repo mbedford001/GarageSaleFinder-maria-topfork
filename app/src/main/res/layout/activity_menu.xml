@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu">
+    tools:context=".Menu"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="285dp">
 
-<<<<<<< HEAD
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -20,45 +21,47 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.812" />
 
-=======
->>>>>>> 27deb09b903409100fe60d1914aef54d8d2253c5
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.drawing.Sample"
-        tools:ignore="HardcodedText" >
+        tools:ignore="HardcodedText" />
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="15dp" >
+    <Button
+        android:id="@+id/createPost"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:onClick="createPosts"
+        android:text="Create Post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="300dp"/>
 
-            <Button
-                android:id="@+id/createPost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="createPosts"
-                android:text="Create Post"
-                />
+    <Button
+        android:id="@+id/searchByLocation"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:onClick="searchByLocation"
+        android:text="Search by Location"
+        app:layout_constraintTop_toBottomOf="@id/createPost"
+        app:layout_constraintLeft_toLeftOf="@id/createPost"
+        tools:layout_editor_absoluteX="107dp" />
 
-            <Button
-                android:id="@+id/searchByLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="searchByLocation"
-                android:text="Search by Location" />
+    <Button
+        android:id="@+id/viewAccount"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:onClick="viewAccount"
+        android:text="View Account"
+        app:layout_constraintTop_toBottomOf="@id/searchByLocation"
+        app:layout_constraintLeft_toLeftOf="@id/createPost"
+        tools:layout_editor_absoluteX="107dp" />
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button 3" />
-
-        </TableRow>
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
