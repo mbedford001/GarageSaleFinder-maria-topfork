@@ -62,7 +62,12 @@ public class Login extends AppCompatActivity {
                 System.out.println("Username/email: " + email + "Password: " + password);
                 if(dbhc.login(email, password)){
                     //System.out.println("Success! Inside if statement! Username "+ email + "Password: "+password);
-                    startActivity(new Intent(getApplicationContext(), Menu.class));
+                    //startActivity(new Intent(getApplicationContext(), Menu.class));
+                    //finish();
+                    Intent intent = new Intent(Login.this,Menu.class);
+                    intent.putExtra("username",email);
+                    intent.putExtra("password", password);
+                    startActivity(intent);
                     finish();
                 }
                 else{//not the best way to display an error message for a non-existent user, but it suffices for now
