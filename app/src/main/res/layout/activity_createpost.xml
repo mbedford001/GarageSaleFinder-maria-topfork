@@ -124,7 +124,9 @@
         android:layout_height="50dp"
         android:ems="10"
         android:hint="Time"
+
         android:inputType="textPassword"
+
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"

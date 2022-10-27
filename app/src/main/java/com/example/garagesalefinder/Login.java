@@ -61,7 +61,7 @@ public class Login extends AppCompatActivity {
                 }
                 System.out.println("Username/email: " + email + "Password: " + password);
                 if(dbhc.login(email, password)){
-                    System.out.println("Success! Inside if statement! Username "+ email + "Password: "+password);
+                    //System.out.println("Success! Inside if statement! Username "+ email + "Password: "+password);
                     startActivity(new Intent(getApplicationContext(), Menu.class));
                     finish();
                 }
