@@ -70,7 +70,8 @@
         android:layout_gravity="bottom"
         android:text="Return"
         android:textStyle="bold"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin"
+        app:layout_constraintLeft_toLeftOf="@id/btnLogin"
         tools:layout_editor_absoluteX="100dp"
         tools:layout_editor_absoluteY="645dp" />
 
