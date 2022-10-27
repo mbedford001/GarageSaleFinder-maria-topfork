@@ -220,7 +220,10 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
-        searchByLocation("Sartell");
+        searchByLocation("Sartell"); //tests search method
+        searchByLocation("bad location"); //tests location with no sales
+        SearchByDate("2023-05-21");
+
         viewOwnPost("mShort","Monster Sale");
         sqliteDataBase.close();
         return access;
@@ -323,33 +326,75 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         System.out.println("-------End of View Account-------");
     }
 
-    public void searchByLocation(String location){
-        String[] args ={location};
+    /**
+     * method to search for sales within a given location(city)
+     * @param searchedLocation the location the user is searching for sales in
+     * @return returns an arraylist of all post objects that have a matching location
+     */
+    public ArrayList<Post> searchByLocation(String searchedLocation){
+        String[] args ={searchedLocation};
+        ArrayList<Post> results= new ArrayList<Post>(0);
         String queryString2 = "SELECT * from sale_posts" +
                 " WHERE (sale_posts.sale_location=?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
         cursor.moveToFirst();
-        System.out.println("--------Start of Search Results--------");
         while(!cursor.isAfterLast()){
-           System.out.println("Title of Sale: "+cursor.getString(1));
-           System.out.println("Location of Sale: "+cursor.getString(2));
-           System.out.println("Description of Sale: "+cursor.getString(3));
-           System.out.println("Time of Sale: "+cursor.getString(4));
-           System.out.println("Price Range of Sale: "+cursor.getString(5));
-           System.out.println("------------------");
+            Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            results.add(post);
+
            cursor.moveToNext();
+        }
+        System.out.println("--------Start of Search Results--------");
+        if(results.size()<=0) {
+            System.out.println("No Results Found");
+        }
+        else {
+            int i = 0;
+            while (i < results.size()) {
+                System.out.println("Title of Sale: " + results.get(i).getTitle());
+                System.out.println("Loaction of Sale: " + results.get(i).getLocation());
+                System.out.println("Description of Sale: " + results.get(i).getDescription());
+                System.out.println("Time of Sale: " + results.get(i).getTime());
+                System.out.println("Price Range of Sale: " + results.get(i).getPriceRange());
+                System.out.println("Sale Image: " + results.get(i).getImage());
+                System.out.println("------------------");
+                i++;
+            }
         }
         System.out.println("----------End of Search Result-------------");
         cursor.close();
+        return results;
     }
 
-    public void searchByDate(Date date){
-        String[] args ={};
-        String queryString2 = "SELECT * from dates" +
-                " WHERE (sale_posts.sale_location=?)";
-        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
-        cursor.moveToFirst();
+    /**
+     * Search the title of posts by date
+     * @param date a String that is the date of a post
+     * @return a String array that has all posts on that date
+     */
+    public ArrayList<String> SearchByDate(String date){
+        String[] args = {date};
+        ArrayList<String> posts = new ArrayList<>();
+        int count = 0;
+        String queryString = "SELECT post_title FROM dates" +
+                " WHERE sale_date = ?";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        System.out.println("The results of Search by date:");
+        System.out.println("cursor string: "+ cursor.moveToFirst());
+        if (cursor != null && cursor.moveToNext()){
+            do {
+                posts.add(cursor.getString(0));
+                System.out.println(posts.get(count));
+                count++;
+            } while (cursor.moveToNext());
+        } else {
+            System.out.println("No posts on this date!");
+        }
+        System.out.println("End of function Search by date...");
+
+        return posts;
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
