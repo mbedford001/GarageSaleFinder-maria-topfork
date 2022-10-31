@@ -301,6 +301,22 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     * Method to delete a user from the database
+     * @param username the username of the account to delete
+     */
+    public void deleteUser(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("save_posts", "save_post_username" + "=\"" + username + "\"", null);
+        db.delete("save_posts", "sale_post_username" + "=\"" + username + "\"", null);
+        db.delete("items", "sale_post_username" + "=\"" + username + "\"", null);
+        db.delete("dates", "sale_post_username" + "=\"" + username + "\"", null);
+        db.delete("manages", "regular_user_username" + "=\"" + username + "\"", null);
+        db.delete("sale_posts", "post_username" + "=\"" + username + "\"", null);
+        db.delete("regular_user", "username" + "=\"" + username + "\"", null);
+    }
+
+
 
     public boolean addAccount(Account student) {
         ContentValues values = new ContentValues();
