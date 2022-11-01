@@ -80,5 +80,16 @@ public class Createpost extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    public void returnHomeFromPost(View view){
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        Intent intent = new Intent(Createpost.this,Menu.class);
+        intent.putExtra("username",username);
+        intent.putExtra("password", password);
+        startActivity(intent);
+        finish();
     }
 }

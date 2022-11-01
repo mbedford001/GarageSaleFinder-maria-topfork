@@ -23,6 +23,7 @@ public class ViewAccount extends AppCompatActivity {
         setContentView(R.layout.activity_view_account);
 
         String username = getIntent().getStringExtra("username");
+        System.out.println(username);
         UserText = findViewById(R.id.username);
         UserText.setText(username);
 
@@ -39,6 +40,16 @@ public class ViewAccount extends AppCompatActivity {
         String username = getIntent().getStringExtra("username");
         dbhc.deleteUser(username);
         startActivity(new Intent(getApplicationContext(), Home.class));
+        finish();
+    }
+
+    public void returnHomeFromView(View view){
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        Intent intent = new Intent(ViewAccount.this,Menu.class);
+        intent.putExtra("username",username);
+        intent.putExtra("password", password);
+        startActivity(intent);
         finish();
     }
 
