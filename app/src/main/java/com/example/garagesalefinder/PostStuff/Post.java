@@ -1,5 +1,6 @@
 package com.example.garagesalefinder.PostStuff;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
      * @author .......
      * @version 9/29/2022
      */
-    public class Post {
+    public class Post implements Serializable {
 
         private String owner;
         private String location;
@@ -42,6 +43,7 @@ import java.util.Date;
             this.time = time;
             this.priceRange = priceRange;
         }
+
 
         /**
          * method to set the owner of the sale
@@ -171,3 +173,5 @@ import java.util.Date;
             return this.image;
         }
 }
+
+
