@@ -220,11 +220,11 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
-        searchByLocation("Sartell"); //tests search method
-        searchByLocation("bad location"); //tests location with no sales
+//        searchByLocation("Sartell"); //tests search method
+//        searchByLocation("bad location"); //tests location with no sales
         SearchByDate("2023-05-21");
 
-        viewOwnPost("mShort","Monster Sale");
+        //viewOwnPost("mShort","Monster Sale");
         sqliteDataBase.close();
         return access;
     }
@@ -388,7 +388,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * @param date a String that is the date of a post
      * @return a String array that has all posts on that date
      */
-    public ArrayList<String> SearchByDate(String date){
+    public ArrayList<Post> SearchByDate(String date){
         String[] args = {date};
         ArrayList<String> posts = new ArrayList<>();
         int count = 0;
@@ -408,7 +408,40 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         }
         System.out.println("End of function Search by date...");
 
-        return posts;
+        String[] args2 = new String[posts.size()];
+        posts.toArray(args2);
+        ArrayList<Post> results= new ArrayList<Post>(0);
+        queryString = "SELECT * from sale_posts" +
+                " WHERE post_name =?";
+        cursor = sqliteDataBase.rawQuery(queryString, args2);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            results.add(post);
+
+            cursor.moveToNext();
+        }
+        System.out.println("--------Start of Search Results (Search by Date)--------");
+        if(results.size()<=0) {
+            System.out.println("No Results Found");
+        }
+        else {
+            int i = 0;
+            while (i < results.size()) {
+                System.out.println("Title of Sale: " + results.get(i).getTitle());
+                System.out.println("Loaction of Sale: " + results.get(i).getLocation());
+                System.out.println("Description of Sale: " + results.get(i).getDescription());
+                System.out.println("Time of Sale: " + results.get(i).getTime());
+                System.out.println("Price Range of Sale: " + results.get(i).getPriceRange());
+                System.out.println("Sale Image: " + results.get(i).getImage());
+                System.out.println("------------------");
+                i++;
+            }
+        }
+        System.out.println("----------End of Search Result (Search by Date)-------------");
+        cursor.close();
+        return results;
     }
 
 
