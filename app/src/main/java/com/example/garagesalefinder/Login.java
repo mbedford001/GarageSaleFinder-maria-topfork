@@ -22,7 +22,7 @@ public class Login extends AppCompatActivity {
 
     AccountController ac = new AccountController();
 
-    DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
+    //DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
 
     @SuppressLint("MissingInflatedId")
 
@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity {
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
                 String email = Email.getText().toString().trim();//converts user input to string
                 String password = Password.getText().toString().trim();//converts user input to string
                 boolean done = true;
