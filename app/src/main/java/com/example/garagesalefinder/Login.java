@@ -18,16 +18,17 @@ public class Login extends AppCompatActivity {
     Button LoginBtn;
     ProgressBar progressBar;
     Button ReturnBtn;
+    Boolean success = false;
 
     AccountController ac = new AccountController();
 
-    DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
+    //DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
 
     @SuppressLint("MissingInflatedId")
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("We got here!");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Email = findViewById(R.id.email);
@@ -47,8 +48,10 @@ public class Login extends AppCompatActivity {
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DataBaseHelperClass dbhc = new DataBaseHelperClass(Login.this);
                 String email = Email.getText().toString().trim();//converts user input to string
                 String password = Password.getText().toString().trim();//converts user input to string
+                boolean done = true;
 
                 if(TextUtils.isEmpty(email)){//verifies a username was entered
                     Email.setError("Email is Required.");
@@ -71,8 +74,13 @@ public class Login extends AppCompatActivity {
                     finish();
                 }
                 else{//not the best way to display an error message for a non-existent user, but it suffices for now
-                    Email.setError("Email could be incorrect");
-                    Password.setError("Password could be incorrect");
+
+                    //overridePendingTransition(0, 0);
+                    //startActivity(new Intent(getApplicationContext(), Login.class));
+                    //Email.setError("Email could be incorrect");
+                    //Password.setError("Password could be incorrect");
+                    //overridePendingTransition(0, 0);
+
                 }
                 progressBar.setVisibility(View.VISIBLE);//displays login progress bar
             }
