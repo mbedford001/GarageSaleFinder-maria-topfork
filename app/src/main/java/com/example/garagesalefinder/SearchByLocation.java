@@ -3,16 +3,24 @@ package com.example.garagesalefinder;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.garagesalefinder.PostStuff.Post;
+import com.example.garagesalefinder.controllers.DataBaseHelperClass;
+
+import java.util.ArrayList;
+
 public class SearchByLocation extends AppCompatActivity {
 
+    DataBaseHelperClass dbhc = new DataBaseHelperClass(SearchByLocation.this);
     EditText location;
     Button searchButton;
+    ArrayList<Post> results = new ArrayList<Post>();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -23,7 +31,6 @@ public class SearchByLocation extends AppCompatActivity {
         searchButton = findViewById(R.id.btnSearchByLocation);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 String inputLocation = location.getText().toString().trim();
@@ -31,10 +38,12 @@ public class SearchByLocation extends AppCompatActivity {
                 if(TextUtils.isEmpty(inputLocation)){
                     location.setError("Location is required");
                 }
-                //this is where search method would be called
+                results = dbhc.searchByLocation(inputLocation);
+                Intent intent = new Intent(SearchByLocation.this,ViewSearchResults.class);
+                intent.putExtra("results",results);
+                startActivity(intent);
+                finish();
             }
-
-
         });
     }
 }
