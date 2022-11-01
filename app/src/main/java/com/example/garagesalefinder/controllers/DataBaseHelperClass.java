@@ -416,12 +416,13 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return posts;
     }
 
-    public void searchByCategory(String category){
+    public ArrayList<Post> searchByCategory(String category){
         String[] args = {category};
         String query = "SELECT post_title from items WHERE (items.item_category=?)";
         Cursor cursor = sqliteDataBase.rawQuery(query,args);
         cursor.moveToFirst();
         ArrayList<String> garageSale = new ArrayList<String>();
+        ArrayList<Post> results = new ArrayList<Post>();
         System.out.println("-------------------\nSearch By Category");
         while(!cursor.isAfterLast()){
             if (!garageSale.contains(cursor.getString(0))) {
@@ -436,7 +437,10 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                     System.out.println("Description of Sale: "+cursor2.getString(3));
                     System.out.println("Time of Sale: "+cursor2.getString(4));
                     System.out.println("Price Range of Sale: "+cursor2.getString(5));
-                  cursor2.moveToNext();
+                    Post post = new Post(cursor2.getString(0), cursor2.getString(2), cursor2.getString(1), cursor2.getString(3),
+                            cursor2.getString(4), cursor2.getString(5), cursor2.getString(6));
+                    results.add(post);
+                    cursor2.moveToNext();
                 }
 
             }
@@ -446,8 +450,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         //for (int i = 0; i < garageSale.size(); i++) {
         //    System.out.println("Title of Sale: "+garageSale.get(i));
         //}
-        System.out.println("---------------------");
-
+        //System.out.println("---------------------");
+        return results;
     }
 
 
