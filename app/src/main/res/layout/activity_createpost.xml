@@ -125,7 +125,7 @@
         android:ems="10"
         android:hint="Time"
 
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
 
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +153,7 @@
         android:layout_height="50dp"
         android:ems="10"
         android:hint="Price"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
@@ -180,7 +180,7 @@
         android:layout_height="50dp"
         android:ems="10"
         android:hint="Time"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
