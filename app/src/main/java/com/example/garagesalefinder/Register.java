@@ -78,7 +78,7 @@ public class Register extends AppCompatActivity {
                 //System.out.println("Username/email: " + email + "Password: " + password);
                 if(dbhc.addAccount(new User(fname, lname,uname,pname,'U','Y'))){
                     //System.out.println("inside if statement! Username "+ email + "Password: "+password);
-                    startActivity(new Intent(getApplicationContext(), Menu.class));
+                    startActivity(new Intent(getApplicationContext(), Login.class));
                     finish();
                 }
 

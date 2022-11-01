@@ -72,6 +72,7 @@ public class Createpost extends AppCompatActivity {
                     return;
                 }
 
+                //String username = getIntent().getStringExtra("username");
                 Post p = new Post("mShort", pLocation, pTitle, pDescription, pTime, pPrice, pImage);
                 dbhc.addPost(p);
                 //startActivity(new Intent(getApplicationContext(), ViewPost.class));
