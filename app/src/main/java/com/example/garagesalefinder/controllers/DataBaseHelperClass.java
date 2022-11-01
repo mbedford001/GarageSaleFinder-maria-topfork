@@ -220,11 +220,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
-//        searchByLocation("Sartell"); //tests search method
-//        searchByLocation("bad location"); //tests location with no sales
-        SearchByDate("2023-05-21");
 
-        //viewOwnPost("mShort","Monster Sale");
+  
         sqliteDataBase.close();
         return access;
     }
@@ -441,6 +438,44 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         }
         System.out.println("----------End of Search Result (Search by Date)-------------");
         cursor.close();
+        return results;
+    }
+
+    public ArrayList<Post> searchByCategory(String category){
+        String[] args = {category};
+        String query = "SELECT post_title from items WHERE (items.item_category=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(query,args);
+        cursor.moveToFirst();
+        ArrayList<String> garageSale = new ArrayList<String>();
+        ArrayList<Post> results = new ArrayList<Post>();
+        System.out.println("-------------------\nSearch By Category");
+        while(!cursor.isAfterLast()){
+            if (!garageSale.contains(cursor.getString(0))) {
+                garageSale.add(cursor.getString(0));
+                String[] args2 = {cursor.getString(0)};
+                String query2 = "SELECT * from sale_posts WHERE (sale_posts.post_name=?)";
+                Cursor cursor2 = sqliteDataBase.rawQuery(query2,args2);
+                cursor2.moveToFirst();
+                while (!cursor2.isAfterLast()){
+                    System.out.println("Title of Sale: "+cursor2.getString(1));
+                    System.out.println("Location of Sale: "+cursor2.getString(2));
+                    System.out.println("Description of Sale: "+cursor2.getString(3));
+                    System.out.println("Time of Sale: "+cursor2.getString(4));
+                    System.out.println("Price Range of Sale: "+cursor2.getString(5));
+                    Post post = new Post(cursor2.getString(0), cursor2.getString(2), cursor2.getString(1), cursor2.getString(3),
+                            cursor2.getString(4), cursor2.getString(5), cursor2.getString(6));
+                    results.add(post);
+                    cursor2.moveToNext();
+                }
+
+            }
+            cursor.moveToNext();
+        }
+       //System.out.println("-------------------\nSearch By Category");
+        //for (int i = 0; i < garageSale.size(); i++) {
+        //    System.out.println("Title of Sale: "+garageSale.get(i));
+        //}
+        //System.out.println("---------------------");
         return results;
     }
 
