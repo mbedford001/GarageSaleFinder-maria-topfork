@@ -206,11 +206,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
-        searchByLocation("Sartell"); //tests search method
-        searchByLocation("bad location"); //tests location with no sales
-        SearchByDate("2023-05-21");
 
-        viewOwnPost("mShort","Monster Sale");
+  
         sqliteDataBase.close();
         return access;
     }
@@ -296,6 +293,22 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
 
         return true;
     }
+
+    /**
+     * Method to delete a user from the database
+     * @param username the username of the account to delete
+     */
+    public void deleteUser(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("save_posts", "save_post_username" + "=\"" + username + "\"", null);
+        db.delete("save_posts", "sale_post_username" + "=\"" + username + "\"", null);
+        db.delete("items", "sale_post_username" + "=\"" + username + "\"", null);
+        db.delete("dates", "sale_post_username" + "=\"" + username + "\"", null);
+        db.delete("manages", "regular_user_username" + "=\"" + username + "\"", null);
+        db.delete("sale_posts", "post_username" + "=\"" + username + "\"", null);
+        db.delete("regular_user", "username" + "=\"" + username + "\"", null);
+    }
+
 
 
     public boolean addAccount(Account student) {
@@ -386,7 +399,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * @param date a String that is the date of a post
      * @return a String array that has all posts on that date
      */
-    public ArrayList<String> SearchByDate(String date){
+    public ArrayList<Post> SearchByDate(String date){
         String[] args = {date};
         ArrayList<String> posts = new ArrayList<>();
         int count = 0;
@@ -406,7 +419,78 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         }
         System.out.println("End of function Search by date...");
 
-        return posts;
+        String[] args2 = new String[posts.size()];
+        posts.toArray(args2);
+        ArrayList<Post> results= new ArrayList<Post>(0);
+        queryString = "SELECT * from sale_posts" +
+                " WHERE post_name =?";
+        cursor = sqliteDataBase.rawQuery(queryString, args2);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            results.add(post);
+
+            cursor.moveToNext();
+        }
+        System.out.println("--------Start of Search Results (Search by Date)--------");
+        if(results.size()<=0) {
+            System.out.println("No Results Found");
+        }
+        else {
+            int i = 0;
+            while (i < results.size()) {
+                System.out.println("Title of Sale: " + results.get(i).getTitle());
+                System.out.println("Loaction of Sale: " + results.get(i).getLocation());
+                System.out.println("Description of Sale: " + results.get(i).getDescription());
+                System.out.println("Time of Sale: " + results.get(i).getTime());
+                System.out.println("Price Range of Sale: " + results.get(i).getPriceRange());
+                System.out.println("Sale Image: " + results.get(i).getImage());
+                System.out.println("------------------");
+                i++;
+            }
+        }
+        System.out.println("----------End of Search Result (Search by Date)-------------");
+        cursor.close();
+        return results;
+    }
+
+    public ArrayList<Post> searchByCategory(String category){
+        String[] args = {category};
+        String query = "SELECT post_title from items WHERE (items.item_category=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(query,args);
+        cursor.moveToFirst();
+        ArrayList<String> garageSale = new ArrayList<String>();
+        ArrayList<Post> results = new ArrayList<Post>();
+        System.out.println("-------------------\nSearch By Category");
+        while(!cursor.isAfterLast()){
+            if (!garageSale.contains(cursor.getString(0))) {
+                garageSale.add(cursor.getString(0));
+                String[] args2 = {cursor.getString(0)};
+                String query2 = "SELECT * from sale_posts WHERE (sale_posts.post_name=?)";
+                Cursor cursor2 = sqliteDataBase.rawQuery(query2,args2);
+                cursor2.moveToFirst();
+                while (!cursor2.isAfterLast()){
+                    System.out.println("Title of Sale: "+cursor2.getString(1));
+                    System.out.println("Location of Sale: "+cursor2.getString(2));
+                    System.out.println("Description of Sale: "+cursor2.getString(3));
+                    System.out.println("Time of Sale: "+cursor2.getString(4));
+                    System.out.println("Price Range of Sale: "+cursor2.getString(5));
+                    Post post = new Post(cursor2.getString(0), cursor2.getString(2), cursor2.getString(1), cursor2.getString(3),
+                            cursor2.getString(4), cursor2.getString(5), cursor2.getString(6));
+                    results.add(post);
+                    cursor2.moveToNext();
+                }
+
+            }
+            cursor.moveToNext();
+        }
+       //System.out.println("-------------------\nSearch By Category");
+        //for (int i = 0; i < garageSale.size(); i++) {
+        //    System.out.println("Title of Sale: "+garageSale.get(i));
+        //}
+        //System.out.println("---------------------");
+        return results;
     }
 
 

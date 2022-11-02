@@ -79,6 +79,7 @@ public class Createpost extends AppCompatActivity {
                     return;
                 }
                 Post p = new Post(username, pLocation, pTitle, pDescription, pTime, pPrice, pImage);
+
                 dbhc.addPost(p);
                 //startActivity(new Intent(getApplicationContext(), ViewPost.class));
                 //finish();
@@ -86,6 +87,17 @@ public class Createpost extends AppCompatActivity {
             }
 
         });
+
+    }
+
+    public void returnHomeFromPost(View view){
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        Intent intent = new Intent(Createpost.this,Menu.class);
+        intent.putExtra("username",username);
+        intent.putExtra("password", password);
+        startActivity(intent);
+        finish();
     }
     public void moveToAddDates(View view){
         Intent intent = new Intent(getApplicationContext(), AddDates.class);

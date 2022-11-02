@@ -44,8 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewUsername"
-        />
+        app:layout_constraintTop_toBottomOf="@id/viewUsername" />
 
     <TextView
         android:id="@+id/password"
@@ -60,5 +59,33 @@
         app:layout_constraintLeft_toRightOf="@id/viewPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="178dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="539dp"
+        android:onClick="deleteAccount"
+        android:text="Delete Account"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="178dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="612dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginBottom="65dp"
+        android:onClick="returnHomeFromView"
+        android:text="Back to Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

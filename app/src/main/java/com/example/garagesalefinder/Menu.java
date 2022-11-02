@@ -39,6 +39,7 @@ public class Menu extends AppCompatActivity {
         String username = getIntent().getStringExtra("username");
         String password = getIntent().getStringExtra("password");
         Intent intent = new Intent(Menu.this,ViewAccount.class);
+
         intent.putExtra("username",username);
         intent.putExtra("password",password);
         startActivity(intent);

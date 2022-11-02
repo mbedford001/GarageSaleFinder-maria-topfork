@@ -13,9 +13,9 @@
         android:layout_marginTop="16dp"
         android:text="Create Post"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -71,10 +71,10 @@
         android:hint="City Name"
         android:inputType="textPersonName"
         android:padding="10dp"
-        app:layout_constraintTop_toTopOf="@+id/location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/location" />
 
     <TextView
         android:id="@+id/description"
@@ -99,10 +99,10 @@
         android:hint="Description"
         android:inputType="textPersonName"
         android:padding="10dp"
-        app:layout_constraintTop_toTopOf="@+id/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/description" />
 
     <TextView
         android:id="@+id/time"
@@ -198,6 +198,20 @@
         android:onClick= "moveToAddDates"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="595dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="87dp"
+        android:onClick="returnHomeFromPost"
+        android:text="Back to Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 
