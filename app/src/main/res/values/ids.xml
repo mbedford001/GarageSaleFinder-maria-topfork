@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="password" type="id" />
+    <item name="inputItemName" type="id" />
+    <item name="inputCategory" type="id" />
+    <item name="inputQuantity" type="id" />
+    <item name="inputDate" type="id" />
 </resources>

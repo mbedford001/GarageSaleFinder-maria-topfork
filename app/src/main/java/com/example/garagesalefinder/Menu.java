@@ -22,7 +22,10 @@ public class Menu extends AppCompatActivity {
     }
 
     public void createPosts(View view){
-        startActivity(new Intent(getApplicationContext(), Createpost.class));
+        String username = getIntent().getStringExtra("username");
+        Intent intent = new Intent(Menu.this,Createpost.class);
+        intent.putExtra("username",username);
+        startActivity(intent);
         finish();
     }
 

@@ -11,9 +11,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
+import com.example.garagesalefinder.people.Account;
 
 public class Createpost extends AppCompatActivity {
 
@@ -24,6 +26,7 @@ public class Createpost extends AppCompatActivity {
     EditText image;
     EditText priceRange;
     Button createButton;
+    public TextView UserText;
 
     DataBaseHelperClass dbhc = new DataBaseHelperClass(Createpost.this);
 
@@ -39,6 +42,10 @@ public class Createpost extends AppCompatActivity {
         image = findViewById(R.id.inputImage);
         priceRange = findViewById(R.id.inputPrice);
         createButton = findViewById(R.id.btnCreate);
+
+        String username = getIntent().getStringExtra("username");
+        //UserText = findViewById(R.id.username);
+        //UserText.setText(username);
 
 
         createButton.setOnClickListener(new View.OnClickListener(){
@@ -71,13 +78,21 @@ public class Createpost extends AppCompatActivity {
                     time.setError("Time is required.");
                     return;
                 }
-
-                Post p = new Post("mShort", pLocation, pTitle, pDescription, pTime, pPrice, pImage);
+                Post p = new Post(username, pLocation, pTitle, pDescription, pTime, pPrice, pImage);
                 dbhc.addPost(p);
                 //startActivity(new Intent(getApplicationContext(), ViewPost.class));
                 //finish();
-
+                moveToAddDates(v);
             }
+
         });
+    }
+    public void moveToAddDates(View view){
+        Intent intent = new Intent(getApplicationContext(), AddDates.class);
+        String username = getIntent().getStringExtra("username");
+        intent.putExtra("username",username);
+        startActivity(intent);
+        //startActivity(new Intent(getApplicationContext(), AddDates.class));
+        finish();
     }
 }
