@@ -409,7 +409,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     /**
      * method to search the database for sales with items in a given category
      * @param category the category that the user wants to search for
-     * @return results an arraylist of post objects that have an item in the category
+     * @return results an arraylist of post objects that have an item in the category.
      */
     public ArrayList<Post> searchByCategory(String category){
         String[] args = {category};
