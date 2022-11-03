@@ -207,8 +207,18 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
            System.out.println("-----------FAILED LOGIN-----------");
         }
 
-  
+        System.out.println("*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
+        System.out.println("Results for Sartell, 2023-05-21, Towels:");
+        System.out.println(searchPosts("Sartell", "2023-05-21", "Towels").size());
+        System.out.println("Results for Sartell, null, Towels:");
+        System.out.println(searchPosts("Sartell", "", "Towels").size());
+        System.out.println("Results for null, 2023-05-21, null");
+        System.out.println(searchPosts("", "2023-05-21", "").size());
+        System.out.println("*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
+
         sqliteDataBase.close();
+
+
         return access;
     }
 
@@ -356,7 +366,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     /**
      * method to search for sales within a given location(city)
      * @param searchedLocation the location the user is searching for sales in
-     * @return returns an arraylist of all post objects that have a matching location
+     * @return an arraylist of all post objects that have a matching location
      */
     public ArrayList<Post> searchByLocation(String searchedLocation){
         String[] args ={searchedLocation};
@@ -369,27 +379,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
                     cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
             results.add(post);
-
            cursor.moveToNext();
         }
-        System.out.println("--------Start of Search Results--------");
-        if(results.size()<=0) {
-            System.out.println("No Results Found");
-        }
-        else {
-            int i = 0;
-            while (i < results.size()) {
-                System.out.println("Title of Sale: " + results.get(i).getTitle());
-                System.out.println("Loaction of Sale: " + results.get(i).getLocation());
-                System.out.println("Description of Sale: " + results.get(i).getDescription());
-                System.out.println("Time of Sale: " + results.get(i).getTime());
-                System.out.println("Price Range of Sale: " + results.get(i).getPriceRange());
-                System.out.println("Sale Image: " + results.get(i).getImage());
-                System.out.println("------------------");
-                i++;
-            }
-        }
-        System.out.println("----------End of Search Result-------------");
         cursor.close();
         return results;
     }
@@ -397,64 +388,43 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     /**
      * Search the title of posts by date
      * @param date a String that is the date of a post
-     * @return a String array that has all posts on that date
+     * @return an array list of post objects that match search criteria
      */
-    public ArrayList<Post> SearchByDate(String date){
+    public ArrayList<Post> searchByDate(String date){
         String[] args = {date};
         ArrayList<String> posts = new ArrayList<>();
         int count = 0;
         String queryString = "SELECT post_title FROM dates" +
                 " WHERE sale_date = ?";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
-        System.out.println("The results of Search by date:");
-        System.out.println("cursor string: "+ cursor.moveToFirst());
-        if (cursor != null && cursor.moveToNext()){
-            do {
-                posts.add(cursor.getString(0));
-                System.out.println(posts.get(count));
-                count++;
-            } while (cursor.moveToNext());
-        } else {
-            System.out.println("No posts on this date!");
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            posts.add(cursor.getString(0));
+            count++;
+            cursor.moveToNext();
         }
-        System.out.println("End of function Search by date...");
-
-        String[] args2 = new String[posts.size()];
-        posts.toArray(args2);
         ArrayList<Post> results= new ArrayList<Post>(0);
         queryString = "SELECT * from sale_posts" +
                 " WHERE post_name =?";
-        cursor = sqliteDataBase.rawQuery(queryString, args2);
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast()){
+        for(int i = 0; i<posts.size(); i++) {
+            String[] args2 = {posts.get(i)};
+            cursor = sqliteDataBase.rawQuery(queryString, args2);
+            cursor.moveToFirst();
             Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
                     cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
             results.add(post);
-
-            cursor.moveToNext();
         }
-        System.out.println("--------Start of Search Results (Search by Date)--------");
-        if(results.size()<=0) {
-            System.out.println("No Results Found");
-        }
-        else {
-            int i = 0;
-            while (i < results.size()) {
-                System.out.println("Title of Sale: " + results.get(i).getTitle());
-                System.out.println("Loaction of Sale: " + results.get(i).getLocation());
-                System.out.println("Description of Sale: " + results.get(i).getDescription());
-                System.out.println("Time of Sale: " + results.get(i).getTime());
-                System.out.println("Price Range of Sale: " + results.get(i).getPriceRange());
-                System.out.println("Sale Image: " + results.get(i).getImage());
-                System.out.println("------------------");
-                i++;
-            }
-        }
-        System.out.println("----------End of Search Result (Search by Date)-------------");
         cursor.close();
         return results;
     }
 
+
+
+    /**
+     * method to search the database for sales with items in a given category
+     * @param category the category that the user wants to search for
+     * @return results an arraylist of post objects that have an item in the category.
+     */
     public ArrayList<Post> searchByCategory(String category){
         String[] args = {category};
         String query = "SELECT post_title from items WHERE (items.item_category=?)";
@@ -462,7 +432,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         cursor.moveToFirst();
         ArrayList<String> garageSale = new ArrayList<String>();
         ArrayList<Post> results = new ArrayList<Post>();
-        System.out.println("-------------------\nSearch By Category");
         while(!cursor.isAfterLast()){
             if (!garageSale.contains(cursor.getString(0))) {
                 garageSale.add(cursor.getString(0));
@@ -471,27 +440,91 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                 Cursor cursor2 = sqliteDataBase.rawQuery(query2,args2);
                 cursor2.moveToFirst();
                 while (!cursor2.isAfterLast()){
-                    System.out.println("Title of Sale: "+cursor2.getString(1));
-                    System.out.println("Location of Sale: "+cursor2.getString(2));
-                    System.out.println("Description of Sale: "+cursor2.getString(3));
-                    System.out.println("Time of Sale: "+cursor2.getString(4));
-                    System.out.println("Price Range of Sale: "+cursor2.getString(5));
                     Post post = new Post(cursor2.getString(0), cursor2.getString(2), cursor2.getString(1), cursor2.getString(3),
                             cursor2.getString(4), cursor2.getString(5), cursor2.getString(6));
                     results.add(post);
                     cursor2.moveToNext();
                 }
-
             }
             cursor.moveToNext();
         }
-       //System.out.println("-------------------\nSearch By Category");
-        //for (int i = 0; i < garageSale.size(); i++) {
-        //    System.out.println("Title of Sale: "+garageSale.get(i));
-        //}
-        //System.out.println("---------------------");
+        cursor.close();
         return results;
     }
+
+    /**
+     * method to combine all search methods and return results that match all criteria
+     * @param location the location the user wants to search for
+     * @param date the date the user wants to search for
+     * @param category the category the user wants to search for
+     * @return results an array list of post objects that match all search criteria
+     */
+
+    public ArrayList<Post> searchPosts(String location, String date, String category) {
+        ArrayList<Post> locationResults = searchByLocation(location);
+        ArrayList<Post> dateResults = searchByDate(date);
+        ArrayList<Post> categoryResults = searchByCategory(category);
+        int lSize = locationResults.size();
+        int dSize = dateResults.size();
+        int cSize = categoryResults.size();
+
+        if(location.equals("")){
+            lSize = -1;
+        }
+        if(date.equals("")){
+            dSize = -1;
+        }
+        if(category.equals("")){
+            cSize = -1;
+        }
+
+        if((lSize<=0) && (dSize<=0) && (cSize<=0)){
+            return null;
+        }
+        else if((lSize==-1) && (dSize==-1)){
+            return categoryResults;
+        }
+        else if((lSize==-1) && (cSize==-1)){
+            return dateResults;
+        }
+        else if((dSize==-1) && (cSize==-1)){
+            return locationResults;
+        }
+        else if(lSize==-1){
+            return commonElem(dateResults, categoryResults);
+        }
+        else if(dSize==-1){
+            return commonElem(locationResults, categoryResults);
+        }
+        else if(cSize==-1){
+            return commonElem(locationResults, dateResults);
+        }
+        else if((lSize!=-1) && (dSize!=-1) && (cSize!=-1)){
+            return commonElem(categoryResults, commonElem(locationResults, dateResults));
+        }
+        return null;
+    }
+
+    /**
+     * helper method to find common posts in both arrays (used in searchPosts)
+     * @param a1 the first array
+     * @param a2 the second array
+     * @return results an array with all common post objects between a1 and a2
+     */
+    public ArrayList<Post> commonElem(ArrayList<Post> a1, ArrayList<Post> a2){
+        ArrayList<Post> results = new ArrayList<Post>(0);
+        for(int i=0; i<a1.size(); i++){
+            for(int x =0; x<a2.size(); x++){
+                if(a1.get(i).getTitle().equals(a2.get(x).getTitle())){
+                    results.add(a1.get(i));
+                    a1.remove(i);
+                    a2.remove(x);
+                }
+            }
+        }
+        return results;
+    }
+
 
 
     @Override
