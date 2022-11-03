@@ -97,7 +97,6 @@ xmlns:tools="http://schemas.android.com/tools">
 
             <category android:name="android.intent.category.CATEGORY_ALTERNATIVE" />
         </intent-filter>
-
         <meta-data
             android:name="android.app.lib_name"
             android:value="" />
@@ -107,7 +106,6 @@ xmlns:tools="http://schemas.android.com/tools">
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.CATEGORY_ALTERNATIVE" />
         </intent-filter>
 
@@ -115,7 +113,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:name="android.app.lib_name"
             android:value="" />
     </activity>
-    <!--<activity
+    <activity
         android:name=".ViewSearchResults"
         android:exported="true">
         <intent-filter>
@@ -126,13 +124,12 @@ xmlns:tools="http://schemas.android.com/tools">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-    </activity>-->
+    </activity>
     <activity
         android:name=".AddItems"
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.CATEGORY_ALTERNATIVE" />
         </intent-filter>
         <meta-data
@@ -144,10 +141,8 @@ xmlns:tools="http://schemas.android.com/tools">
         android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-
             <category android:name="android.intent.category.CATEGORY_ALTERNATIVE" />
         </intent-filter>
-
         <meta-data
             android:name="android.app.lib_name"
             android:value="" />
