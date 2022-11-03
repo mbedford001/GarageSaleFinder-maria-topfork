@@ -1,12 +1,16 @@
 package com.example.garagesalefinder.controllers;
 
 import android.content.ContentValues;
+
+import com.example.garagesalefinder.PostStuff.Items;
 import com.example.garagesalefinder.PostStuff.Post;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 import com.example.garagesalefinder.people.Account;
 
@@ -132,24 +136,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
     /**
-     * EXAMPLE METHOD for getting data using queries
-     * can be deleted eventually
-     */
-    public String getUsernameFromDB(){
-        String query = "SELECT username FROM" + TABLE_1;
-        Cursor cursor = sqliteDataBase.rawQuery(query, null);
-        String username = null;
-        if (cursor.getCount() > 0) {
-            if(cursor.moveToFirst()){
-                do{
-                    username = cursor.getString(0);
-                }
-                while (cursor.moveToNext());
-            }
-        }
-        return username;
-    }
-    /**
      * This method asks the database to grab the account associated with
      * the username and calls validatePassword() to check if the password
      * passed matches the password in the account
@@ -269,6 +255,27 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.close();
         return true;
     }
+    /**
+     * This method adds an item to the database that corresponds with a certain post
+     * @param item the inputted item from user
+     * @return
+     */
+    public boolean addItem(Items item){
+        sqliteDataBase = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("post_title", item.getPost_title());
+        values.put("item_title", item.getItem_title());
+        values.put("sale_post_username", item.getSale_post_username());
+        values.put("item_category", item.getCategory());
+        values.put("item_image", item.getImage());
+        values.put("item_description", item.getDescription());
+        values.put("item_price", item.getPrice());
+        values.put("item_quantity", item.getQuantity());
+        sqliteDataBase.insert("items", null, values);
+        sqliteDataBase.close();
+        return true;
+    }
+
 
 
     /**
@@ -279,6 +286,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * @return
      */
     public boolean addPost(Post post) {
+        sqliteDataBase = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         //getOwner() might be the wrong thing to call since we should just know the
         //the right user based on who is loggedIn
@@ -289,22 +297,10 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         values.put("sale_time", post.getTime());
         values.put("price_range", post.getPriceRange());
         values.put("image", post.getImage());
-        //have to deal with items and dates
-        //that what the int d and int i might help with
-        //d and i should default to 0 in the UI
-        //maybe have dates get inputted as 1 long string broken up with commas
-        //and then i split on the comma and for a list of dates that can then be inserted
-        //1 by 1??
-        //int count=0;
-        //while(count < d){
-        //date.getDates();
-        //  values.put("date", );
-        //}
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert("sale_posts", null, values);
-        //viewOwnPost("mShort","Monster Sale");
-        viewOwnPost(post.getOwner(), post.getTitle());
-        db.close();
+        sqliteDataBase.insert("sale_posts", null, values);
+        //viewOwnPost(post.getOwner(), post.getTitle());
+        sqliteDataBase.close();
+
         return true;
     }
 
@@ -336,6 +332,24 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.insert("regular_user", null, values);
         db.close();
         return true;}
+    /**
+     * This method adds a date to the database that corresponds with a certain post
+     * @param date
+     * @return
+     */
+    public boolean addDate(String date, String title, String username){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        ContentValues values = new ContentValues();
+        //fix date
+        //values.put("sale_date", dateFormat.format(date));
+        values.put("sale_date", date);
+        values.put("post_title", title);
+        values.put("sale_post_username", username);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert("dates", null, values);
+        db.close();
+        return true;
+    }
 
 
     public void viewAccount(Account student){
