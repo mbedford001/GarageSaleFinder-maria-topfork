@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
@@ -51,6 +52,7 @@ public class Createpost extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
                 String pLocation = location.getText().toString().trim();
                 String pTitle = title.getText().toString().trim();
                 String pDescription = description.getText().toString().trim();
@@ -81,6 +83,7 @@ public class Createpost extends AppCompatActivity {
                 Post p = new Post(username, pLocation, pTitle, pDescription, pTime, pPrice, pImage);
 
                 dbhc.addPost(p);
+                Toast.makeText(Createpost.this, "Post was added", Toast.LENGTH_SHORT).show();
                 //startActivity(new Intent(getApplicationContext(), ViewPost.class));
                 //finish();
                 moveToAddDates(v);
@@ -105,6 +108,7 @@ public class Createpost extends AppCompatActivity {
         intent.putExtra("username",username);
         startActivity(intent);
         //startActivity(new Intent(getApplicationContext(), AddDates.class));
+        //Toast.makeText(this, "Date has been added", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

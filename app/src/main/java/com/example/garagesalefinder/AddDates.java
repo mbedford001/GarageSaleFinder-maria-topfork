@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,6 +37,7 @@ public class AddDates extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                Toast.makeText(AddDates.this, "Date was added", Toast.LENGTH_SHORT).show();
                 String pDate = date.getText().toString().trim();
                 String pPostName = postName.getText().toString().trim();
 
@@ -58,8 +62,65 @@ public class AddDates extends AppCompatActivity {
         intent.putExtra("username",username);
         startActivity(intent);
         //startActivity(new Intent(getApplicationContext(), AddDates.class));
+        //Toast.makeText(this, "Item has been added", Toast.LENGTH_SHORT).show();
         finish();
     }
+    //leave all this below commented out for now
+    /**
+    public void showOwnPosts(View v){
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.popup_ownposts);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.category1:
+                Toast.makeText(this, "Toys was selected", Toast.LENGTH_SHORT).show();
+                category = "Toys";
+                return true;
+            case R.id.category2:
+                Toast.makeText(this, "Clothing was selected", Toast.LENGTH_SHORT).show();
+                category = "Clothing";
+                return true;
+            case R.id.category3:
+                Toast.makeText(this, "Furniture was selected", Toast.LENGTH_SHORT).show();
+                category = "Furniture";
+                return true;
+            case R.id.category4:
+                Toast.makeText(this, "Jewelry was selected", Toast.LENGTH_SHORT).show();
+                category = "Jewelry";
+                return true;
+            case R.id.category5:
+                Toast.makeText(this, "Antique was selected", Toast.LENGTH_SHORT).show();
+                category = "Antique";
+                return true;
+            case R.id.category6:
+                Toast.makeText(this, "Arts and Crafts was selected", Toast.LENGTH_SHORT).show();
+                category = "Arts and Crafts";
+                return true;
+            case R.id.category7:
+                Toast.makeText(this, "Sport was selected", Toast.LENGTH_SHORT).show();
+                category = "Sport";
+                return true;
+            case R.id.category8:
+                Toast.makeText(this, "Books was selected", Toast.LENGTH_SHORT).show();
+                category = "Books";
+                return true;
+            case R.id.category9:
+                Toast.makeText(this, "Electronics was selected", Toast.LENGTH_SHORT).show();
+                category = "Electronics";
+                return true;
+            case R.id.category10:
+                Toast.makeText(this, "Miscellaneous was selected", Toast.LENGTH_SHORT).show();
+                category = "Miscellaneous";
+                return true;
+            default:
+                return false;
+        }
+    */
 }
 
 
