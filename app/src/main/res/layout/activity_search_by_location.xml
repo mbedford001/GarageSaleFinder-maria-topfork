@@ -8,45 +8,131 @@
 
     <TextView
         android:id="@+id/locationName"
-        android:layout_width="190dp"
-        android:layout_height="50dp"
+        android:layout_width="88dp"
+        android:layout_height="28dp"
         android:text="Location:"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.213" />
+
 
     <EditText
         android:id="@+id/inputLocation"
         android:layout_width="183dp"
         android:layout_height="50dp"
+        android:layout_marginTop="132dp"
         android:ems="10"
-        android:hint="Location"
+        android:hint="City"
         android:inputType="textPostalAddress"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.929"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputDate"
+        android:layout_width="183dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="116dp"
+        android:ems="10"
+        android:hint="YYYY-MM-DD"
+        android:inputType="textPostalAddress"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/locationName" />
+
+    <TextView
+        android:id="@+id/dateDate"
+        android:layout_width="55dp"
+        android:layout_height="27dp"
+        android:text="Date:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.399" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="87dp"
+        android:layout_height="35dp"
+        android:text="Category:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.599" />
+
+    <EditText
+        android:id="@+id/inputCategory"
+        android:layout_width="183dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="244dp"
+        android:ems="10"
+        android:hint="Category"
+        android:inputType="textPostalAddress"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/locationName" />
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="394dp"
+        android:layout_height="74dp"
+        android:text="   Please enter at least one search"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024" />
+
+    <TextView
+        android:id="@+id/desc2"
+        android:layout_width="116dp"
+        android:layout_height="34dp"
+        android:text="criteria"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.067" />
 
     <Button
         android:id="@+id/btnSearchByLocation"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-150dp"
+        android:layout_marginBottom="-550dp"
         android:text="Search"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/inputLocation"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/returnButton"
+        android:id="@+id/btnReturn"
         android:layout_width="212dp"
         android:layout_height="49dp"
         android:layout_marginStart="100dp"
@@ -54,10 +140,23 @@
         android:layout_marginEnd="99dp"
         android:layout_marginBottom="87dp"
         android:onClick="goMenu"
-        android:text="Back to Menu"
+        android:text="Return to Menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+<!--    <Button-->
+<!--        android:id="@+id/btnReturn"-->
+<!--        android:layout_width="211dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:layout_marginLeft="92dp"-->
+<!--        android:layout_marginBottom="-150dp"-->
+<!--        android:text="Return to Menu"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/btnSearchByLocation"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
