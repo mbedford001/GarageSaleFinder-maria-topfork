@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import com.example.garagesalefinder.PostStuff.Post;
 
@@ -27,5 +28,10 @@ public class ViewSearchResults extends AppCompatActivity {
         list.setAdapter(adapter);
 
 
+    }
+
+    public void searchAgain(View view){
+        startActivity(new Intent(getApplicationContext(), SearchByLocation.class));
+        finish();
     }
 }

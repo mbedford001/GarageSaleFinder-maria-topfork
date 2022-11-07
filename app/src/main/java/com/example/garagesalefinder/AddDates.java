@@ -121,6 +121,11 @@ public class AddDates extends AppCompatActivity {
                 return false;
         }
     */
+
+    public void backToMenu2(View view){
+        startActivity(new Intent(getApplicationContext(), Menu.class));
+        finish();
+    }
 }
 
 

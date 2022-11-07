@@ -343,6 +343,20 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.delete("regular_user", "username" + "=\"" + username + "\"", null);
     }
 
+    /**
+     * Method to delete a post from a user's account
+     * @param username
+     * @param postName
+     */
+    public void deletePost(String username, String postName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("items", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"", null);
+        db.delete("dates", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"", null);
+        db.delete("sale_posts", "post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
+        db.delete("save_posts", "sale_post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
+    }
+
+
 
 
     public boolean addAccount(Account student) {
