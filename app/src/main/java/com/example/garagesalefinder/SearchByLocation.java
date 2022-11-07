@@ -37,6 +37,7 @@ public class SearchByLocation extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(inputLocation)){
                     location.setError("Location is required");
+                    return;
                 }
                 results = dbhc.searchByLocation(inputLocation);
                 Intent intent = new Intent(SearchByLocation.this,ViewSearchResults.class);
@@ -45,5 +46,10 @@ public class SearchByLocation extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void goMenu(View view){
+        startActivity(new Intent(getApplicationContext(), Menu.class));
+        finish();
     }
 }
