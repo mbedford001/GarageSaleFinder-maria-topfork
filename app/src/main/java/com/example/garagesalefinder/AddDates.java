@@ -60,6 +60,11 @@ public class AddDates extends AppCompatActivity {
         //startActivity(new Intent(getApplicationContext(), AddDates.class));
         finish();
     }
+
+    public void backToMenu2(View view){
+        startActivity(new Intent(getApplicationContext(), Menu.class));
+        finish();
+    }
 }
 
 
