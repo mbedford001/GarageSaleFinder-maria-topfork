@@ -19,8 +19,11 @@ public class SearchByLocation extends AppCompatActivity {
 
     DataBaseHelperClass dbhc = new DataBaseHelperClass(SearchByLocation.this);
     EditText location;
+    EditText date;
+    EditText category;
     Button searchButton;
-    ArrayList<Post> results = new ArrayList<Post>();
+    Button returnBtn;
+    ArrayList<Post> results = new ArrayList<Post>(0);
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -28,28 +31,63 @@ public class SearchByLocation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_by_location);
         location = findViewById(R.id.inputLocation);
+        date = findViewById(R.id.inputDate);
+        category = findViewById(R.id.inputCategory);
         searchButton = findViewById(R.id.btnSearchByLocation);
+        returnBtn = findViewById(R.id.btnReturn);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
                 String inputLocation = location.getText().toString().trim();
+                String inputDate = date.getText().toString().trim();
+                String inputCategory = category.getText().toString().trim();
 
                 if(TextUtils.isEmpty(inputLocation)){
-                    location.setError("Location is required");
-                    return;
+                    inputLocation = "";
                 }
-                results = dbhc.searchByLocation(inputLocation);
-                Intent intent = new Intent(SearchByLocation.this,ViewSearchResults.class);
-                intent.putExtra("results",results);
-                startActivity(intent);
+                if(TextUtils.isEmpty(inputDate)){
+                    inputDate = "";
+                }
+                if(TextUtils.isEmpty(inputCategory)){
+                    inputCategory = "";
+                }
+
+                results = dbhc.searchPosts(inputLocation, inputDate, inputCategory);
+                boolean works = true;
+                try{
+                    results.size();
+                }
+                catch(Exception e){
+                    works = false;
+                    location.setError("No results matching criteria");
+                    date.setError("No results matching criteria");
+                    category.setError("No results matching criteria");
+                }
+
+                if(works) {
+                    Intent intent = new Intent(SearchByLocation.this, ViewSearchResults.class);
+                    intent.putExtra("results", results);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+        });
+
+        returnBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), Menu.class));
                 finish();
             }
         });
     }
 
-    public void goMenu(View view){
-        startActivity(new Intent(getApplicationContext(), Menu.class));
-        finish();
-    }
+//    public void goMenu(View view){
+//        startActivity(new Intent(getApplicationContext(), Menu.class));
+//        finish();
+//    }
 }

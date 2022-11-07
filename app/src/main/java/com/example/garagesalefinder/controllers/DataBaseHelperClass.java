@@ -412,7 +412,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                 " WHERE sale_date = ?";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
         cursor.moveToFirst();
-        while(!cursor.isAfterLast()) {
+        while(!cursor.isAfterLast()){
             posts.add(cursor.getString(0));
             count++;
             cursor.moveToNext();
