@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -260,6 +261,30 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.close();
         return true;
     }
+
+    /**
+     * This method allows a user to view all of their own posts
+     * this method is not in use yet but DON'T DELETE
+     * @param username a string of the logged in user's username
+     * @return a list of the names of the posts that user has created
+     */
+    public List<String> viewAllOwnPosts(String username){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {name};
+        String queryString = "SELECT post_name from sale_posts" +
+                " WHERE (sale_posts.post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        List<String> terms = new ArrayList<String>();
+        while (!cursor.isAfterLast()) {
+            String saleName = cursor.getString(1);
+            terms.add(saleName);
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        return terms;
+    }
     /**
      * This method adds an item to the database that corresponds with a certain post
      * @param item the inputted item from user
@@ -305,7 +330,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.insert("sale_posts", null, values);
         //viewOwnPost(post.getOwner(), post.getTitle());
         sqliteDataBase.close();
-
         return true;
     }
 
