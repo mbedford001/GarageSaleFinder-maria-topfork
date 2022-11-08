@@ -223,6 +223,11 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
 
+    public ArrayList<Post> getMyPosts(String username){
+        String queryString = "SELECT * from sale_posts" + "WHERE \"sale_posts.post_username\" = \"" + username + "\"";
+        return null;
+    }
+
     /**
      * this method allows a user to view their own post so they can edit it if needed
      * @param
