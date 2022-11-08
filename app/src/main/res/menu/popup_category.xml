@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/category1"
+        android:title="Toys"/>
+    <item android:id="@+id/category2"
+        android:title="Clothing"/>
+    <item android:id="@+id/category3"
+        android:title="Furniture"/>
+    <item android:id="@+id/category4"
+        android:title="Jewelry"/>
+    <item android:id="@+id/category5"
+        android:title="Antique"/>
+    <item android:id="@+id/category6"
+        android:title="Arts and Crafts"/>
+    <item android:id="@+id/category7"
+        android:title="Sport"/>
+    <item android:id="@+id/category8"
+        android:title="Books"/>
+    <item android:id="@+id/category9"
+        android:title="Electronics"/>
+    <item android:id="@+id/category10"
+        android:title="Miscellaneous"/>
+
+</menu>
