@@ -33,7 +33,7 @@ public class ViewMyPosts extends AppCompatActivity {
 
 
         String username = getIntent().getStringExtra("username");
-        results = dbhc.getMyPosts(username);
+        results = (ArrayList<Post>)dbhc.viewAllOwnPosts(username);
         list = (ListView) findViewById(R.id.listview);//locates ListView in xml file
         adapter = new ListViewAdapter(this, results);//not sure what's up with this error
         list.setAdapter(adapter);
@@ -41,7 +41,12 @@ public class ViewMyPosts extends AppCompatActivity {
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(), Menu.class));
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(ViewMyPosts.this,Menu.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password", password);
+                startActivity(intent);
                 finish();
             }
         });

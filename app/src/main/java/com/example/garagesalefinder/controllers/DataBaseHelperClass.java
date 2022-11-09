@@ -224,11 +224,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<Post> getMyPosts(String username){
-        String queryString = "SELECT * from sale_posts" + "WHERE \"sale_posts.post_username\" = \"" + username + "\"";
-        return null;
-    }
-
     /**
      * this method allows a user to view their own post so they can edit it if needed
      * @param
@@ -263,12 +258,12 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
     /**
-     * This method allows a user to view all of their own posts
+     * This method allows a user to view all of their own post names
      * this method is not in use yet but DON'T DELETE
      * @param username a string of the logged in user's username
      * @return a list of the names of the posts that user has created
      */
-    public List<String> viewAllOwnPosts(String username){
+    public List<String> viewAllPostNames(String username){
         sqliteDataBase = this.getWritableDatabase();
         String name = username;
         String[] args = {name};
@@ -285,6 +280,37 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.close();
         return terms;
     }
+
+    /**
+     * This method allows a user to view all of their own posts
+     * this method is not in use yet but DON'T DELETE
+     * @param username a string of the logged in user's username
+     * @return a list of the Posts that user has created
+     */
+    public List<Post> viewAllOwnPosts(String username){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {name};
+        String queryString = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        List<Post> terms = new ArrayList<Post>();
+        while (!cursor.isAfterLast()) {
+            String u = cursor.getString(0);
+            String postName = cursor.getString(1);
+            String location = cursor.getString(2);
+            String description = cursor.getString(3);
+            String time = cursor.getString(4);
+            String price = cursor.getString(5);
+            String image = cursor.getString(6);
+            terms.add(new Post(u, location, postName, description, time, price, image));
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        return terms;
+    }
+
     /**
      * This method adds an item to the database that corresponds with a certain post
      * @param item the inputted item from user
