@@ -152,10 +152,7 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                 return false;
         }
     }
-    public void backToMenu3(View view){
-        startActivity(new Intent(getApplicationContext(), Menu.class));
-        finish();
-    }
+
 
 }
 
