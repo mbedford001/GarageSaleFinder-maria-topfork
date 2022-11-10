@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.garagesalefinder.PostStuff.Post;
 
 import java.lang.reflect.Array;
@@ -19,7 +22,7 @@ public class ViewSearchResults extends AppCompatActivity {
     ArrayList<Post> results = new ArrayList<Post>();
     Button returnBtn;
     Button searchBtn;
-
+    Button viewPostBtn;
 
 
     @Override
@@ -34,6 +37,16 @@ public class ViewSearchResults extends AppCompatActivity {
         list = (ListView) findViewById(R.id.listview);//locates ListView in xml file
         adapter = new ListViewAdapter(this, results);//not sure what's up with this error
         list.setAdapter(adapter);
+
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(ViewSearchResults.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), ViewPost.class));
+                finish();
+            }
+        });
 
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -50,6 +63,8 @@ public class ViewSearchResults extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
 

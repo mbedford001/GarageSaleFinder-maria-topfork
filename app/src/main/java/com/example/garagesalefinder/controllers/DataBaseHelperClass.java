@@ -2,17 +2,35 @@ package com.example.garagesalefinder.controllers;
 
 import android.content.ContentValues;
 
+import com.example.garagesalefinder.Login;
+import com.example.garagesalefinder.Menu;
 import com.example.garagesalefinder.PostStuff.Items;
 import com.example.garagesalefinder.PostStuff.Post;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
+import android.content.Intent;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.garagesalefinder.controllers.AccountController;
+import com.example.garagesalefinder.controllers.DataBaseHelperClass;
+
+import com.example.garagesalefinder.ViewPost;
 import com.example.garagesalefinder.people.Account;
 
 import java.io.IOException;
@@ -311,6 +329,25 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return terms;
     }
 
+    public ArrayList<Post> getPostData(String username) {
+        sqliteDataBase = this.getWritableDatabase();
+        String[] args ={username};
+        System.out.println("The logged in username: "+ username);
+
+        ArrayList<Post> results= new ArrayList<Post>();
+        String queryStringPost = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_username=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryStringPost, args);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            results.add(post);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return results;
+    }
     /**
      * This method adds an item to the database that corresponds with a certain post
      * @param item the inputted item from user
@@ -403,6 +440,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;}
     /**
      * This method adds a date to the database that corresponds with a certain post
+     * @param date
      * @param date
      * @return
      */
