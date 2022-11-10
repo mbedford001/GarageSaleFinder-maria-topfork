@@ -119,7 +119,10 @@ public class ViewPost extends AppCompatActivity {
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(), Menu.class));
+                String username = getIntent().getStringExtra("username");
+                Intent intent = new Intent(ViewPost.this,Menu.class);
+                intent.putExtra("username",username);
+                startActivity(intent);
                 finish();
             }
         });
