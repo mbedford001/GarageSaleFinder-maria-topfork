@@ -77,19 +77,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.599" />
 
-    <EditText
+    <Button
         android:id="@+id/inputCategory"
         android:layout_width="183dp"
         android:layout_height="50dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginLeft="60dp"
         android:ems="10"
         android:hint="Category"
-        android:inputType="textPostalAddress"
+        android:textColorHint="@color/white"
+        android:onClick="showCategoryChoices"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/locationName" />
+        app:layout_constraintLeft_toRightOf="@id/category"
+        app:layout_constraintTop_toTopOf="@id/category"
+        />
 
     <TextView
         android:id="@+id/desc"
@@ -123,13 +123,11 @@
         android:id="@+id/btnSearchByLocation"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-550dp"
+        android:layout_marginBottom="0dp"
         android:text="Search"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@id/btnReturn"
+        app:layout_constraintLeft_toLeftOf="@id/btnReturn" />
 
     <Button
         android:id="@+id/btnReturn"
