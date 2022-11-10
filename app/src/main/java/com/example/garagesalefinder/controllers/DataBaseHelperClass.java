@@ -226,15 +226,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
            System.out.println("-----------FAILED LOGIN-----------");
         }
 
-        System.out.println("*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
-        System.out.println("Results for Sartell, 2023-05-21, Towels:");
-        System.out.println(searchPosts("Sartell", "2023-05-21", "Towels").size());
-        System.out.println("Results for Sartell, null, Towels:");
-        System.out.println(searchPosts("Sartell", "", "Towels").size());
-        System.out.println("Results for null, 2023-05-21, null");
-        System.out.println(searchPosts("", "2023-05-21", "").size());
-        System.out.println("*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
-
         sqliteDataBase.close();
 
 

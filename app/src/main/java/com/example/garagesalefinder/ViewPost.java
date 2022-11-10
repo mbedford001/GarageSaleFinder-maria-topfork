@@ -45,12 +45,11 @@ public class ViewPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_post);
-
         String username = getIntent().getStringExtra("username");
         System.out.println("username intent "+ username);
         results3 = dbhc.getPostData(username);
         returnBtn = findViewById(R.id.btnBack);
-       // String title = results3.get(1);
+        // String title = results3.get(1);
         //  results2 = (ArrayList<Post>) getIntent().getSerializableExtra("results1")
 /*
         String username = getIntent().getStringExtra("username");

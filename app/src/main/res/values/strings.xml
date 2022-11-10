@@ -2,10 +2,10 @@
     <string name="app_name">GarageSaleFinder</string>
     <string name="user">user</string>
     <string name="password">password</string>
-    <string name="title">password</string>
-    <string name="location">password</string>
-    <string name="description">password</string>
-    <string name="time">password</string>
-    <string name="priceRange">password</string>
-    <string name="image">password</string>
+    <string name="title">title</string>
+    <string name="location">location</string>
+    <string name="description">description</string>
+    <string name="time">time</string>
+    <string name="priceRange">priceRange</string>
+    <string name="image">image</string>
 </resources>

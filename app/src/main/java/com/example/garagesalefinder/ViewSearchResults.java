@@ -38,15 +38,15 @@ public class ViewSearchResults extends AppCompatActivity {
         adapter = new ListViewAdapter(this, results);//not sure what's up with this error
         list.setAdapter(adapter);
 
-
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ViewSearchResults.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), ViewPost.class));
-                finish();
-            }
-        });
+//
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Toast.makeText(ViewSearchResults.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(getApplicationContext(), ViewPost.class));
+//                finish();
+//            }
+//        });
 
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
