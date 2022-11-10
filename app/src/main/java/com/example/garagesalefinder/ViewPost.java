@@ -37,6 +37,7 @@ public class ViewPost extends AppCompatActivity {
     Button loadDatabtn;
     String testTitle = "A Big Sale";
     String test = "";
+    Button returnBtn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,6 +48,7 @@ public class ViewPost extends AppCompatActivity {
         String username = getIntent().getStringExtra("username");
         System.out.println("username intent "+ username);
         results3 = dbhc.getPostData(username);
+        returnBtn = findViewById(R.id.btnBack);
        // String title = results3.get(1);
         //  results2 = (ArrayList<Post>) getIntent().getSerializableExtra("results1")
 /*
@@ -114,6 +116,13 @@ public class ViewPost extends AppCompatActivity {
         //ImageText = findViewById(R.id.image);
         //ImageText.setText(image);
 
+        returnBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), Menu.class));
+                finish();
+            }
+        });
 
           }
 

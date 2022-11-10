@@ -298,6 +298,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.close();
         return terms;
     }
+    
+    //gsfdfg
 
     /**
      * This method allows a user to view all of their own posts
