@@ -2,17 +2,35 @@ package com.example.garagesalefinder.controllers;
 
 import android.content.ContentValues;
 
+import com.example.garagesalefinder.Login;
+import com.example.garagesalefinder.Menu;
 import com.example.garagesalefinder.PostStuff.Items;
 import com.example.garagesalefinder.PostStuff.Post;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
+import android.content.Intent;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.garagesalefinder.controllers.AccountController;
+import com.example.garagesalefinder.controllers.DataBaseHelperClass;
+
+import com.example.garagesalefinder.ViewPost;
 import com.example.garagesalefinder.people.Account;
 
 import java.io.IOException;
@@ -208,15 +226,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
            System.out.println("-----------FAILED LOGIN-----------");
         }
 
-        System.out.println("*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
-        System.out.println("Results for Sartell, 2023-05-21, Towels:");
-        System.out.println(searchPosts("Sartell", "2023-05-21", "Towels").size());
-        System.out.println("Results for Sartell, null, Towels:");
-        System.out.println(searchPosts("Sartell", "", "Towels").size());
-        System.out.println("Results for null, 2023-05-21, null");
-        System.out.println(searchPosts("", "2023-05-21", "").size());
-        System.out.println("*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&*&");
-
         sqliteDataBase.close();
 
 
@@ -258,12 +267,12 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
     /**
-     * This method allows a user to view all of their own posts
+     * This method allows a user to view all of their own post names
      * this method is not in use yet but DON'T DELETE
      * @param username a string of the logged in user's username
      * @return a list of the names of the posts that user has created
      */
-    public List<String> viewAllOwnPosts(String username){
+    public List<String> viewAllPostNames(String username){
         sqliteDataBase = this.getWritableDatabase();
         String name = username;
         String[] args = {name};
@@ -279,6 +288,58 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         }
         sqliteDataBase.close();
         return terms;
+    }
+    
+    //gsfdfg
+
+    /**
+     * This method allows a user to view all of their own posts
+     * this method is not in use yet but DON'T DELETE
+     * @param username a string of the logged in user's username
+     * @return a list of the Posts that user has created
+     */
+    public List<Post> viewAllOwnPosts(String username){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {name};
+        String queryString = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        List<Post> terms = new ArrayList<Post>();
+        while (!cursor.isAfterLast()) {
+            String u = cursor.getString(0);
+            String postName = cursor.getString(1);
+            String location = cursor.getString(2);
+            String description = cursor.getString(3);
+            String time = cursor.getString(4);
+            String price = cursor.getString(5);
+            String image = cursor.getString(6);
+            terms.add(new Post(u, location, postName, description, time, price, image));
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        return terms;
+    }
+
+    public ArrayList<Post> getPostData(String username) {
+        sqliteDataBase = this.getWritableDatabase();
+        String[] args ={username};
+        System.out.println("The logged in username: "+ username);
+
+        ArrayList<Post> results= new ArrayList<Post>();
+        String queryStringPost = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_username=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryStringPost, args);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            results.add(post);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return results;
     }
     /**
      * This method adds an item to the database that corresponds with a certain post
@@ -372,6 +433,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;}
     /**
      * This method adds a date to the database that corresponds with a certain post
+     * @param date
      * @param date
      * @return
      */

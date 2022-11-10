@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.example.garagesalefinder.PostStuff.Post;
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.Button;
 import java.util.Locale;
 
 public class ListViewAdapter extends BaseAdapter {
@@ -28,6 +29,7 @@ public class ListViewAdapter extends BaseAdapter {
 
     public class ViewHolder {
         TextView name;
+        Button button;
     }
 
     @Override
@@ -52,9 +54,11 @@ public class ListViewAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.view_posts, null);
             // Locate the TextViews in listview_item.xml
             holder.name = (TextView) view.findViewById(R.id.name);
+           // holder.button = (Button) view.findViewById(R.id.btnViewPost);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
+
         }
         // Set the results into TextViews
         holder.name.setText(results.get(position).getTitle());//add a getPost() method to Post??

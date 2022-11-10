@@ -11,14 +11,19 @@
       android:id="@+id/listview"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
-      tools:ignore="MissingConstraints" />
+      tools:ignore="MissingConstraints"
+      tools:layout_editor_absoluteX="29dp"
+      tools:layout_editor_absoluteY="-107dp">
+
+  </ListView>
+
 
   <Button
       android:id="@+id/btnReturn"
       android:layout_width="211dp"
       android:layout_height="wrap_content"
       android:layout_marginBottom="-650dp"
-      android:text="Return to Menu"
+      android:text="Back to Menu"
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="parent"
       app:layout_constraintEnd_toEndOf="parent"

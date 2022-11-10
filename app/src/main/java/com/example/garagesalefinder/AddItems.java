@@ -27,7 +27,8 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
     EditText price;
     EditText quantity;
     Button createButton;
-
+    Button returnBtn;
+    Button doneBtn;
 
     DataBaseHelperClass dbhc = new DataBaseHelperClass(AddItems.this);
 
@@ -46,6 +47,10 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
         quantity = findViewById(R.id.inputQuantity);
         createButton = findViewById(R.id.btnCreate);
         String username = getIntent().getStringExtra("username");
+        returnBtn = findViewById(R.id.btnReturn);
+        doneBtn = findViewById(R.id.btnDone);
+
+
 
         createButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -75,6 +80,23 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                 Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_SHORT).show();
             }
         });
+
+        doneBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), Menu.class));
+                finish();
+            }
+        });
+
+        returnBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), AddDates.class));
+                finish();
+            }
+        });
+
     }
     public void showCategoryChoices(View v){
         PopupMenu popup = new PopupMenu(this, v);

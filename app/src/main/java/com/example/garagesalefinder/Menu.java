@@ -34,6 +34,16 @@ public class Menu extends AppCompatActivity {
         finish();
     }
 
+    public void viewMyPosts(View view){
+        String username = getIntent().getStringExtra("username");
+        Intent intent = new Intent(Menu.this,ViewMyPosts.class);
+        intent.putExtra("username",username);
+        startActivity(intent);
+        finish();
+    }
+
+
+
 
     public void viewAccount(View view){
         String username = getIntent().getStringExtra("username");
@@ -45,7 +55,6 @@ public class Menu extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 
 
 
