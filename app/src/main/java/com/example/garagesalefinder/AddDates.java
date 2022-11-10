@@ -21,6 +21,7 @@ public class AddDates extends AppCompatActivity {
     EditText postName;
     EditText date;
     Button createButton;
+    String title;
 
     DataBaseHelperClass dbhc = new DataBaseHelperClass(AddDates.this);
 
@@ -29,28 +30,32 @@ public class AddDates extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddates);
-        postName = findViewById(R.id.inputPostName);
+        //postName = findViewById(R.id.inputPostName);
         date = findViewById(R.id.inputDate);
         createButton = findViewById(R.id.btnCreate);
         String username = getIntent().getStringExtra("username");
+        title = getIntent().getStringExtra("title");
 
         createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddDates.this, "Date was added", Toast.LENGTH_SHORT).show();
+
                 String pDate = date.getText().toString().trim();
-                String pPostName = postName.getText().toString().trim();
+                //String pPostName = postName.getText().toString().trim();
 
                 if(TextUtils.isEmpty(pDate)){//verifies a location was entered
                     date.setError("Date is required.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(pPostName)){
+                /*if(TextUtils.isEmpty(pPostName)){
                     postName.setError("Post Name is required.");
                     return;
                 }
-                dbhc.addDate(pDate, pPostName, username);
+                */
+
+                dbhc.addDate(pDate, title, username);
+                Toast.makeText(AddDates.this, "Date was added", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -60,6 +65,7 @@ public class AddDates extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AddItems.class);
         String username = getIntent().getStringExtra("username");
         intent.putExtra("username",username);
+        intent.putExtra("title",title);
         startActivity(intent);
         //startActivity(new Intent(getApplicationContext(), AddDates.class));
         //Toast.makeText(this, "Item has been added", Toast.LENGTH_SHORT).show();

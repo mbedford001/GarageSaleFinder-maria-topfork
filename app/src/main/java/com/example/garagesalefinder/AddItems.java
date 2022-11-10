@@ -18,7 +18,7 @@ import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
 public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
-    EditText postName;
+    String postName;
     EditText itemTitle;
     //EditText category;
     String category;
@@ -38,7 +38,8 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additems);
         itemTitle = findViewById(R.id.inputItemName);
-        postName = findViewById(R.id.inputPostName);
+        postName = getIntent().getStringExtra("title");
+        //postName = findViewById(R.id.inputPostName);
         description = findViewById(R.id.inputDescription);
         //category = findViewById(R.id.inputCategory);
         price = findViewById(R.id.inputPrice);
@@ -54,9 +55,9 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
         createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_SHORT).show();
+
                 String pItemTitle = itemTitle.getText().toString().trim();
-                String pPostName = postName.getText().toString().trim();
+                //String pPostName = postName.getText().toString().trim();
                 String pDescription = description.getText().toString().trim();
                 //String pCategory = category.getText().toString().trim();
                 String pCategory = category;
@@ -69,13 +70,14 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                     return;
                 }
 
-                if(TextUtils.isEmpty(pPostName)) {
+                /*if(TextUtils.isEmpty(pPostName)) {
                     postName.setError("Post Name is required.");
                     return;
-                }
-                Items i = new Items(pPostName, pItemTitle, username, pCategory, pImage,
+                }*/
+                Items i = new Items(postName, pItemTitle, username, pCategory, pImage,
                         pDescription, pPrice, pQuantity);
                 dbhc.addItem(i);
+                Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -149,7 +151,10 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
             default:
                 return false;
         }
-
+    }
+    public void backToMenu3(View view){
+        startActivity(new Intent(getApplicationContext(), Menu.class));
+        finish();
     }
 
 }
