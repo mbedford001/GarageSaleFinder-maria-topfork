@@ -227,8 +227,18 @@
         app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quantity"
-        app:layout_constraintVertical_bias="0.254"
+        app:layout_constraintVertical_bias="0.071"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnDone"
+        android:layout_width="212dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="65dp"
+        android:onClick="goMenu"
+        android:text="Done"
+        app:layout_constraintLeft_toLeftOf="@id/btnCreate"
+        app:layout_constraintTop_toBottomOf="@id/btnCreate" />
 
     <Button
         android:id="@+id/btnReturn"
@@ -236,7 +246,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="8dp"
         android:onClick="goMenu"
-        android:text="Back"
+        android:text="Back to Date"
         app:layout_constraintLeft_toLeftOf="@id/btnCreate"
         app:layout_constraintTop_toBottomOf="@id/btnCreate" />
 
