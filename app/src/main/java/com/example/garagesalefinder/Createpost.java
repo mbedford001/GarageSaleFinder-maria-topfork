@@ -106,6 +106,7 @@ public class Createpost extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AddDates.class);
         String username = getIntent().getStringExtra("username");
         intent.putExtra("username",username);
+        intent.putExtra("title", title.getText().toString().trim());
         startActivity(intent);
         //startActivity(new Intent(getApplicationContext(), AddDates.class));
         //Toast.makeText(this, "Date has been added", Toast.LENGTH_SHORT).show();
