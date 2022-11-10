@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.garagesalefinder.controllers.AccountController;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
@@ -55,11 +57,13 @@ public class Login extends AppCompatActivity {
 
                 if(TextUtils.isEmpty(email)){//verifies a username was entered
                     Email.setError("Email is Required.");
+                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if(TextUtils.isEmpty(password)){//verifies a password was entered
                     Password.setError("Password is Required.");
+                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_LONG).show();
                     return;
                 }
                 System.out.println("Username/email: " + email + "Password: " + password);
