@@ -38,6 +38,7 @@ public class ViewPost extends AppCompatActivity {
     String testTitle = "A Big Sale";
     String test = "";
     Button returnBtn;
+    String title;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -87,7 +88,7 @@ public class ViewPost extends AppCompatActivity {
 
         post = results3.get(0);
 
-        String title = post.getTitle();
+        title = post.getTitle();
         //String title = getIntent().getStringExtra("title");
         TitleText = findViewById(R.id.title);
         TitleText.setText(title);
@@ -127,8 +128,18 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
-          }
 
+          }
+        public void deleteBtn(View view){
+            String username = getIntent().getStringExtra("username");
+            dbhc.deletePost(username, title);
+            Intent intent = new Intent(ViewPost.this,ViewMyPosts.class);
+            intent.putExtra("username",username);
+            startActivity(intent);
+            finish();
         }
+    }
+
+
 
 
