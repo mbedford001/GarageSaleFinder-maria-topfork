@@ -469,6 +469,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * @return an arraylist of all post objects that have a matching location
      */
     public ArrayList<Post> searchByLocation(String searchedLocation){
+        //put shit here to make search work will a full address
         String[] args ={searchedLocation};
         ArrayList<Post> results= new ArrayList<Post>(0);
         String queryString2 = "SELECT * from sale_posts" +

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
@@ -45,6 +45,7 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
         searchButton.setOnClickListener(new View.OnClickListener() {
 
 
+//1
             @Override
             public void onClick(View v) {
                 String inputLocation = location.getText().toString().trim();
@@ -60,7 +61,6 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
                 if(TextUtils.isEmpty(inputCategory)){
                     inputCategory = "";
                 }
-
                 results = dbhc.searchPosts(inputLocation, inputDate, inputCategory);
                 boolean works = true;
                 try{
@@ -74,6 +74,8 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
                 }
 
                 if(works) {
+                    String username = getIntent().getStringExtra("username");
+                    String password = getIntent().getStringExtra("password");
                     Intent intent = new Intent(SearchByLocation.this, ViewSearchResults.class);
                     intent.putExtra("results", results);
                     intent.putExtra("password", password);
@@ -106,6 +108,8 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
         popup.show();
     }
 
+
+//2
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){

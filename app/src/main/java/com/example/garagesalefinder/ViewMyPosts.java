@@ -55,7 +55,7 @@ public class ViewMyPosts extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ViewMyPosts.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ViewMyPosts.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
                 String title = getIntent().getStringExtra("title");
                 String password = getIntent().getStringExtra("password");
                 String username = getIntent().getStringExtra("username");
@@ -64,6 +64,8 @@ public class ViewMyPosts extends AppCompatActivity {
                 intent.putExtra("password",password);
                 //intent.putExtra("title", title);
                 intent.putExtra("results", results);
+                intent.putExtra("position", i);
+                intent.putExtra("source", "myPosts");
                 startActivity(intent);
                 //startActivity(new Intent(getApplicationContext(), ViewPost.class));
                 finish();

@@ -47,6 +47,7 @@ public class Menu extends AppCompatActivity {
         Intent intent = new Intent(Menu.this,SearchByLocation.class);
         intent.putExtra("username",username);
         intent.putExtra("password",password);
+        System.out.println("7969697697"+ username +"7698798798");
         //startActivity(new Intent(getApplicationContext(), SearchByLocation.class));
         startActivity(intent);
         finish();
