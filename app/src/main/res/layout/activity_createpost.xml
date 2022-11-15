@@ -189,13 +189,13 @@
         android:id="@+id/btnCreate"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-150dp"
+        android:layout_marginBottom="-100dp"
+        android:onClick="moveToAddDates"
         android:text="Create"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick= "moveToAddDates"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -203,16 +203,16 @@
         android:layout_width="212dp"
         android:layout_height="49dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="595dp"
+        android:layout_marginTop="550dp"
         android:layout_marginEnd="99dp"
-        android:layout_marginBottom="87dp"
         android:onClick="returnHomeFromPost"
         android:text="Back to Menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

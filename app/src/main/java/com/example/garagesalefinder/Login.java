@@ -15,6 +15,12 @@ import com.example.garagesalefinder.controllers.AccountController;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 import com.example.garagesalefinder.people.*;
 
+/**
+ * Class allows user to login to the application. It then ensures that the user
+ * has the correct username and password combinaiton. If not it will send a message to the user.
+ * Once a user is logged in, it passes the user data to the other classes.
+ */
+
 public class Login extends AppCompatActivity {
     EditText Email,Password;
     Button LoginBtn;
@@ -28,6 +34,10 @@ public class Login extends AppCompatActivity {
 
     @SuppressLint("MissingInflatedId")
 
+    /**
+     * Method runs when class is first created
+     * @param savedInstanceState a bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,6 +49,10 @@ public class Login extends AppCompatActivity {
         LoginBtn = findViewById(R.id.btnLogin);
         ReturnBtn = findViewById(R.id.btnReturn);
 
+        /**
+         * When button is clicked the user is returned to the Home Page
+         * @param view v
+         */
         ReturnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -46,7 +60,13 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
-
+        /**
+         * When button is clicked the user attempts to login.
+         * If the user logs in with incorrect credentials, the system will inform them
+         * If the user logs in with correct credentials, the system will move them to the Menu page
+         * And pass the intent to the Menu classes
+         * @param view v
+         */
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
