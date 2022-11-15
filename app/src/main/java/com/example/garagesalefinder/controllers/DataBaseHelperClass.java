@@ -40,7 +40,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.example.garagesalefinder.PostStuff.Post;
-
+/**
+ * This class contain all core functions that are on database interaction included get data and add data to the database
+ *
+ * @author  Maria Bedford, Jack Buczak, Ethan Sutton, Noah Halonen, Hongtao Wang, Keiley Maahs, Kristiana Anderson
+ * @since   2022-09-27
+ */
 public class DataBaseHelperClass extends SQLiteOpenHelper {
     public Context context;
     static SQLiteDatabase sqliteDataBase;
@@ -112,6 +117,10 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return databaseFile.exists();
     }
 
+    /**
+     * copy the database to a new database
+     * @throws IOException
+     */
     private void copyDataBase() throws IOException{
         //open your local db as the input stream
         InputStream myInput = context.getAssets().open(DATABASE_NAME);
@@ -235,8 +244,9 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
 
     /**
      * this method allows a user to view their own post so they can edit it if needed
-     * @param
-     * @return
+     * @param username a String that is the name of a user
+     * @param title a String that is the title of a post
+     * @return boolean whether this method works or not
      * @author Maria Bedford
      */
     public boolean viewOwnPost(String username, String title){
@@ -322,6 +332,11 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return terms;
     }
 
+    /**
+     * get Posts' data from database from a specific user included post name, post username, etc (for details, please check the database)
+     * @param username the name of a user
+     * @return String all information of the posts from the specific user
+     */
     public ArrayList<Post> getPostData(String username) {
         sqliteDataBase = this.getWritableDatabase();
         String[] args ={username};
@@ -344,7 +359,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     /**
      * This method adds an item to the database that corresponds with a certain post
      * @param item the inputted item from user
-     * @return
+     * @return boolean whether the method works or not
      */
     public boolean addItem(Items item){
         sqliteDataBase = this.getWritableDatabase();
@@ -369,7 +384,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * but it doesn't add items or dates yet maybe add items should be it's own separate method
      * since it has a lot of its own attributes
      * @param post
-     * @return
+     * @return boolean whether this method works or not
      */
     public boolean addPost(Post post) {
         sqliteDataBase = this.getWritableDatabase();
@@ -406,8 +421,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
 
     /**
      * Method to delete a post from a user's account
-     * @param username
-     * @param postName
+     * @param username the name of a user
+     * @param postName  the name of a post
      */
     public void deletePost(String username, String postName){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -417,9 +432,11 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.delete("save_posts", "sale_post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
     }
 
-
-
-
+    /**
+     * add new account to the database
+     * @param student an structure of Account class
+     * @return boolean whether this method works or not
+     */
     public boolean addAccount(Account student) {
         ContentValues values = new ContentValues();
         values.put("fname", student.getFirstName());
@@ -431,11 +448,13 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.insert("regular_user", null, values);
         db.close();
         return true;}
+
     /**
      * This method adds a date to the database that corresponds with a certain post
-     * @param date
-     * @param date
-     * @return
+     * @param date a String that saves the date
+     * @param title a String that is the title of a post
+     * @param username a String that is the name of a user
+     * @return boolean whether this method works or not
      */
     public boolean addDate(String date, String title, String username){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -451,7 +470,10 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;
     }
 
-
+    /**
+     * print out the info of a user
+     * @param student an structure of Account class
+     */
     public void viewAccount(Account student){
         System.out.println("-------View Account-------");
         System.out.println("First Name: "+a.getFirstName());
