@@ -13,12 +13,22 @@ public class Menu extends AppCompatActivity {
 
     public TextView UserText;
     Button ViewAccountBtn;
+    Button LogoutBtn;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        LogoutBtn = findViewById(R.id.btnLogout);
+
+        LogoutBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(Menu.this,Login.class));
+                finish();
+            }
+        });
     }
 
     public void createPosts(View view){
@@ -42,9 +52,6 @@ public class Menu extends AppCompatActivity {
         finish();
     }
 
-
-
-
     public void viewAccount(View view){
         String username = getIntent().getStringExtra("username");
         String password = getIntent().getStringExtra("password");
@@ -55,7 +62,5 @@ public class Menu extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-
 
 }
