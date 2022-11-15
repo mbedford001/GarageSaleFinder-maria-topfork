@@ -47,7 +47,31 @@ public class AddDates extends AppCompatActivity {
                     date.setError("Date is required.");
                     return;
                 }
-
+                Boolean goodInput = false;
+                if (pDate.length() == 10) {
+                    System.out.println("length of date is 10");
+                    if(pDate.charAt(0)=='2' && pDate.charAt(1) == '0'){
+                        System.out.println("first 2 digits of the year is 20");
+                        if(Character.isDigit(pDate.charAt(2)) && Character.isDigit(pDate.charAt(3))){
+                            System.out.println("digits 3&4 of the year are any digit");
+                            if(pDate.charAt(4)=='-' && pDate.charAt(7)=='-'){
+                                System.out.println("two dashes are present");
+                                if((pDate.charAt(5)=='0' || pDate.charAt(5)=='1') && (Character.isDigit(pDate.charAt(6)))){
+                                    System.out.println("month is inputted correctly");
+                                    if((pDate.charAt(8)=='0' || pDate.charAt(8)=='1' || pDate.charAt(8)=='2' || pDate.charAt(8)=='3') && (Character.isDigit(pDate.charAt(9)))){
+                                        System.out.println("day is inputted correctly");
+                                        goodInput = true;
+                                        System.out.println("goodInput: "+ goodInput);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (goodInput == false){//verifies a correctly formatted input was given
+                    date.setError("Date is formatted incorrectly use: yyyy-mm-dd");
+                    return;
+                }
                 /*if(TextUtils.isEmpty(pPostName)){
                     postName.setError("Post Name is required.");
                     return;

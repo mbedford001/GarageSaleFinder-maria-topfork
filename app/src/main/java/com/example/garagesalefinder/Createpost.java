@@ -18,6 +18,10 @@ import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 import com.example.garagesalefinder.people.Account;
 
+/**
+ * This class takes the user inputs from the create post page and makes sure all criteria is inserted
+ * and then directly sends user to add dates page
+ */
 public class Createpost extends AppCompatActivity {
 
     EditText location;
@@ -93,6 +97,12 @@ public class Createpost extends AppCompatActivity {
 
     }
 
+    /**
+     * This method sends the user back to the main menu page
+     * Note: that intents, username and password, are passed back to the main page
+     * so we don't lose who is logged in
+     * @param view this is passing the create post information
+     */
     public void returnHomeFromPost(View view){
         String username = getIntent().getStringExtra("username");
         String password = getIntent().getStringExtra("password");
@@ -102,6 +112,13 @@ public class Createpost extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    /**
+     * This method sends the user to the add dates page
+     * Note: the intents, username and post title, are being passed to the add dates page
+     * so we don't lose who is logged in
+     * @param view this is passing the information from the above onCreate and onClick to the add dates page
+     */
     public void moveToAddDates(View view){
         Intent intent = new Intent(getApplicationContext(), AddDates.class);
         String username = getIntent().getStringExtra("username");
