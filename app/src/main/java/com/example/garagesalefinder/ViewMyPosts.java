@@ -17,6 +17,9 @@ import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Class to view a user's created posts
+ */
 public class ViewMyPosts extends AppCompatActivity {
 
     ListView list;
@@ -29,6 +32,9 @@ public class ViewMyPosts extends AppCompatActivity {
 
     @SuppressLint("MissingInflatedId")
     @Override
+    /**
+     * onCreate runs when ViewMyPosts page is generated
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_my_posts);
@@ -41,6 +47,11 @@ public class ViewMyPosts extends AppCompatActivity {
         adapter = new ListViewAdapter(this, results);//not sure what's up with this error
         list.setAdapter(adapter);
 
+        /**
+         * When a list item is clicked (one of the user's posts), sends user to
+         * view post page
+         * Sends intent containing user's username, password, and all user's posts
+         */
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -59,6 +70,10 @@ public class ViewMyPosts extends AppCompatActivity {
             }
         });
 
+        /**
+         * Method that returns to the menu page when button is selected
+         * Sends intent containing user's username and password
+         */
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
