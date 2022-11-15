@@ -23,21 +23,31 @@ public class Menu extends AppCompatActivity {
 
     public void createPosts(View view){
         String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
         Intent intent = new Intent(Menu.this,Createpost.class);
         intent.putExtra("username",username);
+        intent.putExtra("password",password);
         startActivity(intent);
         finish();
     }
 
     public void searchByLocation(View view){
-        startActivity(new Intent(getApplicationContext(), SearchByLocation.class));
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        Intent intent = new Intent(Menu.this,SearchByLocation.class);
+        intent.putExtra("username",username);
+        intent.putExtra("password",password);
+        //startActivity(new Intent(getApplicationContext(), SearchByLocation.class));
+        startActivity(intent);
         finish();
     }
 
     public void viewMyPosts(View view){
         String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
         Intent intent = new Intent(Menu.this,ViewMyPosts.class);
         intent.putExtra("username",username);
+        intent.putExtra("password",password);
         startActivity(intent);
         finish();
     }

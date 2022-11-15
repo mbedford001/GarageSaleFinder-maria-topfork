@@ -43,6 +43,13 @@ public class ViewSearchResults extends AppCompatActivity {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Toast.makeText(ViewSearchResults.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
+//                String username = getIntent().getStringExtra("username");
+//                String password = getIntent().getStringExtra("password");
+//                Intent intent = new Intent(ViewSearchResults.this,ViewPost.class);
+//                intent.putExtra("username",username);
+//                intent.putExtra("password", password);
+//                startActivity(intent);
+//                finish();
 //                startActivity(new Intent(getApplicationContext(), ViewPost.class));
 //                finish();
 //            }
@@ -51,7 +58,12 @@ public class ViewSearchResults extends AppCompatActivity {
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(), Menu.class));
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(ViewSearchResults.this,Menu.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password", password);
+                startActivity(intent);
                 finish();
             }
         });
@@ -59,7 +71,13 @@ public class ViewSearchResults extends AppCompatActivity {
         searchBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(), SearchByLocation.class));
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                System.out.println("Username in results is "+username);
+                Intent intent = new Intent(ViewSearchResults.this,SearchByLocation.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password", password);
+                startActivity(intent);
                 finish();
             }
         });

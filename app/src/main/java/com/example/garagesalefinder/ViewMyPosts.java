@@ -46,9 +46,11 @@ public class ViewMyPosts extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(ViewMyPosts.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
                 String title = getIntent().getStringExtra("title");
+                String password = getIntent().getStringExtra("password");
                 String username = getIntent().getStringExtra("username");
                 Intent intent = new Intent(ViewMyPosts.this, ViewPost.class);
                 intent.putExtra("username",username);
+                intent.putExtra("password",password);
                 //intent.putExtra("title", title);
                 intent.putExtra("results", results);
                 startActivity(intent);

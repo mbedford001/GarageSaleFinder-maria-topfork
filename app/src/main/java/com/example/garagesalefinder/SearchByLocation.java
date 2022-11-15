@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
@@ -39,7 +39,9 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
         //category = findViewById(R.id.inputCategory);
         searchButton = findViewById(R.id.btnSearchByLocation);
         returnBtn = findViewById(R.id.btnReturn);
-
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        System.out.println("USSERNAME"+username);
         searchButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -74,6 +76,8 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
                 if(works) {
                     Intent intent = new Intent(SearchByLocation.this, ViewSearchResults.class);
                     intent.putExtra("results", results);
+                    intent.putExtra("password", password);
+                    intent.putExtra("username", username);
                     startActivity(intent);
                     finish();
                 }
@@ -84,7 +88,12 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(), Menu.class));
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(SearchByLocation.this,Menu.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password", password);
+                startActivity(intent);
                 finish();
             }
         });
