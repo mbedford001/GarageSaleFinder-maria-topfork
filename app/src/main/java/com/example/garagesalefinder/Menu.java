@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * This class contains all functions and buttons for main menu page
+ *
+ * @author  Maria Bedford, Jack Buczak, Ethan Sutton, Noah Halonen, Hongtao Wang, Keiley Maahs, Kristiana Anderson
+ * @since   2022-10-04
+ */
 public class Menu extends AppCompatActivity {
 
     public TextView UserText;
@@ -17,6 +23,10 @@ public class Menu extends AppCompatActivity {
 
     @SuppressLint("MissingInflatedId")
     @Override
+    /**
+     * all functions and buttons will be loaded here
+     * @param savedInstanceState in a Bundle structure that saves instance state
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
@@ -31,6 +41,10 @@ public class Menu extends AppCompatActivity {
         });
     }
 
+    /**
+     * create the page for user to creating post
+     * @param view a View structure that saves page view
+     */
     public void createPosts(View view){
         String username = getIntent().getStringExtra("username");
         Intent intent = new Intent(Menu.this,Createpost.class);
@@ -39,11 +53,19 @@ public class Menu extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * create the page for user to search post by location
+     * @param view a View structure that saves page view
+     */
     public void searchByLocation(View view){
         startActivity(new Intent(getApplicationContext(), SearchByLocation.class));
         finish();
     }
 
+    /**
+     * create the page for user to view their own posts
+     * @param view a View structure that saves page view
+     */
     public void viewMyPosts(View view){
         String username = getIntent().getStringExtra("username");
         Intent intent = new Intent(Menu.this,ViewMyPosts.class);
@@ -52,6 +74,10 @@ public class Menu extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * create the page for user to view their account page
+     * @param view a View structure that saves page view
+     */
     public void viewAccount(View view){
         String username = getIntent().getStringExtra("username");
         String password = getIntent().getStringExtra("password");
