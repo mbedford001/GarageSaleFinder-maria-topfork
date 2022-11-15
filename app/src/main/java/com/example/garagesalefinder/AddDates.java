@@ -88,7 +88,9 @@ public class AddDates extends AppCompatActivity {
     public void moveToAddItems(View view){
         Intent intent = new Intent(getApplicationContext(), AddItems.class);
         String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
         intent.putExtra("username",username);
+        intent.putExtra("password",password);
         intent.putExtra("title",title);
         startActivity(intent);
         //startActivity(new Intent(getApplicationContext(), AddDates.class));
@@ -153,7 +155,12 @@ public class AddDates extends AppCompatActivity {
     */
 
     public void backToMenu2(View view){
-        startActivity(new Intent(getApplicationContext(), Menu.class));
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        Intent intent = new Intent(AddDates.this,Menu.class);
+        intent.putExtra("username",username);
+        intent.putExtra("password", password);
+        startActivity(intent);
         finish();
     }
 }

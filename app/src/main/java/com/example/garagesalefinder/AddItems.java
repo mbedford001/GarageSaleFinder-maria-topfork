@@ -84,7 +84,12 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
         doneBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(), Menu.class));
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(AddItems.this,Menu.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password", password);
+                startActivity(intent);
                 finish();
             }
         });
@@ -92,7 +97,12 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(getApplicationContext(), AddDates.class));
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(AddItems.this,AddDates.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password", password);
+                startActivity(intent);
                 finish();
             }
         });
@@ -152,10 +162,17 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                 return false;
         }
     }
+
     public void backToMenu3(View view){
-        startActivity(new Intent(getApplicationContext(), Menu.class));
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        Intent intent = new Intent(AddItems.this,Menu.class);
+        intent.putExtra("username",username);
+        intent.putExtra("password", password);
+        startActivity(intent);
         finish();
     }
+
 
 }
 

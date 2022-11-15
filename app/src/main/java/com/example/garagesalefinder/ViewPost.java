@@ -30,7 +30,7 @@ public class ViewPost extends AppCompatActivity {
     ListViewAdapter adapter;
     Post post;
 
-    DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+
     ArrayList<Post> results3 = new ArrayList<Post>(0);
     //ArrayList list;
     public TextView UserText, TitleText, LocationText, DescriptionText, TimeText, PriceRangeText, ImageText;
@@ -43,9 +43,11 @@ public class ViewPost extends AppCompatActivity {
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_post);
         String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
         System.out.println("username intent "+ username);
         results3 = dbhc.getPostData(username);
         returnBtn = findViewById(R.id.btnBack);
@@ -122,6 +124,7 @@ public class ViewPost extends AppCompatActivity {
                 String username = getIntent().getStringExtra("username");
                 Intent intent = new Intent(ViewPost.this,Menu.class);
                 intent.putExtra("username",username);
+                intent.putExtra("password",password);
                 startActivity(intent);
                 finish();
             }
@@ -130,10 +133,13 @@ public class ViewPost extends AppCompatActivity {
 
           }
         public void deleteBtn(View view){
+            DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
             String username = getIntent().getStringExtra("username");
             dbhc.deletePost(username, title);
             Intent intent = new Intent(ViewPost.this,ViewMyPosts.class);
             intent.putExtra("username",username);
+            String password = getIntent().getStringExtra("password");
+            intent.putExtra("username",password);
             startActivity(intent);
             finish();
         }

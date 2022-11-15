@@ -122,7 +122,9 @@ public class Createpost extends AppCompatActivity {
     public void moveToAddDates(View view){
         Intent intent = new Intent(getApplicationContext(), AddDates.class);
         String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
         intent.putExtra("username",username);
+        intent.putExtra("password",password);
         intent.putExtra("title", title.getText().toString().trim());
         startActivity(intent);
         //startActivity(new Intent(getApplicationContext(), AddDates.class));

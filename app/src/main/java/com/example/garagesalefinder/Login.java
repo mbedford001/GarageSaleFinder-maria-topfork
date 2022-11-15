@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity {
                 boolean done = true;
 
                 if(TextUtils.isEmpty(email)){//verifies a username was entered
-                    Email.setError("Email is Required.");
+                    Email.setError("Username is Required.");
                     Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -78,13 +78,8 @@ public class Login extends AppCompatActivity {
                     finish();
                 }
                 else{//not the best way to display an error message for a non-existent user, but it suffices for now
-
-                    //overridePendingTransition(0, 0);
-                    //startActivity(new Intent(getApplicationContext(), Login.class));
-                    //Email.setError("Email could be incorrect");
-                    //Password.setError("Password could be incorrect");
-                    //overridePendingTransition(0, 0);
-
+                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 progressBar.setVisibility(View.VISIBLE);//displays login progress bar
             }

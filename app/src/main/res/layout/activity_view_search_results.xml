@@ -7,22 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".ViewSearchResults">
 
+
   <ListView
       android:id="@+id/listview"
       android:layout_width="fill_parent"
       android:layout_height="fill_parent"
+      app:layout_constraintTop_toTopOf="parent"
       tools:ignore="MissingConstraints"
-      tools:layout_editor_absoluteX="29dp"
-      tools:layout_editor_absoluteY="-107dp">
+      tools:layout_editor_absoluteX="-25dp">
 
   </ListView>
-
 
   <Button
       android:id="@+id/btnReturn"
       android:layout_width="211dp"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="-650dp"
+      android:layout_marginBottom="-550dp"
       android:text="Back to Menu"
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="parent"
@@ -34,7 +34,7 @@
       android:id="@+id/btnSearchAgain"
       android:layout_width="211dp"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="-600dp"
+      android:layout_marginBottom="-450dp"
       android:text="Search Again"
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="parent"
