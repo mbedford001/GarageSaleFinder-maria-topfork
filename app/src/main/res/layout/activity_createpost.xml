@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="Create Post"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="@color/purple_700"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,22 +29,23 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.145" />
+        app:layout_constraintVertical_bias="0.118" />
 
     <EditText
         android:id="@+id/inputPostName"
         android:layout_width="183dp"
         android:layout_height="50dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Post Name"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/postName" />
 
@@ -52,29 +53,143 @@
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Location:"
+        android:text="Address:"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.698"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/postName"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintTop_toTopOf="@+id/postName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/inputLocation"
         android:layout_width="183dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="104dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/location"
+        tools:ignore="DuplicateClickableBoundsCheck" />
+
+    <TextView
+        android:id="@+id/city"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="City:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/location"
+        app:layout_constraintVertical_bias="0.043" />
+
+
+    <EditText
+        android:id="@+id/inputCity"
+        android:layout_width="183dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="City Name"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.969"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/location" />
+        app:layout_constraintTop_toTopOf="@+id/city" />
+
+    <TextView
+        android:id="@+id/state"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="State:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/city"
+        app:layout_constraintVertical_bias="0.033" />
+
+    <EditText
+        android:id="@+id/inputState"
+        android:layout_width="183dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="State Abbreviation"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/city" />
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Country:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/state"
+        app:layout_constraintVertical_bias="0.036" />
+
+    <EditText
+        android:id="@+id/inputCountry"
+        android:layout_width="183dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="84dp"
+        android:ems="10"
+        android:hint="Country"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/state" />
+
+    <TextView
+        android:id="@+id/zipcode"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Zipcode:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/country"
+        app:layout_constraintVertical_bias="0.057" />
+
+    <EditText
+        android:id="@+id/inputZipcode"
+        android:layout_width="183dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:hint="ZIP code"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/country" />
 
     <TextView
         android:id="@+id/description"
@@ -84,25 +199,25 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/location"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintTop_toBottomOf="@id/inputPostName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/inputDescription"
         android:layout_width="183dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="88dp"
         android:ems="10"
         android:hint="Description"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/description" />
+        app:layout_constraintTop_toTopOf="@+id/postName" />
 
     <TextView
         android:id="@+id/time"
@@ -112,22 +227,23 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.033" />
 
     <EditText
         android:id="@+id/inputTime"
         android:layout_width="183dp"
         android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:hint="Time"
+        android:hint="10am-4pm"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/time" />
 
@@ -149,12 +265,13 @@
         android:id="@+id/inputPrice"
         android:layout_width="183dp"
         android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Price"
+        android:hint="$1-$50"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/price" />
 
@@ -176,12 +293,13 @@
         android:id="@+id/inputImage"
         android:layout_width="183dp"
         android:layout_height="50dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="URL link"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image" />
 
@@ -203,15 +321,15 @@
         android:id="@+id/button"
         android:layout_width="212dp"
         android:layout_height="49dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="505dp"
         android:layout_marginEnd="99dp"
         android:onClick="returnHomeFromPost"
         android:text="Back to Menu"
         android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />

@@ -21,7 +21,6 @@ import java.util.ArrayList;
  * Class to view a user's created posts
  */
 public class ViewMyPosts extends AppCompatActivity {
-
     ListView list;
     ListViewAdapter adapter;//not sure what's up with this error
     ArrayList<Post> results = new ArrayList<Post>();
