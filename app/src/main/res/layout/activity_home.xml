@@ -10,50 +10,94 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roastedchicken"
         android:text="Sales of Wales"
         android:textColor="@color/black"
-        android:textSize="36sp"
+        android:textSize="62sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnHomeLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="379dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="379dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="28dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        tools:ignore="MissingConstraints" />
+
 
     <Button
-        android:id="@+id/btnHomeLogin"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:id="@+id/btnLogin"
+        android:layout_width="208dp"
+        android:layout_height="60dp"
         android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:onClick="login"
+        android:layout_marginTop="561dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="110dp"
+        android:background="@color/wales"
         android:text="Login"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnHomeRegister"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.906" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnHomeRegister"
-        android:layout_width="0dp"
-        android:layout_height="66dp"
+        android:layout_width="208dp"
+        android:layout_height="60dp"
         android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
+        android:layout_marginTop="629dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="204dp"
+        android:layout_marginBottom="36dp"
+        android:background="@color/wales"
         android:onClick="register"
         android:text="Register"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="358dp"
+        android:layout_height="237dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wales" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

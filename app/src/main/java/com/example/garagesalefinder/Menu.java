@@ -35,7 +35,7 @@ public class Menu extends AppCompatActivity {
         LogoutBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(Menu.this,Login.class));
+                startActivity(new Intent(Menu.this,Home.class));
                 finish();
             }
         });

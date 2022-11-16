@@ -48,7 +48,7 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
         createButton = findViewById(R.id.btnCreate);
         String username = getIntent().getStringExtra("username");
         returnBtn = findViewById(R.id.btnReturn);
-        doneBtn = findViewById(R.id.btnDone);
+        //doneBtn = findViewById(R.id.btnDone);
 
 
 

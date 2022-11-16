@@ -21,6 +21,12 @@ import com.example.garagesalefinder.people.*;
  * Once a user is logged in, it passes the user data to the other classes.
  */
 
+
+/** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ *  This file has been merged into Home.java and is no longer used!
+ *  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ */
+
 public class Login extends AppCompatActivity {
     EditText Email,Password;
     Button LoginBtn;
@@ -49,6 +55,11 @@ public class Login extends AppCompatActivity {
         LoginBtn = findViewById(R.id.btnLogin);
         ReturnBtn = findViewById(R.id.btnReturn);
 
+        /** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         *  This file has been merged into Home.java and is no longer used!
+         *  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         */
+
         /**
          * When button is clicked the user is returned to the Home Page
          * @param view v
@@ -60,6 +71,12 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         });
+
+        /** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         *  This file has been merged into Home.java and is no longer used!
+         *  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         */
+
         /**
          * When button is clicked the user attempts to login.
          * If the user logs in with incorrect credentials, the system will inform them
@@ -104,5 +121,11 @@ public class Login extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);//displays login progress bar
             }
         });
+
+        /** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         *  This file has been merged into Home.java and is no longer used!
+         *  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+         */
+
     }
 }
