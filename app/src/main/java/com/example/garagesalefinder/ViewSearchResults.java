@@ -23,6 +23,7 @@ public class ViewSearchResults extends AppCompatActivity {
     Button returnBtn;
     Button searchBtn;
     Button viewPostBtn;
+    String username;
 
 
     @Override
@@ -38,22 +39,23 @@ public class ViewSearchResults extends AppCompatActivity {
         adapter = new ListViewAdapter(this, results);//not sure what's up with this error
         list.setAdapter(adapter);
 
-//
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(ViewSearchResults.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
-//                String username = getIntent().getStringExtra("username");
-//                String password = getIntent().getStringExtra("password");
-//                Intent intent = new Intent(ViewSearchResults.this,ViewPost.class);
-//                intent.putExtra("username",username);
-//                intent.putExtra("password", password);
-//                startActivity(intent);
-//                finish();
-//                startActivity(new Intent(getApplicationContext(), ViewPost.class));
-//                finish();
-//            }
-//        });
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Toast.makeText(ViewSearchResults.this, "List item was clicked at " + i, Toast.LENGTH_SHORT).show();
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(ViewSearchResults.this, ViewPost.class);
+                intent.putExtra("results", results);
+                intent.putExtra("position", i);
+                intent.putExtra("username",username);
+                intent.putExtra("source", "search");
+                System.out.println("*&*&*&*&*&*&*&*&" + username + "*&*&*&*&*&*&*&*&");
+                startActivity(intent);
+                finish();
+            }
+        });
 
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
