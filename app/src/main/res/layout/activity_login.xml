@@ -6,16 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Login">
 
+<!--
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This file has been merged into activity_home.xml and is no longer in use!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Sales of Wales"
+        android:layout_marginTop="15dp"
+        android:text=":( got replaced"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:textSize="45dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,20 +32,27 @@
         android:id="@+id/email"
         android:layout_width="379dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="450dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <!--
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This file has been merged into activity_home.xml and is no longer in use!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-->
 
     <EditText
         android:id="@+id/password"
         android:layout_width="379dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="4dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -62,7 +74,6 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
-
     <Button
         android:id="@+id/btnReturn"
         android:layout_width="211dp"
@@ -77,6 +88,12 @@
 
 
         tools:ignore="MissingConstraints" />
+
+    <!--
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+This file has been merged into activity_home.xml and is no longer in use!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-->
 
     <ProgressBar
         android:id="@+id/progressBar"

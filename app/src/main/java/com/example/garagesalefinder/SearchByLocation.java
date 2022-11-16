@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
@@ -42,9 +42,16 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
         String username = getIntent().getStringExtra("username");
         String password = getIntent().getStringExtra("password");
         System.out.println("USSERNAME"+username);
+
+
+        /*
+        When the search button is clicked, the inputs are checked to make sure at least one field was filled out.
+        If a field was entered, the code then uses a try catch to check if there are any search results matching the criteria
+        If the user did not enter any criteria, or theres are no matching results, the user will get an error.
+        If there are matching results, the user will be taken to the ViewSearchResults page.
+        Username and password are passed to the ViewSearchResults page in order to keep track of the signed in user
+         */
         searchButton.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 String inputLocation = location.getText().toString().trim();
@@ -60,7 +67,6 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
                 if(TextUtils.isEmpty(inputCategory)){
                     inputCategory = "";
                 }
-
                 results = dbhc.searchPosts(inputLocation, inputDate, inputCategory);
                 boolean works = true;
                 try{
@@ -74,6 +80,8 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
                 }
 
                 if(works) {
+                    String username = getIntent().getStringExtra("username");
+                    String password = getIntent().getStringExtra("password");
                     Intent intent = new Intent(SearchByLocation.this, ViewSearchResults.class);
                     intent.putExtra("results", results);
                     intent.putExtra("password", password);
@@ -85,6 +93,10 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
 
         });
 
+        /*
+        When the return button is clicked, the user is taken back to the menu.
+        Username and password are passed to the menu page in order to keep track of the signed in user
+         */
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -99,6 +111,9 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
         });
     }
 
+    /*
+    When the drop down menu is clicked, the user can choose which option to select
+     */
     public void showCategoryChoices(View v){
         PopupMenu popup = new PopupMenu(this, v);
         popup.setOnMenuItemClickListener(this);
@@ -106,6 +121,10 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
         popup.show();
     }
 
+
+    /*
+    This gives the user a pop up message confirming their choice on the drop down menu
+     */
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){

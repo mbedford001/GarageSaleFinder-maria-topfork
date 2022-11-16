@@ -35,7 +35,7 @@ public class Menu extends AppCompatActivity {
         LogoutBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(new Intent(Menu.this,Login.class));
+                startActivity(new Intent(Menu.this,Home.class));
                 finish();
             }
         });
@@ -65,6 +65,7 @@ public class Menu extends AppCompatActivity {
         Intent intent = new Intent(Menu.this,SearchByLocation.class);
         intent.putExtra("username",username);
         intent.putExtra("password",password);
+        System.out.println("7969697697"+ username +"7698798798");
         //startActivity(new Intent(getApplicationContext(), SearchByLocation.class));
         startActivity(intent);
         finish();

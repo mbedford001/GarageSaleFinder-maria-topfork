@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:onClick="createPosts"
         android:text="Create Post"
+        android:background="@color/wales"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +47,7 @@
         android:layout_marginTop="4dp"
         android:onClick="searchByLocation"
         android:text="Search Posts"
+        android:background="@color/wales"
         app:layout_constraintTop_toBottomOf="@id/createPost"
         app:layout_constraintLeft_toLeftOf="@id/createPost"
         tools:layout_editor_absoluteX="107dp" />
@@ -57,6 +59,7 @@
         android:layout_marginTop="4dp"
         android:onClick="viewAccount"
         android:text="View Account"
+        android:background="@color/wales"
         app:layout_constraintTop_toBottomOf="@id/searchByLocation"
         app:layout_constraintLeft_toLeftOf="@id/createPost"
         tools:layout_editor_absoluteX="107dp" />
@@ -68,6 +71,7 @@
         android:layout_marginTop="4dp"
         android:onClick="viewMyPosts"
         android:text="View My Posts"
+        android:background="@color/wales"
         app:layout_constraintTop_toBottomOf="@id/viewAccount"
         app:layout_constraintLeft_toLeftOf="@id/createPost"
         tools:layout_editor_absoluteX="105dp" />
@@ -79,6 +83,7 @@
         android:layout_marginTop="4dp"
         android:onClick="logOut"
         android:text="Log out"
+        android:background="@color/wales"
         app:layout_constraintLeft_toLeftOf="@id/viewMyPosts"
         app:layout_constraintTop_toBottomOf="@id/viewMyPosts" />
 

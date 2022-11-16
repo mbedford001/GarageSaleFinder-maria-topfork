@@ -13,6 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="Add an Item"
         android:textAllCaps="false"
+
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -127,7 +128,8 @@
         android:layout_height="50dp"
         android:ems="10"
         android:hint="Category"
-        android:textColorHint="@color/white"
+        android:background="@color/wales"
+        android:textColorHint="@color/black"
         android:onClick="showCategoryChoices"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -222,14 +224,13 @@
         android:layout_width="211dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-110dp"
+        android:background="@color/wales"
         android:text="Add Item"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quantity"
-        app:layout_constraintVertical_bias="0.024"
+        app:layout_constraintVertical_bias="0.063"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -237,6 +238,7 @@
         android:layout_width="212dp"
         android:layout_height="49dp"
         android:layout_marginTop="8dp"
+        android:background="@color/wales"
         android:onClick="goMenu"
         android:text="Back to Date"
         app:layout_constraintLeft_toLeftOf="@id/btnCreate"
@@ -252,6 +254,7 @@
         android:layout_marginBottom="45dp"
         android:onClick="backToMenu3"
         android:text="Back to Menu"
+        android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -259,14 +262,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/btnDone"
-        android:layout_width="212dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="60dp"
-        android:onClick="goMenu"
-        android:text="Done"
-        app:layout_constraintLeft_toLeftOf="@id/btnCreate"
-        app:layout_constraintTop_toBottomOf="@id/btnCreate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
