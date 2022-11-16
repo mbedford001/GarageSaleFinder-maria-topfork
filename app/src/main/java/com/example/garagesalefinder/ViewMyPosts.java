@@ -25,7 +25,7 @@ public class ViewMyPosts extends AppCompatActivity {
     ListViewAdapter adapter;//not sure what's up with this error
     ArrayList<Post> results = new ArrayList<Post>();
     Button returnBtn;
-    DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewMyPosts.this);
+    //DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewMyPosts.this);
 
 
 
@@ -38,7 +38,7 @@ public class ViewMyPosts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_my_posts);
         returnBtn = findViewById(R.id.btnReturnMenu);
-
+        DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewMyPosts.this);
 
         String username = getIntent().getStringExtra("username");
         results = (ArrayList<Post>)dbhc.viewAllOwnPosts(username);
