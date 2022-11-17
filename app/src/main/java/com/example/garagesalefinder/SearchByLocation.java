@@ -67,6 +67,7 @@ public class SearchByLocation extends AppCompatActivity implements PopupMenu.OnM
                 if(TextUtils.isEmpty(inputCategory)){
                     inputCategory = "";
                 }
+
                 results = dbhc.searchPosts(inputLocation, inputDate, inputCategory);
                 boolean works = true;
                 try{

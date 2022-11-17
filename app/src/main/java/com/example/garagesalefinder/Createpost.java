@@ -24,7 +24,11 @@ import com.example.garagesalefinder.people.Account;
  */
 public class Createpost extends AppCompatActivity {
 
-    EditText location;
+    EditText city;
+    EditText address;
+    EditText zip;
+    EditText country;
+    EditText state;
     EditText title;
     EditText description;
     EditText time;
@@ -40,7 +44,11 @@ public class Createpost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createpost);
-        location = findViewById(R.id.inputLocation);
+        address = findViewById(R.id.inputLocation);
+        city = findViewById(R.id.inputCity);
+        zip = findViewById(R.id.inputZipcode);
+        country = findViewById(R.id.inputCountry);
+        state = findViewById(R.id.inputState);
         title = findViewById(R.id.inputPostName);
         description = findViewById(R.id.inputDescription);
         time = findViewById(R.id.inputTime);
@@ -57,15 +65,39 @@ public class Createpost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String pLocation = location.getText().toString().trim();
+                String pAddress = address.getText().toString().trim();
+                String pCity = city.getText().toString().trim();
+                String pZip = zip.getText().toString().trim();
+                String pCountry = country.getText().toString().trim();
+                String pState = state.getText().toString().trim();
                 String pTitle = title.getText().toString().trim();
                 String pDescription = description.getText().toString().trim();
                 String pTime = time.getText().toString().trim();
                 String pImage = image.getText().toString().trim();
                 String pPrice = priceRange.getText().toString().trim();
 
-                if(TextUtils.isEmpty(pLocation)){//verifies a location was entered
-                    location.setError("Location is required.");
+                if(TextUtils.isEmpty(pAddress)){//verifies a location was entered
+                    address.setError("Address is required.");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(pCity)){//verifies a location was entered
+                    city.setError("City is required.");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(pState)){//verifies a location was entered
+                    state.setError("State is required.");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(pZip)){//verifies a location was entered
+                    zip.setError("Zip code is required.");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(pCountry)){//verifies a location was entered
+                    country.setError("Country is required.");
                     return;
                 }
 
@@ -84,7 +116,11 @@ public class Createpost extends AppCompatActivity {
                     time.setError("Time is required.");
                     return;
                 }
-                Post p = new Post(username, pLocation, pTitle, pDescription, pTime, pPrice, pImage);
+
+                String location = pAddress+":"+pCity+":"+pState+":"+pZip+":"+pCountry;
+
+                Post p = new Post(username, location, pTitle, pDescription, pTime, pPrice, pImage);
+
 
                 dbhc.addPost(p);
                 Toast.makeText(Createpost.this, "Post was added", Toast.LENGTH_SHORT).show();

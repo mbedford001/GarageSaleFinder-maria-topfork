@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="Create Post"
         android:textAllCaps="false"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/wales"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -307,32 +307,37 @@
         android:id="@+id/btnCreate"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-100dp"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="576dp"
+        android:layout_marginBottom="-275dp"
+        android:background="@color/wales"
         android:onClick="moveToAddDates"
         android:text="Create"
-        android:background="@color/wales"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="212dp"
         android:layout_height="49dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="505dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="635dp"
         android:layout_marginEnd="99dp"
+        android:background="@color/wales"
         android:onClick="returnHomeFromPost"
         android:text="Back to Menu"
-        android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.17" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
