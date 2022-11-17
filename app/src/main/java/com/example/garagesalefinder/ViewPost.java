@@ -110,11 +110,16 @@ public class ViewPost extends AppCompatActivity {
         TitleText = findViewById(R.id.title);
         TitleText.setText(title);
 
+        //format for google maps is "####(building number) ________(Street name), __(state id ex:MN)  #####(5 num zip)"
         //need to change this so that it breaks up the full address into seperate fields
-        String location = post.getLocation();
+        String[] location = (dbhc.splitLocation(post.getLocation()));
+        String address = location[0];
+        String state = location[2];
+        String zip = location[3];
+        String format = address+", "+state+" "+zip;
         //String location = getIntent().getStringExtra("location");
         LocationText = findViewById(R.id.location);
-        LocationText.setText(location);
+        LocationText.setText(format);
 
         String description = post.getDescription();
         //String description = getIntent().getStringExtra("description");

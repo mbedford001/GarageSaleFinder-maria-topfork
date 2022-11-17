@@ -93,6 +93,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/itemTitle"
         app:layout_constraintVertical_bias="0.04" />
+
     <EditText
         android:id="@+id/inputDescription"
         android:layout_width="183dp"
@@ -126,12 +127,12 @@
         android:id="@+id/inputCategory"
         android:layout_width="183dp"
         android:layout_height="50dp"
+        android:background="@color/wales"
         android:ems="10"
         android:hint="Category"
-        android:background="@color/wales"
-        android:textColorHint="@color/black"
         android:onClick="showCategoryChoices"
         android:padding="10dp"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
@@ -248,19 +249,17 @@
         android:id="@+id/button"
         android:layout_width="212dp"
         android:layout_height="49dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="595dp"
-        android:layout_marginEnd="99dp"
+        android:layout_marginStart="90dp"
         android:layout_marginBottom="45dp"
+        android:background="@color/wales"
         android:onClick="backToMenu3"
         android:text="Back to Menu"
-        android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btnReturn"
+        app:layout_constraintVertical_bias="0.14" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
