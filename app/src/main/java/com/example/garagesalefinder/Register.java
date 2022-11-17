@@ -18,6 +18,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
+/**
+ * Class allows user to register to Sales of Wales app
+ * extends AppCompatActivity
+ */
+
 public class Register extends AppCompatActivity {
 
     EditText FirstName;
@@ -39,6 +44,10 @@ public class Register extends AppCompatActivity {
         ReturnBtn = findViewById(R.id.btnReturn);
         ReturnHomeBtn = findViewById(R.id.btnReturnHome);
 
+        /**
+         * Button returns to home
+         * @param view v
+         */
         ReturnHomeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
