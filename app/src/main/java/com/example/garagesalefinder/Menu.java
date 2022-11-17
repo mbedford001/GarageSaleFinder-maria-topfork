@@ -20,6 +20,7 @@ public class Menu extends AppCompatActivity {
     public TextView UserText;
     Button ViewAccountBtn;
     Button LogoutBtn;
+    Button ViewAPBtn;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,6 +32,7 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         LogoutBtn = findViewById(R.id.btnLogout);
+        ViewAPBtn = findViewById(R.id.viewAPBtn);
 
         LogoutBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -38,8 +40,36 @@ public class Menu extends AppCompatActivity {
                 startActivity(new Intent(Menu.this,Home.class));
                 finish();
             }
+
+        });
+
+        ViewAPBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(Menu.this,ViewAllPosts.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                startActivity(intent);
+                finish();
+            }
         });
     }
+
+    /**
+     * create the page for user to view their own posts
+     * @param view a View structure that saves page view
+     */
+//    public void viewAllPosts(View view){
+//        String username = getIntent().getStringExtra("username");
+//        String password = getIntent().getStringExtra("password");
+//        Intent intent = new Intent(Menu.this,ViewAllPosts.class);
+//        intent.putExtra("username",username);
+//        intent.putExtra("password",password);
+//        startActivity(intent);
+//        finish();
+//    }
 
     /**
      * create the page for user to creating post
