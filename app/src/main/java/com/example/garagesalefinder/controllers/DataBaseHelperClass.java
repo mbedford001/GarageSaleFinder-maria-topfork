@@ -378,6 +378,16 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * method to split apart the location string into its separate components.
+     * @param location the input location string that needs to be split up
+     * @return an array of 5 strings in order: address, city, state, zip, country
+     */
+    public String[] splitLocation(String location){
+        String split[] = new String[5];
+        split = location.split(":");
+        return split;
+    }
 
     /**
      * Right now this method adds a post to the database
@@ -487,15 +497,15 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
 
     /**
      * method to search for sales within a given location(city)
+     * no longer requires capital letters.
      * @param searchedLocation the location the user is searching for sales in
      * @return an arraylist of all post objects that have a matching location
      */
     public ArrayList<Post> searchByLocation(String searchedLocation){
-        //put shit here to make search work will a full address
-        String[] args ={searchedLocation};
+        String[] args ={"%:"+searchedLocation+":%"};
         ArrayList<Post> results= new ArrayList<Post>(0);
         String queryString2 = "SELECT * from sale_posts" +
-                " WHERE (sale_posts.sale_location=?)";
+                " WHERE ((sale_posts.sale_location) like ?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){

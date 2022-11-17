@@ -81,7 +81,7 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
             }
         });
 
-        doneBtn.setOnClickListener(new View.OnClickListener(){
+        returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 String username = getIntent().getStringExtra("username");
