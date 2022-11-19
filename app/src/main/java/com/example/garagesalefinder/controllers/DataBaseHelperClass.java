@@ -312,7 +312,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase = this.getWritableDatabase();
         String name = username;
         String[] args = {name};
-        String queryString = "SELECT * from sale_posts" +
+        String queryString = "SELECT * FROM sale_posts" +
                 " WHERE (sale_posts.post_username = ?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
         cursor.moveToFirst();
@@ -330,6 +330,42 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         }
         sqliteDataBase.close();
         return terms;
+    }
+
+    /**
+     * This method allows a user to view all of their saved posts
+     *
+     * @param username a string of the logged in user's username
+     * @return a list of the Posts that user has created
+     */
+    public List<Post> viewSavedPosts(String username){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {name};
+        ArrayList<String> posts = new ArrayList<>();
+        int count = 0;
+        String queryString = "SELECT post_name FROM save_posts" +
+                " WHERE (save_post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            posts.add(cursor.getString(0));
+            count++;
+            cursor.moveToNext();
+        }
+        ArrayList<Post> results= new ArrayList<Post>(0);
+        queryString = "SELECT * from sale_posts" +
+                " WHERE post_name =?";
+        for(int i = 0; i<posts.size(); i++) {
+            String[] args2 = {posts.get(i)};
+            cursor = sqliteDataBase.rawQuery(queryString, args2);
+            cursor.moveToFirst();
+            Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            results.add(post);
+        }
+        cursor.close();
+        return results;
     }
 
     /**
