@@ -61,31 +61,44 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/deleteBtn"
+        android:id="@+id/viewSPBtn"
         android:layout_width="178dp"
         android:layout_height="59dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="540dp"
-        android:onClick="deleteAccount"
-        android:text="Delete Account"
+        android:layout_marginTop="350dp"
+        android:onClick="ViewSavedPosts"
+        android:text="View Saved Posts"
         android:background="@color/wales"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="178dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="70dp"
+        android:onClick="deleteAccount"
+        android:text="Delete Account"
+        android:background="@color/wales"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewSPBtn"
+        tools:ignore="MissingConstraints" />
+
+    <Button
         android:id="@+id/button2"
         android:layout_width="178dp"
-        android:layout_height="54dp"
+        android:layout_height="59dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="440dp"
+        android:layout_marginTop="70dp"
+        android:background="@color/wales"
         android:onClick="returnHomeFromView"
         android:text="Back to Menu"
-        android:background="@color/wales"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/deleteBtn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
