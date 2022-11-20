@@ -679,7 +679,30 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return results;
     }
 
-
+    /**
+     * This method adds a post to save_post tables
+     * @param title a String that is the title of a post
+     * @param username a String that is the name of a user who wishes to save post
+     */
+    public void savePost(String title, String username){
+        ContentValues values = new ContentValues();
+        String[] args = {title};
+        String queryString = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_name = ?)";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            values.put("sale_post_username", cursor.getString(0));
+            System.out.println("Look here: "+cursor.getString(0));
+            values.put("save_post_username", username);
+            values.put("post_name",title);
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        db.insert("save_posts", null, values);
+        db.close();
+    }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
