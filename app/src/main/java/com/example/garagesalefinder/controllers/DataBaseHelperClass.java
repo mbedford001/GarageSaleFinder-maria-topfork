@@ -270,8 +270,71 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase = this.getWritableDatabase();
         String name = username;
         String[] args = {name};
-        String queryString = "SELECT * from sale_posts" +
+        String queryString = "SELECT * FROM sale_posts" +
                 " WHERE (sale_posts.post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        List<Post> terms = new ArrayList<Post>();
+        while (!cursor.isAfterLast()) {
+            String u = cursor.getString(0);
+            String postName = cursor.getString(1);
+            String location = cursor.getString(2);
+            String description = cursor.getString(3);
+            String time = cursor.getString(4);
+            String price = cursor.getString(5);
+            String image = cursor.getString(6);
+            terms.add(new Post(u, location, postName, description, time, price, image));
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        return terms;
+    }
+
+    /**
+     * This method allows a user to view all of their saved posts
+     *
+     * @param username a string of the logged in user's username
+     * @return a list of the Posts that user has created
+     */
+    public List<Post> viewSavedPosts(String username){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {name};
+        ArrayList<String> posts = new ArrayList<>();
+        int count = 0;
+        String queryString = "SELECT post_name FROM save_posts" +
+                " WHERE (save_post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            posts.add(cursor.getString(0));
+            count++;
+            cursor.moveToNext();
+        }
+        ArrayList<Post> results= new ArrayList<Post>(0);
+        queryString = "SELECT * from sale_posts" +
+                " WHERE post_name =?";
+        for(int i = 0; i<posts.size(); i++) {
+            String[] args2 = {posts.get(i)};
+            cursor = sqliteDataBase.rawQuery(queryString, args2);
+            cursor.moveToFirst();
+            Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            results.add(post);
+        }
+        cursor.close();
+        return results;
+    }
+
+    /**
+     * This method allows a user to view all of the posts in database
+     *
+     * @return a list of the Posts that user has created
+     */
+    public List<Post> viewAllPosts(){
+        sqliteDataBase = this.getWritableDatabase();
+        String[] args = {};
+        String queryString = "SELECT * FROM sale_posts";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
         cursor.moveToFirst();
         List<Post> terms = new ArrayList<Post>();
@@ -336,6 +399,16 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * method to split apart the location string into its separate components.
+     * @param location the input location string that needs to be split up
+     * @return an array of 5 strings in order: address, city, state, zip, country
+     */
+    public String[] splitLocation(String location){
+        String split[] = new String[5];
+        split = location.split(":");
+        return split;
+    }
 
     /**
      * Right now this method adds a post to the database
@@ -445,15 +518,15 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
 
     /**
      * method to search for sales within a given location(city)
+     * no longer requires capital letters.
      * @param searchedLocation the location the user is searching for sales in
      * @return an arraylist of all post objects that have a matching location
      */
     public ArrayList<Post> searchByLocation(String searchedLocation){
-        //put shit here to make search work will a full address
-        String[] args ={searchedLocation};
+        String[] args ={"%:"+searchedLocation+":%"};
         ArrayList<Post> results= new ArrayList<Post>(0);
         String queryString2 = "SELECT * from sale_posts" +
-                " WHERE (sale_posts.sale_location=?)";
+                " WHERE ((sale_posts.sale_location) like ?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){

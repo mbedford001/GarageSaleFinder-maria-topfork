@@ -23,9 +23,18 @@
         app:layout_constraintVertical_bias="0.812" />
 
 
-
-
-
+    <Button
+        android:id="@+id/viewAPBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-52dp"
+        android:background="@color/wales"
+        android:onClick="viewAllPosts"
+        android:text="View All Posts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/createPost" />
 
     <Button
         android:id="@+id/createPost"

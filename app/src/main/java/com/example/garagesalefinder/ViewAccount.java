@@ -1,5 +1,6 @@
 package com.example.garagesalefinder;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +16,10 @@ public class ViewAccount extends AppCompatActivity {
 
     public TextView UserText, PasswordText;
     Button viewProfile;
+    Button ViewSPBtn;
     DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewAccount.this);
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +29,24 @@ public class ViewAccount extends AppCompatActivity {
         System.out.println(username);
         UserText = findViewById(R.id.username);
         UserText.setText(username);
+        ViewSPBtn = findViewById(R.id.viewSPBtn);
 
         String password = getIntent().getStringExtra("password");
         PasswordText = findViewById(R.id.password);
         PasswordText.setText(password);
+
+        ViewSPBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(ViewAccount.this,ViewSavedPosts.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     public void go(View view){
         TextView output = findViewById(R.id.textView);

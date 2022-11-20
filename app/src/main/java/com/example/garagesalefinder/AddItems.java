@@ -81,8 +81,13 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                 Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_SHORT).show();
             }
         });
+
 /**
         doneBtn.setOnClickListener(new View.OnClickListener(){
+=======
+
+        returnBtn.setOnClickListener(new View.OnClickListener(){
+>>>>>>> c233099cd5e7811553153c493db1b35918710b24
             @Override
             public void onClick(View v){
                 String username = getIntent().getStringExtra("username");

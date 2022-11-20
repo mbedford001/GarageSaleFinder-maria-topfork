@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Class to view a user's created posts
  */
-public class ViewMyPosts extends AppCompatActivity {
+public class ViewAllPosts extends AppCompatActivity {
     ListView list;
     ListViewAdapter adapter;//not sure what's up with this error
     ArrayList<Post> results = new ArrayList<Post>();
@@ -38,10 +38,10 @@ public class ViewMyPosts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_my_posts);
         returnBtn = findViewById(R.id.btnReturnMenu);
-        DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewMyPosts.this);
+        DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewAllPosts.this);
 
         String username = getIntent().getStringExtra("username");
-        results = (ArrayList<Post>)dbhc.viewAllOwnPosts(username);
+        results = (ArrayList<Post>)dbhc.viewAllPosts();
         list = (ListView) findViewById(R.id.listview);//locates ListView in xml file
         adapter = new ListViewAdapter(this, results);//not sure what's up with this error
         list.setAdapter(adapter);
@@ -58,7 +58,7 @@ public class ViewMyPosts extends AppCompatActivity {
                 String title = getIntent().getStringExtra("title");
                 String password = getIntent().getStringExtra("password");
                 String username = getIntent().getStringExtra("username");
-                Intent intent = new Intent(ViewMyPosts.this, ViewPost.class);
+                Intent intent = new Intent(ViewAllPosts.this, ViewPost.class);
                 intent.putExtra("username",username);
                 intent.putExtra("password",password);
                 //intent.putExtra("title", title);
@@ -80,7 +80,7 @@ public class ViewMyPosts extends AppCompatActivity {
             public void onClick(View v){
                 String username = getIntent().getStringExtra("username");
                 String password = getIntent().getStringExtra("password");
-                Intent intent = new Intent(ViewMyPosts.this,Menu.class);
+                Intent intent = new Intent(ViewAllPosts.this,Menu.class);
                 intent.putExtra("username",username);
                 intent.putExtra("password", password);
                 startActivity(intent);
@@ -89,5 +89,4 @@ public class ViewMyPosts extends AppCompatActivity {
         });
 
     }
-
 }
