@@ -234,7 +234,7 @@ public class ViewPost extends AppCompatActivity {
             dbhc.deletePost(username, title);
             Intent intent = new Intent(ViewPost.this,ViewMyPosts.class);
             intent.putExtra("username",username);
-            intent.putExtra("username",password);
+            intent.putExtra("password",password);
             startActivity(intent);
             finish();
         }
