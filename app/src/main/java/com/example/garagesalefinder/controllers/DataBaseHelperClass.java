@@ -184,59 +184,17 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                 " WHERE (regular_user.username=? and regular_user.password=?)";
         Cursor cursor2 = sqliteDataBase.rawQuery(queryString2, args);
 
-        if (cursor.getCount()>=1 || cursor2.getCount()>=1) {
-
-            //System.out.println("We found him. We logged in!"+cursor.getCount());
-
+        if (cursor.getCount()>=1) {
             access = true;
-            String queryString3 = "SELECT fname from regular_user" +
-                    " WHERE (regular_user.username = ? and regular_user.password = ?)";
-            String queryString4 = "SELECT fname from admin" +
-                    " WHERE (admin.username = ? and admin.password = ?)";
-            Cursor cursor3 = sqliteDataBase.rawQuery(queryString3, args);
-            Cursor cursor4 = sqliteDataBase.rawQuery(queryString4, args);
-            if (cursor4.getCount() >= 1){
-
-                String queryString5 = "SELECT * from admin" +
-                        " WHERE (admin.username = ? and admin.password = ?)";
-
-                Cursor cursor5 = sqliteDataBase.rawQuery(queryString5, args);
-
-                //c1.moveToFirst();
-                cursor5.moveToFirst();
-                while(!cursor5.isAfterLast()){
-                    a = new com.example.garagesalefinder.people.Admin(cursor5.getString(0),cursor5.getString(1),cursor5.getString(2),cursor5.getString(3),'A','Y');
-                    cursor5.moveToNext();
-                }
-
-                cursor4.close();
-                cursor5.close();
-                cursor.close();
-                viewAccount(a);
-            }
-            else{
-                String queryString6 = "SELECT * from regular_user" +
-                        " WHERE (regular_user.username = ? and regular_user.password = ?)";
-                Cursor cursor6 = sqliteDataBase.rawQuery(queryString6, args);
-
-                //c1.moveToFirst();
-                cursor6.moveToFirst();
-                while(!cursor6.isAfterLast()){
-                    a = new com.example.garagesalefinder.people.User(cursor6.getString(0),cursor6.getString(1),cursor6.getString(2),cursor6.getString(3),'U','Y');
-                    cursor6.moveToNext();
-                }
-                cursor6.close();
-                viewAccount(a);
-            }
-            //System.out.println("cursor string2: "+ cursor2.moveToFirst());
-
+        }
+        else if (cursor2.getCount()>=1) {
+            access = true;
         }
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
 
         sqliteDataBase.close();
-
 
         return access;
     }

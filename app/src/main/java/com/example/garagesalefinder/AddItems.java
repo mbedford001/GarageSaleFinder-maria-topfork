@@ -35,6 +35,7 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DataBaseHelperClass dbhc = new DataBaseHelperClass(AddItems.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additems);
         itemTitle = findViewById(R.id.inputItemName);
@@ -80,7 +81,7 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                 Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_SHORT).show();
             }
         });
-
+/**
         doneBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -93,6 +94,7 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                 finish();
             }
         });
+ */
 
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
