@@ -43,6 +43,10 @@ public class ViewPost extends AppCompatActivity {
     Button back1Btn;
     Button back2Btn;
     Button back3Btn;
+    Button viewItems;
+    Button viewItemsFromSearch;
+    Button viewItemsFromAll;
+    Button back2All;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -56,6 +60,7 @@ public class ViewPost extends AppCompatActivity {
         int position = getIntent().getIntExtra("position", -1);
         ArrayList<Post> results = (ArrayList<Post>) getIntent().getSerializableExtra("results");
 
+
         //Integer i = Integer.valueOf(position);
         System.out.println("username intent "+ username);
         results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
@@ -66,6 +71,10 @@ public class ViewPost extends AppCompatActivity {
         back1Btn = findViewById(R.id.back1Btn);
         back2Btn = findViewById(R.id.back2Btn);
         back3Btn = findViewById(R.id.back3Btn);
+        viewItemsFromSearch = findViewById(R.id.toItemsFromSearch);
+        viewItems = findViewById(R.id.toItemsFromMyPosts);
+        viewItemsFromAll = findViewById(R.id.toItemsFromAllPosts);
+        back2All = findViewById(R.id.back2All);
 
         // String title = results3.get(1);
         //  results2 = (ArrayList<Post>) getIntent().getSerializableExtra("results1")
@@ -145,22 +154,34 @@ public class ViewPost extends AppCompatActivity {
         back2Btn.setVisibility(View.GONE);
         back3Btn.setVisibility(View.GONE);
         deleteBtn.setVisibility(View.GONE);
+        viewItems.setVisibility(View.GONE);
+        viewItemsFromSearch.setVisibility(View.GONE);
+        viewItemsFromAll.setVisibility(View.GONE);
+        back2All.setVisibility(View.GONE);
+
         //if search result and not own post
-        System.out.println(username);
-        if(source.equals("search") && !username.equals(post.getOwner())){
+        if (source.equals("allPosts")){
+            back2All.setVisibility(View.VISIBLE);
+            viewItemsFromAll.setVisibility(View.VISIBLE);
+        }
+        else if(source.equals("search") && !username.equals(post.getOwner())){
             System.out.println(username + " is not the same as "+ post.getOwner());
             back2Btn.setVisibility(View.VISIBLE);
+            viewItemsFromSearch.setVisibility(View.VISIBLE);
         }
         //else if search result and owner
         else if(source.equals("search") && username.equals(post.getOwner())){
             back3Btn.setVisibility(View.VISIBLE);
             deleteBtn.setVisibility(View.VISIBLE);
+            viewItemsFromSearch.setVisibility(View.VISIBLE);
         }
         //else would have come from view own post
         else{
             System.out.println("this ok");
             back1Btn.setVisibility(View.VISIBLE);
             deleteBtn.setVisibility(View.VISIBLE);
+            viewItems.setVisibility(View.VISIBLE);
+
         }
 
 
@@ -226,6 +247,82 @@ public class ViewPost extends AppCompatActivity {
         });
 
 
+        viewItemsFromSearch.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                int position = getIntent().getIntExtra("position", -1);
+                results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewPost.this,ViewItems.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("position", position);
+                intent.putExtra("results", results3);
+                intent.putExtra("source", "search");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        viewItems.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                int position = getIntent().getIntExtra("position", -1);
+                results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewPost.this,ViewItems.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("position", position);
+                intent.putExtra("results", results3);
+                intent.putExtra("source", "myPosts");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        viewItemsFromAll.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                int position = getIntent().getIntExtra("position", -1);
+                results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewPost.this,ViewItems.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("position", position);
+                intent.putExtra("results", results3);
+                intent.putExtra("source", "allPosts");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        back2All.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                int position = getIntent().getIntExtra("position", -1);
+                results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewPost.this,ViewAllPosts.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("position", position);
+                intent.putExtra("results", results3);
+                intent.putExtra("source", "allPosts");
+                startActivity(intent);
+                finish();
+            }
+        });
+
           }
         public void deleteBtn(View view){
             DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
@@ -238,6 +335,8 @@ public class ViewPost extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+
     }
 
 
