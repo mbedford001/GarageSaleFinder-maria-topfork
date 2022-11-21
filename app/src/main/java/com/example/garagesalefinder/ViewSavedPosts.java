@@ -64,7 +64,7 @@ public class ViewSavedPosts extends AppCompatActivity {
                 //intent.putExtra("title", title);
                 intent.putExtra("results", results);
                 intent.putExtra("position", i);
-                intent.putExtra("source", "myPosts");
+                intent.putExtra("source", "saved");
                 startActivity(intent);
                 //startActivity(new Intent(getApplicationContext(), ViewPost.class));
                 finish();
