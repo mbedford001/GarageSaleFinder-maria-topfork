@@ -160,8 +160,6 @@ public class ViewPost extends AppCompatActivity {
         back2All.setVisibility(View.GONE);
 
         //if search result and not own post
-        System.out.println(username);
-        System.out.println("HELOOOOOOOOOOOOOOOOOOOOOOOOO" + source);
         if (source.equals("allPosts")){
             back2All.setVisibility(View.VISIBLE);
             viewItemsFromAll.setVisibility(View.VISIBLE);

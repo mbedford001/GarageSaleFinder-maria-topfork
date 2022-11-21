@@ -184,59 +184,17 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                 " WHERE (regular_user.username=? and regular_user.password=?)";
         Cursor cursor2 = sqliteDataBase.rawQuery(queryString2, args);
 
-        if (cursor.getCount()>=1 || cursor2.getCount()>=1) {
-
-            //System.out.println("We found him. We logged in!"+cursor.getCount());
-
+        if (cursor.getCount()>=1) {
             access = true;
-            String queryString3 = "SELECT fname from regular_user" +
-                    " WHERE (regular_user.username = ? and regular_user.password = ?)";
-            String queryString4 = "SELECT fname from admin" +
-                    " WHERE (admin.username = ? and admin.password = ?)";
-            Cursor cursor3 = sqliteDataBase.rawQuery(queryString3, args);
-            Cursor cursor4 = sqliteDataBase.rawQuery(queryString4, args);
-            if (cursor4.getCount() >= 1){
-
-                String queryString5 = "SELECT * from admin" +
-                        " WHERE (admin.username = ? and admin.password = ?)";
-
-                Cursor cursor5 = sqliteDataBase.rawQuery(queryString5, args);
-
-                //c1.moveToFirst();
-                cursor5.moveToFirst();
-                while(!cursor5.isAfterLast()){
-                    a = new com.example.garagesalefinder.people.Admin(cursor5.getString(0),cursor5.getString(1),cursor5.getString(2),cursor5.getString(3),'A','Y');
-                    cursor5.moveToNext();
-                }
-
-                cursor4.close();
-                cursor5.close();
-                cursor.close();
-                viewAccount(a);
-            }
-            else{
-                String queryString6 = "SELECT * from regular_user" +
-                        " WHERE (regular_user.username = ? and regular_user.password = ?)";
-                Cursor cursor6 = sqliteDataBase.rawQuery(queryString6, args);
-
-                //c1.moveToFirst();
-                cursor6.moveToFirst();
-                while(!cursor6.isAfterLast()){
-                    a = new com.example.garagesalefinder.people.User(cursor6.getString(0),cursor6.getString(1),cursor6.getString(2),cursor6.getString(3),'U','Y');
-                    cursor6.moveToNext();
-                }
-                cursor6.close();
-                viewAccount(a);
-            }
-            //System.out.println("cursor string2: "+ cursor2.moveToFirst());
-
+        }
+        else if (cursor2.getCount()>=1) {
+            access = true;
         }
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
 
         sqliteDataBase.close();
-
 
         return access;
     }
@@ -312,7 +270,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase = this.getWritableDatabase();
         String name = username;
         String[] args = {name};
-        String queryString = "SELECT * from sale_posts" +
+        String queryString = "SELECT * FROM sale_posts" +
                 " WHERE (sale_posts.post_username = ?)";
         Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
         cursor.moveToFirst();
@@ -330,6 +288,42 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         }
         sqliteDataBase.close();
         return terms;
+    }
+
+    /**
+     * This method allows a user to view all of their saved posts
+     *
+     * @param username a string of the logged in user's username
+     * @return a list of the Posts that user has created
+     */
+    public List<Post> viewSavedPosts(String username){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {name};
+        ArrayList<String> posts = new ArrayList<>();
+        int count = 0;
+        String queryString = "SELECT post_name FROM save_posts" +
+                " WHERE (save_post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            posts.add(cursor.getString(0));
+            count++;
+            cursor.moveToNext();
+        }
+        ArrayList<Post> results= new ArrayList<Post>(0);
+        queryString = "SELECT * from sale_posts" +
+                " WHERE post_name =?";
+        for(int i = 0; i<posts.size(); i++) {
+            String[] args2 = {posts.get(i)};
+            cursor = sqliteDataBase.rawQuery(queryString, args2);
+            cursor.moveToFirst();
+            Post post = new Post(cursor.getString(0), cursor.getString(2), cursor.getString(1),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            results.add(post);
+        }
+        cursor.close();
+        return results;
     }
 
     /**
@@ -716,7 +710,30 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return results;
     }
 
-
+    /**
+     * This method adds a post to save_post tables
+     * @param title a String that is the title of a post
+     * @param username a String that is the name of a user who wishes to save post
+     */
+    public void savePost(String title, String username){
+        ContentValues values = new ContentValues();
+        String[] args = {title};
+        String queryString = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_name = ?)";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            values.put("sale_post_username", cursor.getString(0));
+            System.out.println("Look here: "+cursor.getString(0));
+            values.put("save_post_username", username);
+            values.put("post_name",title);
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        db.insert("save_posts", null, values);
+        db.close();
+    }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
