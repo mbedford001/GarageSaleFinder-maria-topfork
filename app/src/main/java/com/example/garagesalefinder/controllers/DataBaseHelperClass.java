@@ -359,6 +359,31 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return terms;
     }
 
+    public List<Items> viewItems(String username, String postName){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {name, postName};
+        String queryString = "SELECT * from items" +
+                " WHERE (items.sale_post_username = ?) AND (items.post_title = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        List<Items> terms = new ArrayList<Items>();
+        while (!cursor.isAfterLast()) {
+            String pTitle = cursor.getString(0);
+            String iTitle = cursor.getString(1);
+            String uname = cursor.getString(2);
+            String category = cursor.getString(3);
+            String image = cursor.getString(4);
+            String description = cursor.getString(5);
+            String price = cursor.getString(6);
+            String quantity = cursor.getString(7);
+            terms.add(new Items(pTitle, iTitle, uname, category, image, description, price, quantity));
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        return terms;
+    }
+
     /**
      * get Posts' data from database from a specific user included post name, post username, etc (for details, please check the database)
      * @param username the name of a user
@@ -468,6 +493,12 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.delete("sale_posts", "post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
         db.delete("save_posts", "sale_post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
     }
+
+    public void deleteItem(String username, String postName, String itemName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("items", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"" + "AND item_title = \"" + itemName + "\"", null);
+    }
+
 
     /**
      * add new account to the database
