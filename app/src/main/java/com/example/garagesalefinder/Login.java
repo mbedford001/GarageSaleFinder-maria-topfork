@@ -108,6 +108,7 @@ public class Login extends AppCompatActivity {
                     //System.out.println("Success! Inside if statement! Username "+ email + "Password: "+password);
                     //startActivity(new Intent(getApplicationContext(), Menu.class));
                     //finish();
+
                     Intent intent = new Intent(Login.this,Menu.class);
                     intent.putExtra("username",email);
                     intent.putExtra("password", password);

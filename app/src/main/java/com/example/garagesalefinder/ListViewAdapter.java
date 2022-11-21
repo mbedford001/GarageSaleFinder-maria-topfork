@@ -6,11 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.garagesalefinder.PostStuff.Items;
 import com.example.garagesalefinder.PostStuff.Post;
 import java.util.ArrayList;
 import java.util.List;
 import android.widget.Button;
-import java.util.Locale;
 
 public class ListViewAdapter extends BaseAdapter {
 

@@ -184,59 +184,17 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
                 " WHERE (regular_user.username=? and regular_user.password=?)";
         Cursor cursor2 = sqliteDataBase.rawQuery(queryString2, args);
 
-        if (cursor.getCount()>=1 || cursor2.getCount()>=1) {
-
-            //System.out.println("We found him. We logged in!"+cursor.getCount());
-
+        if (cursor.getCount()>=1) {
             access = true;
-            String queryString3 = "SELECT fname from regular_user" +
-                    " WHERE (regular_user.username = ? and regular_user.password = ?)";
-            String queryString4 = "SELECT fname from admin" +
-                    " WHERE (admin.username = ? and admin.password = ?)";
-            Cursor cursor3 = sqliteDataBase.rawQuery(queryString3, args);
-            Cursor cursor4 = sqliteDataBase.rawQuery(queryString4, args);
-            if (cursor4.getCount() >= 1){
-
-                String queryString5 = "SELECT * from admin" +
-                        " WHERE (admin.username = ? and admin.password = ?)";
-
-                Cursor cursor5 = sqliteDataBase.rawQuery(queryString5, args);
-
-                //c1.moveToFirst();
-                cursor5.moveToFirst();
-                while(!cursor5.isAfterLast()){
-                    a = new com.example.garagesalefinder.people.Admin(cursor5.getString(0),cursor5.getString(1),cursor5.getString(2),cursor5.getString(3),'A','Y');
-                    cursor5.moveToNext();
-                }
-
-                cursor4.close();
-                cursor5.close();
-                cursor.close();
-                viewAccount(a);
-            }
-            else{
-                String queryString6 = "SELECT * from regular_user" +
-                        " WHERE (regular_user.username = ? and regular_user.password = ?)";
-                Cursor cursor6 = sqliteDataBase.rawQuery(queryString6, args);
-
-                //c1.moveToFirst();
-                cursor6.moveToFirst();
-                while(!cursor6.isAfterLast()){
-                    a = new com.example.garagesalefinder.people.User(cursor6.getString(0),cursor6.getString(1),cursor6.getString(2),cursor6.getString(3),'U','Y');
-                    cursor6.moveToNext();
-                }
-                cursor6.close();
-                viewAccount(a);
-            }
-            //System.out.println("cursor string2: "+ cursor2.moveToFirst());
-
+        }
+        else if (cursor2.getCount()>=1) {
+            access = true;
         }
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
 
         sqliteDataBase.close();
-
 
         return access;
     }
@@ -395,6 +353,31 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return terms;
     }
 
+    public List<Items> viewItems(String username, String postName){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {name, postName};
+        String queryString = "SELECT * from items" +
+                " WHERE (items.sale_post_username = ?) AND (items.post_title = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        List<Items> terms = new ArrayList<Items>();
+        while (!cursor.isAfterLast()) {
+            String pTitle = cursor.getString(0);
+            String iTitle = cursor.getString(1);
+            String uname = cursor.getString(2);
+            String category = cursor.getString(3);
+            String image = cursor.getString(4);
+            String description = cursor.getString(5);
+            String price = cursor.getString(6);
+            String quantity = cursor.getString(7);
+            terms.add(new Items(pTitle, iTitle, uname, category, image, description, price, quantity));
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        return terms;
+    }
+
     /**
      * get Posts' data from database from a specific user included post name, post username, etc (for details, please check the database)
      * @param username the name of a user
@@ -504,6 +487,12 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.delete("sale_posts", "post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
         db.delete("save_posts", "sale_post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
     }
+
+    public void deleteItem(String username, String postName, String itemName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("items", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"" + "AND item_title = \"" + itemName + "\"", null);
+    }
+
 
     /**
      * add new account to the database
@@ -721,7 +710,30 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return results;
     }
 
-
+    /**
+     * This method adds a post to save_post tables
+     * @param title a String that is the title of a post
+     * @param username a String that is the name of a user who wishes to save post
+     */
+    public void savePost(String title, String username){
+        ContentValues values = new ContentValues();
+        String[] args = {title};
+        String queryString = "SELECT * from sale_posts" +
+                " WHERE (sale_posts.post_name = ?)";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            values.put("sale_post_username", cursor.getString(0));
+            System.out.println("Look here: "+cursor.getString(0));
+            values.put("save_post_username", username);
+            values.put("post_name",title);
+            cursor.moveToNext();
+        }
+        sqliteDataBase.close();
+        db.insert("save_posts", null, values);
+        db.close();
+    }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
