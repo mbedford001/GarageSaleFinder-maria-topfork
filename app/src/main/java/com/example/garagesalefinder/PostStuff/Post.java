@@ -1,6 +1,13 @@
 package com.example.garagesalefinder.PostStuff;
 
+import android.graphics.drawable.Drawable;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Date;
 
 /**
@@ -170,8 +177,9 @@ import java.util.Date;
      * @return
      */
     public String getImage(){
-            return this.image;
+        return this.image;
         }
+
 }
 
 

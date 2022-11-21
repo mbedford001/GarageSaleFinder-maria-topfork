@@ -8,4 +8,5 @@
     <string name="time">time</string>
     <string name="priceRange">priceRange</string>
     <string name="image">image</string>
+    <string name="quantity">image</string>
 </resources>

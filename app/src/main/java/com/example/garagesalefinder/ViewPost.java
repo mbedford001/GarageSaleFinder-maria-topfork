@@ -1,10 +1,16 @@
 package com.example.garagesalefinder;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -136,9 +142,10 @@ public class ViewPost extends AppCompatActivity {
         PriceRangeText = findViewById(R.id.priceRange);
         PriceRangeText.setText(priceRange);
 
-        //String image = getIntent().getStringExtra("image");
-        //ImageText = findViewById(R.id.image);
-        //ImageText.setText(image);
+       // String image = getIntent().getStringExtra("image");
+        String image = post.getImage();
+        ImageText = findViewById(R.id.image);
+        ImageText.setText(image);
 
 
         back1Btn.setVisibility(View.GONE);

@@ -200,7 +200,8 @@ order for the link to work.-->
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintLeft_toRightOf="@id/viewPriceRange"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <Button
         android:id="@+id/back2Btn"
