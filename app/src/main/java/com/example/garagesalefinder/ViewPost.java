@@ -23,7 +23,11 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
-
+/**
+ * Class that views post data from data base. Displays all items related to
+ * specific item post
+ *
+ */
 public class ViewPost extends AppCompatActivity {
 
     ListView list;
@@ -50,6 +54,12 @@ public class ViewPost extends AppCompatActivity {
     Button back2Saved;
     Button viewItemsFromSaved;
 
+    /**
+     * On create method sets all variables from a given post to be able to be displayed
+     * on the app, also shows data once data is filled in
+     *
+     * @param savedInstanceState
+     */
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,9 +205,10 @@ public class ViewPost extends AppCompatActivity {
         }
 
 
-
-
-
+/**
+ * Button that sends post back to menu
+ *
+ */
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -210,6 +221,10 @@ public class ViewPost extends AppCompatActivity {
                 finish();
             }
         });
+
+        /**
+         * Button that sends user back to view my posts
+          */
 
         back1Btn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -226,6 +241,10 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+        /**
+         * Button that sends user back to search results
+         *
+         */
         back2Btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -241,6 +260,10 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+        /**
+         * button that sends user back to search results
+         *
+         */
         back3Btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -256,7 +279,10 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
-
+/**
+ * Button that sends user to view items
+ *
+ */
         viewItemsFromSearch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -276,6 +302,10 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+        /**
+         * button that sends user to view items
+         *
+         */
         viewItems.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -294,7 +324,10 @@ public class ViewPost extends AppCompatActivity {
                 finish();
             }
         });
-
+/**
+ * button that sends user to view items
+ *
+ */
         viewItemsFromAll.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -314,6 +347,11 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+
+        /**
+         * Button that gets post and sends to view items
+         *
+         */
         viewItemsFromSaved.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -332,7 +370,10 @@ public class ViewPost extends AppCompatActivity {
                 finish();
             }
         });
-
+/**
+ * Button that sends user back to view all posts with all intents
+ *
+ */
         back2All.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -351,6 +392,11 @@ public class ViewPost extends AppCompatActivity {
                 finish();
             }
         });
+
+        /**
+         * Sends user back to saved posts
+         *
+         */
 
         back2Saved.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -372,7 +418,12 @@ public class ViewPost extends AppCompatActivity {
         });
 
           }
-        public void deleteBtn(View view){
+
+    /**
+     * Delete button that deletes the post
+     * @param view listens for button click
+     */
+    public void deleteBtn(View view){
             DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
             String username = getIntent().getStringExtra("username");
             String password = getIntent().getStringExtra("password");
