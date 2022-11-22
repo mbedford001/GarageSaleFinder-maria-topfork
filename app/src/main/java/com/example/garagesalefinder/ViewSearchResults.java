@@ -39,7 +39,10 @@ public class ViewSearchResults extends AppCompatActivity {
         adapter = new ListViewAdapter(this, results);//not sure what's up with this error
         list.setAdapter(adapter);
 
-
+         /*
+        When search button from SearchByLocation is selected, pertinent information is passed from
+        that page to this one, and from here the results are processed and displayed to the user
+        */
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -57,6 +60,9 @@ public class ViewSearchResults extends AppCompatActivity {
             }
         });
 
+          /*
+        When Menu button is clicked, user is sent to menu. Username and Password is passed back.
+        */
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -70,6 +76,9 @@ public class ViewSearchResults extends AppCompatActivity {
             }
         });
 
+           /*
+        When Search Again button is clicked, user is sent to previous page. Username and Password is passed back.
+        */
         searchBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
