@@ -436,6 +436,57 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
     /**
+     * method to check if the username entered already exists in the database (not case sensitive)
+     * @param username the username being searched in the database
+     * @return boolean if the username exists or not
+     */
+    public boolean usernameExists(String username) {
+        String[] args = {username};
+        ArrayList<String> results = new ArrayList<String>(0);
+        String queryString2 = "SELECT username from regular_user" +
+                " WHERE (regular_user.username like ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        try {
+            results.add(cursor.getString(0));
+        } catch (Exception e) {
+            if (results.size() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * method to check if the post title entered already exists in the database (not case sensitive)
+     * @param postName the title of the post being searched in the database
+     * @return boolean if the username exists or not
+     */
+    public boolean postExists(String postName){
+        String[] args ={postName};
+        ArrayList<String> results= new ArrayList<String>(0);
+        String queryString2 = "SELECT post_name from sale_posts" +
+                " WHERE (sale_posts.post_name like ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        try {
+            results.add(cursor.getString(0));
+        } catch (Exception e) {
+            if (results.size() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
      * Right now this method adds a post to the database
      * but it doesn't add items or dates yet maybe add items should be it's own separate method
      * since it has a lot of its own attributes

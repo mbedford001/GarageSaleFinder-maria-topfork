@@ -80,22 +80,28 @@ public class Register extends AppCompatActivity {
                 }
 
                 if(TextUtils.isEmpty(uname)){//verifies a password was entered
-                    Username.setError("Password is Required.");
+                    Username.setError("Username is Required.");
                     return;
                 }
 
-                //System.out.println("Username/email: " + email + "Password: " + password);
-                if(dbhc.addAccount(new User(fname, lname,uname,pname,'U','Y'))){
-                    //System.out.println("inside if statement! Username "+ email + "Password: "+password);
-                    Intent intent = new Intent(Register.this,Menu.class);
-                    intent.putExtra("username",uname);
-                    String password = getIntent().getStringExtra("password");
-                    intent.putExtra("password",pname);
-                    startActivity(intent);
-                    //startActivity(new Intent(getApplicationContext(), Login.class));
-                    finish();
+                if(dbhc.usernameExists(uname)){
+                    Username.setError("Username is taken, please enter a different username.");
+                    return;
                 }
+                else {
 
+                    //System.out.println("Username/email: " + email + "Password: " + password);
+                    if (dbhc.addAccount(new User(fname, lname, uname, pname, 'U', 'Y'))) {
+                        //System.out.println("inside if statement! Username "+ email + "Password: "+password);
+                        Intent intent = new Intent(Register.this, Menu.class);
+                        intent.putExtra("username", uname);
+                        String password = getIntent().getStringExtra("password");
+                        intent.putExtra("password", pname);
+                        startActivity(intent);
+                        //startActivity(new Intent(getApplicationContext(), Login.class));
+                        finish();
+                    }
+                }
             }
         });
     }

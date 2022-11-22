@@ -76,37 +76,37 @@ public class Createpost extends AppCompatActivity {
                 String pImage = image.getText().toString().trim();
                 String pPrice = priceRange.getText().toString().trim();
 
-                if(TextUtils.isEmpty(pAddress)){//verifies a location was entered
+                if (TextUtils.isEmpty(pAddress)) {//verifies a location was entered
                     address.setError("Address is required.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(pCity)){//verifies a location was entered
+                if (TextUtils.isEmpty(pCity)) {//verifies a location was entered
                     city.setError("City is required.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(pState)){//verifies a location was entered
+                if (TextUtils.isEmpty(pState)) {//verifies a location was entered
                     state.setError("State is required.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(pZip)){//verifies a location was entered
+                if (TextUtils.isEmpty(pZip)) {//verifies a location was entered
                     zip.setError("Zip code is required.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(pCountry)){//verifies a location was entered
+                if (TextUtils.isEmpty(pCountry)) {//verifies a location was entered
                     country.setError("Country is required.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(pTitle)){
+                if (TextUtils.isEmpty(pTitle)) {
                     title.setError("Title is required.");
                     return;
                 }
 
-                if(TextUtils.isEmpty(pDescription)){
+                if (TextUtils.isEmpty(pDescription)) {
                     description.setError("Description is required.");
                     return;
                 }
@@ -117,16 +117,21 @@ public class Createpost extends AppCompatActivity {
                     return;
                 }
 
-                String location = pAddress+":"+pCity+":"+pState+":"+pZip+":"+pCountry;
+                if (dbhc.postExists(pTitle)) {
+                    title.setError("Post title is taken, please enter a different title");
+                    return;
+                } else {
+                    String location = pAddress + ":" + pCity + ":" + pState + ":" + pZip + ":" + pCountry;
 
-                Post p = new Post(username, location, pTitle, pDescription, pTime, pPrice, pImage);
+                    Post p = new Post(username, location, pTitle, pDescription, pTime, pPrice, pImage);
 
 
-                dbhc.addPost(p);
-                Toast.makeText(Createpost.this, "Post was added", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(getApplicationContext(), ViewPost.class));
-                //finish();
-                moveToAddDates(v);
+                    dbhc.addPost(p);
+                    Toast.makeText(Createpost.this, "Post was added", Toast.LENGTH_SHORT).show();
+                    //startActivity(new Intent(getApplicationContext(), ViewPost.class));
+                    //finish();
+                    moveToAddDates(v);
+                }
             }
 
         });
