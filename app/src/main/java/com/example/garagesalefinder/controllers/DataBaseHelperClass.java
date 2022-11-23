@@ -485,6 +485,32 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     * method to check if the item title entered already exists in the database for the sale (not case sensitive)
+     * @param postName the title of the post the user is adding the item to
+     * @param itemName the title of the item the user is attempting to add
+     * @return boolean if the item title exists in the database.
+     */
+    public boolean itemExists(String postName, String itemName){
+        String[] args ={postName, itemName};
+        ArrayList<String> results= new ArrayList<String>(0);
+        String queryString2 = "SELECT item_title from items WHERE " +
+                "((items.post_title = ?) AND (items.item_title like ?))";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        try {
+            results.add(cursor.getString(0));
+        } catch (Exception e) {
+            if (results.size() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+            return false;
+        }
+        return true;
+    }
+
 
     /**
      * Right now this method adds a post to the database

@@ -71,6 +71,10 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                     return;
                 }
 
+                if(dbhc.itemExists(postName ,pItemTitle)){
+                    itemTitle.setError("You already have an item with this title.");
+                }
+
                 /*if(TextUtils.isEmpty(pPostName)) {
                     postName.setError("Post Name is required.");
                     return;

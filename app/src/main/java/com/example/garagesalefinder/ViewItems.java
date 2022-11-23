@@ -36,9 +36,9 @@ public class ViewItems extends AppCompatActivity {
         int postPosition = getIntent().getIntExtra("position", -1);
         results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
         System.out.println(username);
-        for (Post p: results3){
-            System.out.println(p.getTitle());
-        }
+//        for (Post p: results3){
+//            System.out.println(p.getTitle());
+//        }
         Post p = results3.get(postPosition);
 
         System.out.println("---------------------------------------------------------" + postPosition + " " + p.getTitle());
