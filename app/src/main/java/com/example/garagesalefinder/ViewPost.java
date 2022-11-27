@@ -24,7 +24,11 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
-
+/**
+ * Class that views post data from data base. Displays all items related to
+ * specific item post
+ *
+ */
 public class ViewPost extends AppCompatActivity {
 
     ListView list;
@@ -51,7 +55,15 @@ public class ViewPost extends AppCompatActivity {
     String image;
     Button removeFromSaved;
     Button addToSaved;
+    Button back2Saved;
+    Button viewItemsFromSaved;
 
+    /**
+     * On create method sets all variables from a given post to be able to be displayed
+     * on the app, also shows data once data is filled in
+     *
+     * @param savedInstanceState
+     */
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +94,10 @@ public class ViewPost extends AppCompatActivity {
         back2All = findViewById(R.id.back2All);
         addToSaved = findViewById(R.id.addToSaved);
         removeFromSaved = findViewById(R.id.removeFromSaved);
+
+        back2Saved = findViewById(R.id.back2Saved);
+        viewItemsFromSaved = findViewById(R.id.toItemsFromSaved);
+
 
         // String title = results3.get(1);
         //  results2 = (ArrayList<Post>) getIntent().getSerializableExtra("results1")
@@ -187,11 +203,17 @@ public class ViewPost extends AppCompatActivity {
         back2All.setVisibility(View.GONE);
         addToSaved.setVisibility(View.GONE);
         removeFromSaved.setVisibility(View.GONE);
+        back2Saved.setVisibility(View.GONE);
+        viewItemsFromSaved.setVisibility(View.GONE);
 
         //if search result and not own post
         if (source.equals("allPosts")){
             back2All.setVisibility(View.VISIBLE);
             viewItemsFromAll.setVisibility(View.VISIBLE);
+        }
+        else if (source.equals("saved")){
+            back2Saved.setVisibility(View.VISIBLE);
+            viewItemsFromSaved.setVisibility(View.VISIBLE);
         }
         else if(source.equals("search") && !username.equals(post.getOwner())){
             System.out.println(username + " is not the same as "+ post.getOwner());
@@ -223,6 +245,11 @@ public class ViewPost extends AppCompatActivity {
         }
 
 
+
+/**
+ * Button that sends post back to menu
+ *
+ */
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -236,6 +263,10 @@ public class ViewPost extends AppCompatActivity {
                 finish();
             }
         });
+
+        /**
+         * Button that sends user back to view my posts
+          */
 
         back1Btn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -252,6 +283,10 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+        /**
+         * Button that sends user back to search results
+         *
+         */
         back2Btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -267,6 +302,10 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+        /**
+         * button that sends user back to search results
+         *
+         */
         back3Btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -282,7 +321,10 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
-
+/**
+ * Button that sends user to view items
+ *
+ */
         viewItemsFromSearch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -302,6 +344,10 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+        /**
+         * button that sends user to view items
+         *
+         */
         viewItems.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -320,7 +366,10 @@ public class ViewPost extends AppCompatActivity {
                 finish();
             }
         });
-
+/**
+ * button that sends user to view items
+ *
+ */
         viewItemsFromAll.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -340,6 +389,33 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+
+        /**
+         * Button that gets post and sends to view items
+         *
+         */
+        viewItemsFromSaved.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                int position = getIntent().getIntExtra("position", -1);
+                results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewPost.this,ViewItems.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("position", position);
+                intent.putExtra("results", results3);
+                intent.putExtra("source", "saved");
+                startActivity(intent);
+                finish();
+            }
+        });
+/**
+ * Button that sends user back to view all posts with all intents
+ *
+ */
         back2All.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -359,8 +435,37 @@ public class ViewPost extends AppCompatActivity {
             }
         });
 
+        /**
+         * Sends user back to saved posts
+         *
+         */
+
+        back2Saved.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                int position = getIntent().getIntExtra("position", -1);
+                results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewPost.this,ViewSavedPosts.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("position", position);
+                intent.putExtra("results", results3);
+                intent.putExtra("source", "saved");
+                startActivity(intent);
+                finish();
+            }
+        });
+
           }
-        public void deleteBtn(View view){
+
+    /**
+     * Delete button that deletes the post
+     * @param view listens for button click
+     */
+    public void deleteBtn(View view){
             DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
             String username = getIntent().getStringExtra("username");
             String password = getIntent().getStringExtra("password");
