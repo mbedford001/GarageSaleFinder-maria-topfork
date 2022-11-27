@@ -7,221 +7,259 @@
     tools:context=".ViewPost">
 
 
-    <TextView
-        android:id="@+id/viewUsername"
-        android:layout_width="179dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="64dp"
-        android:text="User's Post:"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--the button below will allow the address to be clickable and then redirect the user to google maps.
+location needs to be in "####(building number) ________(Street name), __(state id ex:MN)  #####(5 num zip)" format in
+order for the link to work.-->
 
     <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="@string/user"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.613"
-        app:layout_constraintLeft_toRightOf="@id/viewUsername"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/viewPostName"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="Title:"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_width="405dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="@string/title"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toRightOf="@id/viewPostName"
+        android:textSize="35sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/viewLocation"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="106dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="40dp"
         android:text="Location:"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <!--the button below will allow the address to be clickable and then redirect the user to google maps.
-location needs to be in "####(building number) ________(Street name), __(state id ex:MN)  #####(5 num zip)" format in
-order for the link to work.-->
 
     <Button
         android:id="@+id/location"
         android:layout_width="185dp"
         android:layout_height="54dp"
+        android:layout_marginStart="163dp"
+        android:layout_marginTop="93dp"
         android:autoLink="map"
         android:background="@color/wales"
         android:text="@string/location"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.89"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewLocation"
-        app:layout_constraintVertical_bias="0.0" />
-
-
-    <TextView
-        android:id="@+id/viewDescription"
-        android:layout_width="173dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:text="Description:"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewLocation" />
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="398dp"
-        android:layout_height="86dp"
-        android:layout_marginTop="280dp"
-        android:text="@string/description"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
-        app:layout_constraintLeft_toRightOf="@id/viewDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/viewDates"
+        android:layout_width="98dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="164dp"
+        android:text="Date(s):"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/time"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="164dp"
+        android:text="dates"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toRightOf="@id/viewDates"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/viewTime"
-        android:layout_width="173dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="69dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="236dp"
         android:text="Time:"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/description" />
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/viewDates"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="368dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="236dp"
         android:text="@string/time"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.596"
+        android:textSize="25sp"
         app:layout_constraintLeft_toRightOf="@id/viewTime"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="396dp"
+        android:layout_height="156dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="332dp"
+        android:text="@string/description"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/viewPriceRange"
-        android:layout_width="173dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="149dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="280dp"
         android:text="Price Range:"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.033"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/time" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/priceRange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="412dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="280dp"
         android:text="@string/priceRange"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.739"
-        app:layout_constraintLeft_toRightOf="@id/viewTime"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toRightOf="@id/viewPriceRange"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/viewImage"
-        android:layout_width="173dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Image:"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/priceRange" />
 
     <TextView
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="520dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="488dp"
         android:text="@string/image"
         android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintLeft_toRightOf="@id/viewPriceRange"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/back2Btn"
         android:layout_width="147dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="581dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="85dp"
         android:background="@color/wales"
         android:text="Back to results"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.052" />
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
+        app:layout_constraintLeft_toLeftOf="@id/placeholder1" />
 
     <Button
         android:id="@+id/btnBack"
         android:layout_width="147dp"
         android:layout_height="52dp"
-        android:layout_marginTop="652dp"
+        android:layout_marginTop="5dp"
         android:background="@color/wales"
         android:text="Back to Menu"
+        app:layout_constraintTop_toBottomOf="@id/placeholder2"
+        app:layout_constraintLeft_toLeftOf="@id/placeholder2" />
+
+    <Button
+        android:id="@+id/deleteBtn"
+        android:layout_width="100dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/wales"
+        android:onClick="deleteBtn"
+        android:text="Delete Post"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintLeft_toRightOf="@id/placeholder2"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/addToSaved"
+        android:layout_width="100dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/wales"
+        android:onClick="addToSaved"
+        android:text="Add to Saved Posts"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintLeft_toRightOf="@id/placeholder2"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/removeFromSaved"
+        android:layout_width="100dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/wales"
+        android:onClick="removeFromSaved"
+        android:text="Remove Saved Post"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
+        app:layout_constraintLeft_toRightOf="@id/placeholder2"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/back1Btn"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="85dp"
+        android:background="@color/wales"
+        android:onClick="resultsBtn"
+        android:text="Back to my posts"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
+        app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/back3Btn"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="85dp"
+        android:background="@color/wales"
+        android:onClick="resultsBtn"
+        android:text="Back to results"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
+        app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/placeholder2"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="85dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
+        app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/placeholder1"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="490dp"
+        android:background="@color/wales"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -229,129 +267,61 @@ order for the link to work.-->
         app:layout_constraintVertical_bias="0.103" />
 
     <Button
-        android:id="@+id/deleteBtn"
-        android:layout_width="147dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="586dp"
-        android:layout_marginEnd="-45dp"
-        android:layout_marginBottom="85dp"
-        android:background="@color/wales"
-        android:onClick="deleteBtn"
-        android:text="Delete Post"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/back1Btn"
-        android:layout_width="147dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="586dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="85dp"
-        android:background="@color/wales"
-        android:onClick="resultsBtn"
-        android:text="Back to my posts"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/back3Btn"
-        android:layout_width="147dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="586dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="85dp"
-        android:background="@color/wales"
-        android:onClick="resultsBtn"
-        android:text="Back to results"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
-    <Button
         android:id="@+id/toItemsFromSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="504dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginBottom="179dp"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="490dp"
+        android:background="@color/wales"
         android:onClick="viewItems"
         android:text="View Items"
-        android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+
+        app:layout_constraintVertical_bias="0.103" />
 
     <Button
         android:id="@+id/toItemsFromMyPosts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="504dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginBottom="179dp"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="490dp"
+        android:background="@color/wales"
         android:onClick="viewItems"
         android:text="View Items"
-        android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/toItemsFromAllPosts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="504dp"
-        android:layout_marginEnd="89dp"
-        android:layout_marginBottom="179dp"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="490dp"
+        android:background="@color/wales"
         android:onClick="viewItems"
         android:text="View Items"
-        android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintVertical_bias="0.103" />
 
     <Button
         android:id="@+id/back2All"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="127dp"
-        android:layout_marginTop="593dp"
-        android:layout_marginEnd="127dp"
-        android:layout_marginBottom="90dp"
-        android:text="Back to All Posts"
+        android:layout_width="147dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="586dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="85dp"
         android:background="@color/wales"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="Back to All Posts"
+        app:layout_constraintTop_toBottomOf="@id/toItemsFromSearch"
+        app:layout_constraintLeft_toLeftOf="@id/toItemsFromSearch"
         tools:ignore="MissingConstraints" />
 
 

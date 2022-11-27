@@ -5,6 +5,7 @@ import java.util.*;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,7 +34,7 @@ public class ViewPost extends AppCompatActivity {
     DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
     ArrayList<Post> results3 = new ArrayList<Post>(0);
     //ArrayList list;
-    public TextView UserText, TitleText, LocationText, DescriptionText, TimeText, PriceRangeText, ImageText;
+    public TextView UserText, TitleText, LocationText, DescriptionText, TimeText, PriceRangeText, ImageText,DateText;
     Button loadDatabtn;
     String testTitle = "A Big Sale";
     String test = "";
@@ -47,6 +48,9 @@ public class ViewPost extends AppCompatActivity {
     Button viewItemsFromSearch;
     Button viewItemsFromAll;
     Button back2All;
+    String image;
+    Button removeFromSaved;
+    Button addToSaved;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -56,6 +60,7 @@ public class ViewPost extends AppCompatActivity {
         setContentView(R.layout.activity_view_post);
         String username = getIntent().getStringExtra("username");
         String password = getIntent().getStringExtra("password");
+        System.out.println("ONCREATE VIEW POST PASSWORD IS: "+password);
         String from = getIntent().getStringExtra("source");
         int position = getIntent().getIntExtra("position", -1);
         ArrayList<Post> results = (ArrayList<Post>) getIntent().getSerializableExtra("results");
@@ -75,6 +80,8 @@ public class ViewPost extends AppCompatActivity {
         viewItems = findViewById(R.id.toItemsFromMyPosts);
         viewItemsFromAll = findViewById(R.id.toItemsFromAllPosts);
         back2All = findViewById(R.id.back2All);
+        addToSaved = findViewById(R.id.addToSaved);
+        removeFromSaved = findViewById(R.id.removeFromSaved);
 
         // String title = results3.get(1);
         //  results2 = (ArrayList<Post>) getIntent().getSerializableExtra("results1")
@@ -106,16 +113,18 @@ public class ViewPost extends AppCompatActivity {
         tv[5]=(TextView)findViewById(R.id.priceRange);
         tv[6]=(TextView)findViewById(R.id.image);
      */
-        System.out.println("---------------------PRINTING HERE-----------------");
+        System.out.println("---------------------PRINTING TITLE HERE-----------------");
         System.out.println(findViewById(R.id.title));
 
         post = results3.get(position);
 
-        UserText = findViewById(R.id.username);
-        UserText.setText(post.getOwner());
+        //UserText = findViewById(R.id.username);
+        //UserText.setText(post.getOwner());
 
         title = post.getTitle();
+        System.out.println("TITLE IS: "+title);
         //String title = getIntent().getStringExtra("title");
+        System.out.println("TITLE IS: "+title);
         TitleText = findViewById(R.id.title);
         TitleText.setText(title);
 
@@ -129,6 +138,22 @@ public class ViewPost extends AppCompatActivity {
         //String location = getIntent().getStringExtra("location");
         LocationText = findViewById(R.id.location);
         LocationText.setText(format);
+
+        DateText = findViewById(R.id.dates);
+        String date_format = dbhc.getDates(post.getTitle());
+        System.out.println("THe Dates of the Sale: "+date_format);
+        if (date_format != null && date_format != ", " && date_format != "") {
+            char c = ' ';
+            while(c != ','){
+                c = date_format.charAt(date_format.length()-1);
+                date_format = date_format.substring(0, date_format.length()-1);
+            }
+               DateText.setText(date_format);
+
+        }
+        else{
+            DateText.setText("Not yet scheduled");
+        }
 
         String description = post.getDescription();
         //String description = getIntent().getStringExtra("description");
@@ -146,8 +171,10 @@ public class ViewPost extends AppCompatActivity {
         PriceRangeText.setText(priceRange);
 
         //String image = getIntent().getStringExtra("image");
-        //ImageText = findViewById(R.id.image);
-        //ImageText.setText(image);
+        ImageText = findViewById(R.id.image);
+        ImageText.setText(image);
+
+
 
 
         back1Btn.setVisibility(View.GONE);
@@ -158,6 +185,8 @@ public class ViewPost extends AppCompatActivity {
         viewItemsFromSearch.setVisibility(View.GONE);
         viewItemsFromAll.setVisibility(View.GONE);
         back2All.setVisibility(View.GONE);
+        addToSaved.setVisibility(View.GONE);
+        removeFromSaved.setVisibility(View.GONE);
 
         //if search result and not own post
         if (source.equals("allPosts")){
@@ -184,8 +213,14 @@ public class ViewPost extends AppCompatActivity {
 
         }
 
-
-
+        if (!username.equals(post.getOwner()) && !dbhc.returnListSavedPosts(post.getOwner(), post.getTitle())){
+            removeFromSaved.setVisibility(View.VISIBLE);
+            addToSaved.setVisibility(View.INVISIBLE);
+        }
+        else if (!username.equals(post.getOwner()) && dbhc.returnListSavedPosts(post.getOwner(), post.getTitle())){
+            removeFromSaved.setVisibility(View.INVISIBLE);
+            addToSaved.setVisibility(View.VISIBLE);
+        }
 
 
         returnBtn.setOnClickListener(new View.OnClickListener(){
@@ -193,6 +228,7 @@ public class ViewPost extends AppCompatActivity {
             public void onClick(View v){
                 String username = getIntent().getStringExtra("username");
                 String password = getIntent().getStringExtra("password");
+                System.out.println("Return button PASSWORD IS: "+password);
                 Intent intent = new Intent(ViewPost.this,Menu.class);
                 intent.putExtra("username", username);
                 intent.putExtra("password", password);
@@ -335,6 +371,24 @@ public class ViewPost extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+    public void removeFromSaved(View view){
+        DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        dbhc.removeFromSaved(post.getOwner(),username, title);
+        removeFromSaved.setVisibility(View.INVISIBLE);
+        addToSaved.setVisibility(View.VISIBLE);
+    }
+
+    public void addToSaved(View view){
+        DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        dbhc.savePost(post.getOwner(),username, title);
+        removeFromSaved.setVisibility(View.VISIBLE);
+        addToSaved.setVisibility(View.INVISIBLE);
+    }
 
 
     }
