@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <ImageView
         android:id="@+id/imageView2"
         android:layout_width="358dp"
         android:layout_height="263dp"
@@ -81,6 +81,8 @@
         android:layout_width="147dp"
         android:layout_height="48dp"
         android:layout_marginTop="652dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
         android:background="@color/wales"
         android:text="Back to Menu"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -94,7 +96,7 @@
         android:layout_width="147dp"
         android:layout_height="48dp"
         android:layout_marginStart="45dp"
-        android:layout_marginEnd="132dp"
+        android:layout_marginEnd="123dp"
         android:layout_marginBottom="8dp"
         android:background="@color/wales"
         android:text="Back to results"
