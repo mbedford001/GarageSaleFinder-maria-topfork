@@ -165,17 +165,8 @@ order for the link to work.-->
         android:layout_marginBottom="85dp"
         android:background="@color/wales"
         android:text="Back to results"
-<<<<<<< HEAD
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-=======
         app:layout_constraintTop_toBottomOf="@id/placeholder1"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1" />
->>>>>>> 4f4f5fb59d428d5385d8feb286378516d44a4340
 
     <Button
         android:id="@+id/btnBack"
