@@ -33,7 +33,7 @@ public class ViewAccount extends AppCompatActivity {
 
         String password = getIntent().getStringExtra("password");
         PasswordText = findViewById(R.id.password);
-        PasswordText.setText(password);
+        PasswordText.setText(dbhc.getPassword(username));
 
         ViewSPBtn.setOnClickListener(new View.OnClickListener(){
             @Override
