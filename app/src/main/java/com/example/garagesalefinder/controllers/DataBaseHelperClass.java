@@ -105,6 +105,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         else {
             sqliteDataBase = this.getWritableDatabase();
             copyDataBase();
+            sqliteDataBase.close();//delete if things break more
         }
     }
 
@@ -193,7 +194,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
-
+        cursor.close();
         sqliteDataBase.close();
 
         return access;
@@ -230,6 +231,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
         System.out.println("---------------------");
+        cursor.close();
         sqliteDataBase.close();
         return true;
     }
@@ -254,6 +256,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             terms.add(saleName);
             cursor.moveToNext();
         }
+        cursor.close();
         sqliteDataBase.close();
         return terms;
     }
@@ -286,6 +289,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             terms.add(new Post(u, location, postName, description, time, price, image));
             cursor.moveToNext();
         }
+        cursor.close();
         sqliteDataBase.close();
         return terms;
     }
@@ -323,6 +327,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             results.add(post);
         }
         cursor.close();
+        sqliteDataBase.close();
         return results;
     }
 
@@ -349,6 +354,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             terms.add(new Post(u, location, postName, description, time, price, image));
             cursor.moveToNext();
         }
+        cursor.close();
         sqliteDataBase.close();
         return terms;
     }
@@ -374,6 +380,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             terms.add(new Items(pTitle, iTitle, uname, category, image, description, price, quantity));
             cursor.moveToNext();
         }
+        cursor.close();
         sqliteDataBase.close();
         return terms;
     }
@@ -400,6 +407,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
         cursor.close();
+        sqliteDataBase.close();
         return results;
     }
     /**
@@ -473,6 +481,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.delete("manages", "regular_user_username" + "=\"" + username + "\"", null);
         db.delete("sale_posts", "post_username" + "=\"" + username + "\"", null);
         db.delete("regular_user", "username" + "=\"" + username + "\"", null);
+        db.close();
     }
 
     /**
@@ -486,11 +495,13 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.delete("dates", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"", null);
         db.delete("sale_posts", "post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
         db.delete("save_posts", "sale_post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
+        db.close();
     }
 
     public void deleteItem(String username, String postName, String itemName){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("items", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"" + "AND item_title = \"" + itemName + "\"", null);
+        db.close();
     }
 
 
@@ -730,8 +741,8 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             values.put("post_name",title);
             cursor.moveToNext();
         }
-        sqliteDataBase.close();
         db.insert("save_posts", null, values);
+        cursor.close();
         db.close();
     }
 

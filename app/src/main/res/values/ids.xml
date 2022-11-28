@@ -5,4 +5,5 @@
     <item name="inputCategory" type="id" />
     <item name="inputQuantity" type="id" />
     <item name="inputDate" type="id" />
+    <item name="imageView2" type="id" />
 </resources>

@@ -14,13 +14,14 @@ import com.example.garagesalefinder.PostStuff.Items;
 import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewItems extends AppCompatActivity {
+public class ViewItems extends AppCompatActivity implements Serializable {
     ListView list;
     ListViewAdapterItems adapter;//not sure what's up with this error
-    List<Items> itemResults = new ArrayList<Items>();
+    ArrayList<Items> itemResults = new ArrayList<Items>();
     Button returnBtn;
     ArrayList<Post> results3 = new ArrayList<Post>(0);
 
@@ -42,10 +43,11 @@ public class ViewItems extends AppCompatActivity {
         Post p = results3.get(postPosition);
 
         System.out.println("---------------------------------------------------------" + postPosition + " " + p.getTitle());
-
-        itemResults = (ArrayList<Items>)dbhc.viewItems(username, p.getTitle());
+        //should be passing the username of the post owner, not the username of who is logged in
+        itemResults = (ArrayList<Items>)dbhc.viewItems(p.getOwner(), p.getTitle());
+        System.out.println("Here are the item results: " +itemResults);
         for (Items i: itemResults){
-            System.out.println(i.getItem_title());
+            System.out.println("Each item name: "+i.getItem_title());
         }
         list = (ListView) findViewById(R.id.listview);//locates ListView in xml file
         adapter = new ListViewAdapterItems(this, itemResults);//not sure what's up with this error
@@ -53,24 +55,29 @@ public class ViewItems extends AppCompatActivity {
 
         /**
          * When a list item is clicked (one of the user's posts), sends user to
-         * view post page
+         * view item page
          * Sends intent containing user's username, password, and all user's posts
          */
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Items anItem = itemResults.get(i);
+                //String itemTitle = anItem.getItem_title();
 
                 String title = getIntent().getStringExtra("title");
                 String password = getIntent().getStringExtra("password");
                 String username = getIntent().getStringExtra("username");
-                Intent intent = new Intent(ViewItems.this, ViewItems.class); //CHANGE
+                ArrayList<Post> results4 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewItems.this, ViewItem.class);
                 intent.putExtra("username",username);
                 intent.putExtra("password",password);
-                //intent.putExtra("title", title);
+                //intent.putExtra("theItem", anItem);
+                intent.putExtra("results", results4);
+                intent.putExtra("itemResults", itemResults);
                 intent.putExtra("itemPosition", i);
-                //intent.putExtra("source", "myPosts");
+                intent.putExtra("position", postPosition);
+                intent.putExtra("source", "myItems");
                 startActivity(intent);
-
                 finish();
             }
         });

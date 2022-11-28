@@ -49,6 +49,7 @@ import java.util.Date;
             this.date = date;
             this.time = time;
             this.priceRange = priceRange;
+            this.image = image;
         }
 
 

@@ -3,14 +3,17 @@ package com.example.garagesalefinder;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.garagesalefinder.PostStuff.Items;
+import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
 import java.io.IOException;
@@ -32,12 +35,13 @@ public class ViewItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewItem.this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_post);
+        setContentView(R.layout.activity_viewitem);
         String username = getIntent().getStringExtra("username");
         String password = getIntent().getStringExtra("password");
         String from = getIntent().getStringExtra("source");
-        int position = getIntent().getIntExtra("position", -1);
-        results3 = (ArrayList<Items>) getIntent().getSerializableExtra("results");
+        int position = getIntent().getIntExtra("itemPosition", -1);
+        results3 = (ArrayList<Items>) getIntent().getSerializableExtra("itemResults");
+        //results3 = (ArrayList<Items>) getIntent().getParcelableExtra("results");
         String source = getIntent().getStringExtra("source");
         returnBtn = findViewById(R.id.btnBack);
         back1Btn = findViewById(R.id.back1Btn);
@@ -48,7 +52,6 @@ public class ViewItem extends AppCompatActivity {
             System.out.println("---------------------PRINTING HERE-----------------");
             System.out.println(results3.toString());
         }
-
         item = results3.get(position);
 
         title = item.getItem_title();
@@ -73,7 +76,15 @@ public class ViewItem extends AppCompatActivity {
 
         // String image = getIntent().getStringExtra("image");
         String image = item.getImage();
+        //Uri image = (Uri) item.getImage();
         Drawable image1 = LoadImageFromWebOperations(image);
+        ImageView imageview = (ImageView) findViewById(R.id.imageView2);
+
+        //imageview.setImageURI(Uri image);
+        imageview.setImageDrawable(image1);
+        //imageview.setImageResource(R.drawable.android_green_3d);
+
+
         //res/drawable/image1;
         /*ImageView iv = (ImageView)findViewById(v);
         iv.setImageResource(R.drawable.image_name);*/
@@ -110,13 +121,15 @@ public class ViewItem extends AppCompatActivity {
             public void onClick(View v){
                 String username = getIntent().getStringExtra("username");
                 String password = getIntent().getStringExtra("password");
-                //have it go back to the page with the list of items!!!
-                //it's going to the wrong page right now
-                Intent intent = new Intent(ViewItem.this,ViewAllPosts.class);
+                int postPosition = getIntent().getIntExtra("position", -1);
+                ArrayList<Post> postResults = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewItem.this,ViewItems.class);
                 intent.putExtra("username",username);
                 intent.putExtra("password",password);
-                intent.putExtra("results", results3);
+                intent.putExtra("results", postResults);
+                //intent.putExtra("itemResults", itemResults);
                 intent.putExtra("source", "myItems");
+                intent.putExtra("position", postPosition);
                 startActivity(intent);
                 finish();
             }
