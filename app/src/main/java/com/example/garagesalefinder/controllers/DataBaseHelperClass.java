@@ -423,6 +423,53 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;
     }
 
+    public String getDates(String postTitle){
+        sqliteDataBase = this.getWritableDatabase();
+        String[] args ={postTitle};
+
+        String results = "";
+        String queryStringPost = "SELECT * from dates" +
+                " WHERE (dates.post_title=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryStringPost, args);
+        cursor.moveToFirst();
+        int count = 0;
+        while(!cursor.isAfterLast()){
+            results = results + cursor.getString(0);
+            cursor.moveToNext();
+            results = results + ", ";
+            if (count % 2 == 1){
+                results = results + "\n";
+            }
+            count +=1;
+        }
+        return results;
+    }
+
+
+    public String getPassword(String username){
+        sqliteDataBase = this.getWritableDatabase();
+        String[] args ={username};
+
+        String results = "";
+        String queryStringPost = "SELECT * from regular_user" +
+                " WHERE (regular_user.username=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryStringPost, args);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            results =  cursor.getString(3);
+            cursor.moveToNext();
+        }
+        String queryStringPost2 = "SELECT * from admin" +
+                " WHERE (admin.username=?)";
+        Cursor cursor2 = sqliteDataBase.rawQuery(queryStringPost2, args);
+        cursor2.moveToFirst();
+        while(!cursor2.isAfterLast()){
+            results =  results + cursor2.getString(3);
+            cursor.moveToNext();
+        }
+        System.out.println("THE PASSWORD IS "+results);
+        return results;
+    }
 
     /**
      * method to split apart the location string into its separate components.
@@ -715,24 +762,48 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * @param title a String that is the title of a post
      * @param username a String that is the name of a user who wishes to save post
      */
-    public void savePost(String title, String username){
+    public void savePost(String postOwner,String username, String title){
         ContentValues values = new ContentValues();
+        sqliteDataBase = this.getWritableDatabase();
+        values.put("sale_post_username",  postOwner);
+        values.put("save_post_username", username);
+        values.put("post_name", title);
+        sqliteDataBase.insert("save_posts", null, values);
+        sqliteDataBase.close();
+    }
+
+    /**
+     * Method to remove a post from a user's saved Post list
+     * @param username the name of a user
+     * @param postName  the name of a post
+     */
+    public void removeFromSaved(String post_username, String username, String postName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("save_posts", "sale_post_username = \"" + post_username + "\" AND post_name = \"" + postName + "\"", null);
+    }
+
+    /**
+     * This method adds a post to save_post tables
+     * @param title a String that is the title of a post
+     * @param username a String that is the name of a user who wishes to save post
+     */
+    public boolean returnListSavedPosts(String username,String title){
         String[] args = {title};
+        boolean result = false;
         String queryString = "SELECT * from sale_posts" +
                 " WHERE (sale_posts.post_name = ?)";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(queryString, args);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            values.put("sale_post_username", cursor.getString(0));
-            System.out.println("Look here: "+cursor.getString(0));
-            values.put("save_post_username", username);
-            values.put("post_name",title);
+            if(title.equals(cursor.getString(2))) {
+                result = true;
+            }
             cursor.moveToNext();
         }
         sqliteDataBase.close();
-        db.insert("save_posts", null, values);
         db.close();
+        return result;
     }
 
     @Override

@@ -62,6 +62,7 @@ public class ViewItems extends AppCompatActivity {
 
                 String title = getIntent().getStringExtra("title");
                 String password = getIntent().getStringExtra("password");
+                System.out.println("PASSWORD IS: "+password);
                 String username = getIntent().getStringExtra("username");
                 Intent intent = new Intent(ViewItems.this, ViewItems.class); //CHANGE
                 intent.putExtra("username",username);
@@ -86,6 +87,7 @@ public class ViewItems extends AppCompatActivity {
                 String password = getIntent().getStringExtra("password");
                 int position = getIntent().getIntExtra("position", -1);
                 String source = getIntent().getStringExtra("source");
+                System.out.println("PASSWORD IS: "+password);
                 results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
                 Intent intent = new Intent(ViewItems.this,ViewPost.class);
                 intent.putExtra("username",username);
