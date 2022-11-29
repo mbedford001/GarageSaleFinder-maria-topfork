@@ -6,6 +6,7 @@
     <string name="location">location</string>
     <string name="description">description</string>
     <string name="time">time</string>
-    <string name="priceRange">priceRange</string>
+    <string name="priceRange">Price</string>
     <string name="image">image</string>
+    <string name="quantity">Quantity</string>
 </resources>

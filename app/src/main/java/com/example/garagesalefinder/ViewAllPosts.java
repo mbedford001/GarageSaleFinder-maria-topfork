@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.garagesalefinder.PostStuff.Items;
 import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
