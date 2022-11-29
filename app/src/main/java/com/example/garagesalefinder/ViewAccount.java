@@ -17,6 +17,7 @@ public class ViewAccount extends AppCompatActivity {
     public TextView UserText, PasswordText;
     Button viewProfile;
     Button ViewSPBtn;
+    Button EditBtn;
     DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewAccount.this);
 
     @SuppressLint("MissingInflatedId")
@@ -30,6 +31,7 @@ public class ViewAccount extends AppCompatActivity {
         UserText = findViewById(R.id.username);
         UserText.setText(username);
         ViewSPBtn = findViewById(R.id.viewSPBtn);
+        EditBtn = findViewById(R.id.editBtn);
 
         String password = getIntent().getStringExtra("password");
         PasswordText = findViewById(R.id.password);
@@ -41,6 +43,19 @@ public class ViewAccount extends AppCompatActivity {
                 String username = getIntent().getStringExtra("username");
                 String password = getIntent().getStringExtra("password");
                 Intent intent = new Intent(ViewAccount.this,ViewSavedPosts.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        EditBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(ViewAccount.this,EditAccount.class);
                 intent.putExtra("username",username);
                 intent.putExtra("password",password);
                 startActivity(intent);

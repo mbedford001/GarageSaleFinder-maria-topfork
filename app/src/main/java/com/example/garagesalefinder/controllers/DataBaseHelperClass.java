@@ -817,6 +817,26 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return result;
     }
 
+    public boolean editAccount(String password, String lastname, String firstname, String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (!password.isEmpty()){
+            String queryString = "UPDATE regular_user" + " SET password = '" + password + "' WHERE username = '" + username + "'";
+            db.execSQL(queryString);
+        }
+
+        if (!lastname.isEmpty()){
+            String queryString = "UPDATE regular_user" + " SET lname = '" + lastname + "' WHERE username = '" + username + "'";
+            db.execSQL(queryString);
+        }
+
+        if (!firstname.isEmpty()){
+            String queryString = "UPDATE regular_user" + " SET fname = '" + firstname + "' WHERE username = '" + username + "'";
+            db.execSQL(queryString);
+        }
+        db.close();
+        return true;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //no need to write the create table query since we are using pre-made database
