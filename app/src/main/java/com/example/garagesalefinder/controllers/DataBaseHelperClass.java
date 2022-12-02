@@ -801,13 +801,16 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public boolean returnListSavedPosts(String username,String title){
         String[] args = {title};
         boolean result = false;
-        String queryString = "SELECT * from sale_posts" +
-                " WHERE (sale_posts.post_name = ?)";
+        String queryString = "SELECT * from save_posts" +
+                " WHERE (save_posts.post_name = ?)";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(queryString, args);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            if(title.equals(cursor.getString(2))) {
+            System.out.println("LOOK HERE: " + cursor.getString(1));
+            System.out.println("LOOK HERE: " + username);
+            if(username.equals(cursor.getString(1))) {
+                System.out.println("LOOK HERE: " + cursor.getString(1));
                 result = true;
             }
             cursor.moveToNext();
@@ -817,6 +820,15 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return result;
     }
 
+
+    /**
+     * This method can update the user's password, last name and first name
+     * @param password a String that saved user's new password
+     * @param lastname a String that saved user's new last name
+     * @param firstname a String that saved user's new first name
+     * @param username a String that saved user's unique username
+     * @return boolean if success, update the information, else, there will be a error popped up
+     */
     public boolean editAccount(String password, String lastname, String firstname, String username){
         SQLiteDatabase db = this.getWritableDatabase();
         if (!password.isEmpty()){
@@ -833,6 +845,48 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             String queryString = "UPDATE regular_user" + " SET fname = '" + firstname + "' WHERE username = '" + username + "'";
             db.execSQL(queryString);
         }
+        db.close();
+        return true;
+    }
+
+    /**
+     * This method will apply the changes of the post to database
+     * @param location a String that saves the location of a post
+     * @param desc a String that saves the description of a post
+     * @param time a String that saves the time of a post
+     * @param img a String that saves the image of a post
+     * @param price a String that saves the price of a post
+     * @param postname a String that saves the post name of a post
+     * @param username a String that saves the user name of a post
+     * @return a Boolean whether it works or not
+     */
+    public boolean editPost(String location, String desc, String time, String img, String price, String postname, String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (!location.equals("::::")){
+            String queryString = "UPDATE sale_posts" + " SET sale_location = '" + location+ "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!desc.isEmpty()){
+            String queryString = "UPDATE sale_posts" + " SET sale_description = '" + desc + "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!time.isEmpty()){
+            String queryString = "UPDATE sale_posts" + " SET sale_time = '" + time + "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!price.isEmpty()){
+            String queryString = "UPDATE sale_posts" + " SET price_range = '" + price + "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!img.isEmpty()){
+            String queryString = "UPDATE sale_posts" + " SET image = '" + img + "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+        System.out.println(location);
         db.close();
         return true;
     }
