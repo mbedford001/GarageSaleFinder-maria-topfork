@@ -164,8 +164,8 @@ order for the link to work.-->
         android:layout_marginBottom="85dp"
         android:background="@color/wales"
         android:text="Back to results"
-        app:layout_constraintTop_toBottomOf="@id/placeholder1"
-        app:layout_constraintLeft_toLeftOf="@id/placeholder1" />
+        app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1" />
 
     <Button
         android:id="@+id/btnBack"
@@ -174,8 +174,8 @@ order for the link to work.-->
         android:layout_marginTop="5dp"
         android:background="@color/wales"
         android:text="Back to Menu"
-        app:layout_constraintTop_toBottomOf="@id/placeholder2"
-        app:layout_constraintLeft_toLeftOf="@id/placeholder2" />
+        app:layout_constraintLeft_toLeftOf="@id/placeholder2"
+        app:layout_constraintTop_toBottomOf="@id/placeholder2" />
 
     <Button
         android:id="@+id/deleteBtn"
@@ -185,8 +185,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="deleteBtn"
         android:text="Delete Post"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -197,8 +197,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="addToSaved"
         android:text="Add to Saved Posts"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -209,8 +209,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="removeFromSaved"
         android:text="Remove Saved Post"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
+        app:layout_constraintTop_toTopOf="@id/btnBack"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -223,8 +223,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="resultsBtn"
         android:text="Back to my posts"
-        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -237,8 +237,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="resultsBtn"
         android:text="Back to results"
-        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -249,8 +249,8 @@ order for the link to work.-->
         android:layout_marginEnd="132dp"
         android:layout_marginBottom="85dp"
         android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -320,8 +320,8 @@ order for the link to work.-->
         android:layout_marginBottom="85dp"
         android:background="@color/wales"
         android:text="Back to All Posts"
-        app:layout_constraintTop_toBottomOf="@id/toItemsFromSearch"
         app:layout_constraintLeft_toLeftOf="@id/toItemsFromSearch"
+        app:layout_constraintTop_toBottomOf="@id/toItemsFromSearch"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -332,8 +332,8 @@ order for the link to work.-->
         android:layout_marginTop="593dp"
         android:layout_marginEnd="127dp"
         android:layout_marginBottom="90dp"
-        android:text="My Saved Posts"
         android:background="@color/wales"
+        android:text="My Saved Posts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -348,9 +348,9 @@ order for the link to work.-->
         android:layout_marginTop="504dp"
         android:layout_marginEnd="89dp"
         android:layout_marginBottom="179dp"
+        android:background="@color/wales"
         android:onClick="viewItems"
         android:text="View Items"
-        android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -358,6 +358,18 @@ order for the link to work.-->
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/editPostBtn"
+        android:layout_width="48dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="356dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/wales"
+        android:onClick="editPost"
+        android:text="Edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

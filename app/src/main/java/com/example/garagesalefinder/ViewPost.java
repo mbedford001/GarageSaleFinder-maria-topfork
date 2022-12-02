@@ -57,6 +57,7 @@ public class ViewPost extends AppCompatActivity {
     Button addToSaved;
     Button back2Saved;
     Button viewItemsFromSaved;
+    Button editPostBtn;
 
     /**
      * On create method sets all variables from a given post to be able to be displayed
@@ -97,6 +98,7 @@ public class ViewPost extends AppCompatActivity {
 
         back2Saved = findViewById(R.id.back2Saved);
         viewItemsFromSaved = findViewById(R.id.toItemsFromSaved);
+        editPostBtn = findViewById(R.id.editPostBtn);
 
 
         // String title = results3.get(1);
@@ -136,17 +138,20 @@ public class ViewPost extends AppCompatActivity {
 
         //UserText = findViewById(R.id.username);
         //UserText.setText(post.getOwner());
-
+        String time2 = post.getTime();
         title = post.getTitle();
+        String description2 = post.getDescription();
         System.out.println("TITLE IS: "+title);
         //String title = getIntent().getStringExtra("title");
-        System.out.println("TITLE IS: "+title);
+        System.out.println("TIME IS: "+time2);
+        System.out.println("DESCRIPTION IS: "+description2);
         TitleText = findViewById(R.id.title);
         TitleText.setText(title);
 
         //format for google maps is "####(building number) ________(Street name), __(state id ex:MN)  #####(5 num zip)"
         //need to change this so that it breaks up the full address into seperate fields
         String[] location = (dbhc.splitLocation(post.getLocation()));
+        System.out.println("Location IS: "+post.getLocation());
         String address = location[0];
         String state = location[2];
         String zip = location[3];
@@ -205,6 +210,7 @@ public class ViewPost extends AppCompatActivity {
         removeFromSaved.setVisibility(View.GONE);
         back2Saved.setVisibility(View.GONE);
         viewItemsFromSaved.setVisibility(View.GONE);
+        editPostBtn.setVisibility(View.GONE);
 
         //if search result and not own post
         if (source.equals("allPosts")){
@@ -225,6 +231,7 @@ public class ViewPost extends AppCompatActivity {
             back3Btn.setVisibility(View.VISIBLE);
             deleteBtn.setVisibility(View.VISIBLE);
             viewItemsFromSearch.setVisibility(View.VISIBLE);
+            editPostBtn.setVisibility(View.VISIBLE);
         }
         //else would have come from view own post
         else{
@@ -232,7 +239,7 @@ public class ViewPost extends AppCompatActivity {
             back1Btn.setVisibility(View.VISIBLE);
             deleteBtn.setVisibility(View.VISIBLE);
             viewItems.setVisibility(View.VISIBLE);
-
+            editPostBtn.setVisibility(View.VISIBLE);
         }
 
         if (!username.equals(post.getOwner()) && !dbhc.returnListSavedPosts(post.getOwner(), post.getTitle())){
@@ -454,6 +461,26 @@ public class ViewPost extends AppCompatActivity {
                 intent.putExtra("position", position);
                 intent.putExtra("results", results3);
                 intent.putExtra("source", "saved");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        /**
+         * edit post button
+         */
+        editPostBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(ViewPost.this,EditPost.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("title", title);
+                intent.putExtra("source", "myPosts");
+                intent.putExtra("results", results3);
+                intent.putExtra("position", position);
                 startActivity(intent);
                 finish();
             }
