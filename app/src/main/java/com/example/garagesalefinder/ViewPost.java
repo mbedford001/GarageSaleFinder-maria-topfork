@@ -241,12 +241,12 @@ public class ViewPost extends AppCompatActivity {
 
         }
 
-        if (!username.equals(post.getOwner()) && !dbhc.returnListSavedPosts(post.getOwner(), post.getTitle())){
+        if (dbhc.returnListSavedPosts(username, post.getTitle())){
             removeFromSaved.setVisibility(View.VISIBLE);
-            addToSaved.setVisibility(View.INVISIBLE);
+            addToSaved.setVisibility(View.GONE);
         }
-        else if (!username.equals(post.getOwner()) && dbhc.returnListSavedPosts(post.getOwner(), post.getTitle())){
-            removeFromSaved.setVisibility(View.INVISIBLE);
+        else {
+            removeFromSaved.setVisibility(View.GONE);
             addToSaved.setVisibility(View.VISIBLE);
         }
 
