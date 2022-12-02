@@ -801,13 +801,16 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     public boolean returnListSavedPosts(String username,String title){
         String[] args = {title};
         boolean result = false;
-        String queryString = "SELECT * from sale_posts" +
-                " WHERE (sale_posts.post_name = ?)";
+        String queryString = "SELECT * from save_posts" +
+                " WHERE (save_posts.post_name = ?)";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(queryString, args);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            if(title.equals(cursor.getString(2))) {
+            System.out.println("LOOK HERE: " + cursor.getString(1));
+            System.out.println("LOOK HERE: " + username);
+            if(username.equals(cursor.getString(1))) {
+                System.out.println("LOOK HERE: " + cursor.getString(1));
                 result = true;
             }
             cursor.moveToNext();
