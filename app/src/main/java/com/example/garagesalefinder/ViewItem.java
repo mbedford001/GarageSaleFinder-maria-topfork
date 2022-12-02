@@ -2,6 +2,8 @@ package com.example.garagesalefinder;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -74,11 +76,15 @@ public class ViewItem extends AppCompatActivity {
         QuantityText = findViewById(R.id.quantity);
         QuantityText.setText(quantity);
 
+
         // String image = getIntent().getStringExtra("image");
         String image = item.getImage();
+        System.out.println("image URL "+image);
         //Uri image = (Uri) item.getImage();
         Drawable image1 = LoadImageFromWebOperations(image);
-        ImageView imageview = (ImageView) findViewById(R.id.imageView2);
+        System.out.println("A Drawable: "+image1);
+        ImageView imageview = (ImageView) findViewById(R.id.imageView3);
+
 
         //imageview.setImageURI(Uri image);
         imageview.setImageDrawable(image1);
@@ -149,6 +155,7 @@ public class ViewItem extends AppCompatActivity {
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();
+            System.out.println("The input stream " +is);
             Drawable d = Drawable.createFromStream(is, "src name");
             return d;
         } catch (Exception e) {
