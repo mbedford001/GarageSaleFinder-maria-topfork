@@ -890,6 +890,35 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.close();
         return true;
     }
+    public boolean editItem(String desc, String quantity, String img, String price, String itemName,String category, String username, String postname){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (!desc.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_description = '" + desc+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!quantity.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_quantity = '" + quantity+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!category.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_category = '" + category+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!price.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_price = '" + price+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!img.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_image = '" + img+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+        db.close();
+        return true;
+    }
 
     /**
      * This method will delete all the dates of the specific post from a user
