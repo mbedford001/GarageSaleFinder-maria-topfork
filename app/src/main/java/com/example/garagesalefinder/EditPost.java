@@ -75,9 +75,6 @@ public class EditPost extends AppCompatActivity {
                 intent.putExtra("source", "myPosts");
                 intent.putExtra("results", results);
                 intent.putExtra("position", position);
-
-                String reminder = dbhc.deleteDate(username, postname);
-                Toast.makeText(EditPost.this, reminder, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 finish();
             }
