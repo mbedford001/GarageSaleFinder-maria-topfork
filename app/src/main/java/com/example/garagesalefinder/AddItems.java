@@ -82,7 +82,7 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                 Items i = new Items(postName, pItemTitle, username, pCategory, pImage,
                         pDescription, pPrice, pQuantity);
                 dbhc.addItem(i);
-                Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -130,43 +130,43 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.category1:
-                Toast.makeText(this, "Toys was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Toys was selected", Toast.LENGTH_LONG).show();
                 category = "Toys";
                 return true;
             case R.id.category2:
-                Toast.makeText(this, "Clothing was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Clothing was selected", Toast.LENGTH_LONG).show();
                 category = "Clothing";
                 return true;
             case R.id.category3:
-                Toast.makeText(this, "Furniture was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Furniture was selected", Toast.LENGTH_LONG).show();
                 category = "Furniture";
                 return true;
             case R.id.category4:
-                Toast.makeText(this, "Jewelry was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Jewelry was selected", Toast.LENGTH_LONG).show();
                 category = "Jewelry";
                 return true;
             case R.id.category5:
-                Toast.makeText(this, "Antique was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Antique was selected", Toast.LENGTH_LONG).show();
                 category = "Antique";
                 return true;
             case R.id.category6:
-                Toast.makeText(this, "Arts and Crafts was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Arts and Crafts was selected", Toast.LENGTH_LONG).show();
                 category = "Arts and Crafts";
                 return true;
             case R.id.category7:
-                Toast.makeText(this, "Sport was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sport was selected", Toast.LENGTH_LONG).show();
                 category = "Sport";
                 return true;
             case R.id.category8:
-                Toast.makeText(this, "Books was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Books was selected", Toast.LENGTH_LONG).show();
                 category = "Books";
                 return true;
             case R.id.category9:
-                Toast.makeText(this, "Electronics was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Electronics was selected", Toast.LENGTH_LONG).show();
                 category = "Electronics";
                 return true;
             case R.id.category10:
-                Toast.makeText(this, "Miscellaneous was selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Miscellaneous was selected", Toast.LENGTH_LONG).show();
                 category = "Miscellaneous";
                 return true;
             default:

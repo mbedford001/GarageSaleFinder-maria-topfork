@@ -1,11 +1,13 @@
 package com.example.garagesalefinder.PostStuff;
 
+import java.io.Serializable;
+
 /**
  * Class for items
  * @author Maria Bedford
  * @version 10/18/2022
  */
-public class Items {
+public class Items implements Serializable {
 
         private String post_title;
         private String item_title;

@@ -63,7 +63,7 @@ import java.util.List;
 
             }
             // Set the results into TextViews
-            System.out.println(holder.name);
+            System.out.println("HOlder name!!!! "+holder.name);
             holder.name.setText(results.get(position).getItem_title());
             return view;
         }

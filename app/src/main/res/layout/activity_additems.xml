@@ -249,17 +249,12 @@
         android:id="@+id/button"
         android:layout_width="212dp"
         android:layout_height="49dp"
-        android:layout_marginStart="90dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginTop="8dp"
         android:background="@color/wales"
         android:onClick="backToMenu3"
         android:text="Back to Menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnReturn"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintTop_toBottomOf="@id/btnReturn"
+        app:layout_constraintLeft_toLeftOf="@id/btnReturn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

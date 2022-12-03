@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Createpost">
+    tools:context=".EditPost">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Create Post"
+        android:text="Edit Post"
         android:textAllCaps="false"
         android:textColor="@color/wales"
         android:textSize="40sp"
@@ -22,10 +22,10 @@
         app:layout_constraintVertical_bias="0.95" />
 
     <TextView
-        android:id="@+id/postName"
+        android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Post name:"
+        android:text="Address:"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,34 +34,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.118" />
-
-    <EditText
-        android:id="@+id/inputPostName"
-        android:layout_width="183dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Post Name"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/postName" />
-
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Address:"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.698"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/postName"
-        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/inputLocation"
@@ -73,10 +45,9 @@
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/location"
-        tools:ignore="DuplicateClickableBoundsCheck" />
+        app:layout_constraintTop_toTopOf="@+id/location" />
 
     <TextView
         android:id="@+id/city"
@@ -202,7 +173,7 @@
         app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputPostName"
+        app:layout_constraintTop_toBottomOf="@id/inputLocation"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -217,7 +188,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/postName" />
+        app:layout_constraintTop_toTopOf="@+id/location" />
 
     <TextView
         android:id="@+id/time"
@@ -304,22 +275,33 @@
         app:layout_constraintTop_toTopOf="@+id/image" />
 
     <Button
-        android:id="@+id/btnCreate"
+        android:id="@+id/btnEditDate"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="509dp"
+        android:background="@color/wales"
+        android:text="Edit date"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSave"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="95dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="576dp"
         android:layout_marginBottom="-275dp"
         android:background="@color/wales"
-        android:onClick="moveToAddDates"
-        android:text="Create"
+        android:text="Save"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -327,17 +309,15 @@
         android:layout_width="212dp"
         android:layout_height="49dp"
         android:layout_marginStart="94dp"
-        android:layout_marginTop="549dp"
+        android:layout_marginTop="635dp"
         android:layout_marginEnd="99dp"
         android:background="@color/wales"
-        android:onClick="returnHomeFromPost"
-        android:text="Back to Menu"
+        android:text="Back to Post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.17" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

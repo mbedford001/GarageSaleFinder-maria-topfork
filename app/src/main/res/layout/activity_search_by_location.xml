@@ -13,6 +13,7 @@
         android:text="Location:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -30,24 +31,22 @@
         android:hint="City"
         android:inputType="textPostalAddress"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@id/locationName"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintLeft_toLeftOf="@id/inputCategory" />
 
     <EditText
         android:id="@+id/inputDate"
         android:layout_width="183dp"
         android:layout_height="50dp"
-        android:layout_marginTop="116dp"
         android:ems="10"
         android:hint="YYYY-MM-DD"
         android:inputType="textPostalAddress"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/locationName" />
+        app:layout_constraintBaseline_toBaselineOf="@id/dateDate"
+        tools:ignore="MissingConstraints"
+
+        app:layout_constraintLeft_toLeftOf="@id/inputCategory" />
 
     <TextView
         android:id="@+id/dateDate"
@@ -56,6 +55,7 @@
         android:text="Date:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.264"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -70,6 +70,7 @@
         android:text="Category:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintLeft_toLeftOf="parent"

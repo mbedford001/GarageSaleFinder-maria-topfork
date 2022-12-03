@@ -24,14 +24,12 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginLeft="20dp"
         android:text="@string/user"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/viewUsername"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/viewUsername" />
 
     <TextView
         android:id="@+id/viewPassword"
@@ -50,25 +48,35 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
         android:text="@string/password"
+        android:layout_marginLeft="20dp"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.628"
         app:layout_constraintLeft_toRightOf="@id/viewPassword"
+        app:layout_constraintTop_toTopOf="@id/viewPassword"/>
+
+    <Button
+        android:id="@+id/editBtn"
+        android:layout_width="178dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="68dp"
+        android:background="@color/wales"
+        android:onClick="editAccount"
+        android:text="Edit Account"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/viewSPBtn"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/viewSPBtn"
         android:layout_width="178dp"
         android:layout_height="59dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="348dp"
+        android:background="@color/wales"
         android:onClick="ViewSavedPosts"
         android:text="View Saved Posts"
-        android:background="@color/wales"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -78,10 +86,10 @@
         android:layout_width="178dp"
         android:layout_height="59dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="136dp"
+        android:background="@color/wales"
         android:onClick="deleteAccount"
         android:text="Delete Account"
-        android:background="@color/wales"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/viewSPBtn"
         tools:ignore="MissingConstraints" />
@@ -91,7 +99,7 @@
         android:layout_width="178dp"
         android:layout_height="59dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="68dp"
         android:background="@color/wales"
         android:onClick="returnHomeFromView"
         android:text="Back to Menu"

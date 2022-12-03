@@ -105,6 +105,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         else {
             sqliteDataBase = this.getWritableDatabase();
             copyDataBase();
+            sqliteDataBase.close();//delete if things break more
         }
     }
 
@@ -193,7 +194,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         else{
            System.out.println("-----------FAILED LOGIN-----------");
         }
-
+        cursor.close();
         sqliteDataBase.close();
 
         return access;
@@ -230,6 +231,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
         System.out.println("---------------------");
+        cursor.close();
         sqliteDataBase.close();
         return true;
     }
@@ -254,6 +256,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             terms.add(saleName);
             cursor.moveToNext();
         }
+        cursor.close();
         sqliteDataBase.close();
         return terms;
     }
@@ -286,6 +289,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             terms.add(new Post(u, location, postName, description, time, price, image));
             cursor.moveToNext();
         }
+        cursor.close();
         sqliteDataBase.close();
         return terms;
     }
@@ -323,6 +327,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             results.add(post);
         }
         cursor.close();
+        sqliteDataBase.close();
         return results;
     }
 
@@ -349,6 +354,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             terms.add(new Post(u, location, postName, description, time, price, image));
             cursor.moveToNext();
         }
+        cursor.close();
         sqliteDataBase.close();
         return terms;
     }
@@ -374,6 +380,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             terms.add(new Items(pTitle, iTitle, uname, category, image, description, price, quantity));
             cursor.moveToNext();
         }
+        cursor.close();
         sqliteDataBase.close();
         return terms;
     }
@@ -400,6 +407,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             cursor.moveToNext();
         }
         cursor.close();
+        sqliteDataBase.close();
         return results;
     }
     /**
@@ -423,6 +431,53 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;
     }
 
+    public String getDates(String postTitle){
+        sqliteDataBase = this.getWritableDatabase();
+        String[] args ={postTitle};
+
+        String results = "";
+        String queryStringPost = "SELECT * from dates" +
+                " WHERE (dates.post_title=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryStringPost, args);
+        cursor.moveToFirst();
+        int count = 0;
+        while(!cursor.isAfterLast()){
+            results = results + cursor.getString(0);
+            cursor.moveToNext();
+            results = results + ", ";
+            if (count % 2 == 1){
+                results = results + "\n";
+            }
+            count +=1;
+        }
+        return results;
+    }
+
+
+    public String getPassword(String username){
+        sqliteDataBase = this.getWritableDatabase();
+        String[] args ={username};
+
+        String results = "";
+        String queryStringPost = "SELECT * from regular_user" +
+                " WHERE (regular_user.username=?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryStringPost, args);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()){
+            results =  cursor.getString(3);
+            cursor.moveToNext();
+        }
+        String queryStringPost2 = "SELECT * from admin" +
+                " WHERE (admin.username=?)";
+        Cursor cursor2 = sqliteDataBase.rawQuery(queryStringPost2, args);
+        cursor2.moveToFirst();
+        while(!cursor2.isAfterLast()){
+            results =  results + cursor2.getString(3);
+            cursor.moveToNext();
+        }
+        System.out.println("THE PASSWORD IS "+results);
+        return results;
+    }
 
     /**
      * method to split apart the location string into its separate components.
@@ -550,6 +605,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.delete("manages", "regular_user_username" + "=\"" + username + "\"", null);
         db.delete("sale_posts", "post_username" + "=\"" + username + "\"", null);
         db.delete("regular_user", "username" + "=\"" + username + "\"", null);
+        db.close();
     }
 
     /**
@@ -563,11 +619,13 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.delete("dates", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"", null);
         db.delete("sale_posts", "post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
         db.delete("save_posts", "sale_post_username = \"" + username + "\" AND post_name = \"" + postName + "\"", null);
+        db.close();
     }
 
     public void deleteItem(String username, String postName, String itemName){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("items", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"" + "AND item_title = \"" + itemName + "\"", null);
+        db.close();
     }
 
 
@@ -792,24 +850,135 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
      * @param title a String that is the title of a post
      * @param username a String that is the name of a user who wishes to save post
      */
-    public void savePost(String title, String username){
+    public void savePost(String postOwner,String username, String title){
         ContentValues values = new ContentValues();
+        sqliteDataBase = this.getWritableDatabase();
+        values.put("sale_post_username",  postOwner);
+        values.put("save_post_username", username);
+        values.put("post_name", title);
+        sqliteDataBase.insert("save_posts", null, values);
+        sqliteDataBase.close();
+    }
+
+    /**
+     * Method to remove a post from a user's saved Post list
+     * @param username the name of a user
+     * @param postName  the name of a post
+     */
+    public void removeFromSaved(String post_username, String username, String postName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("save_posts", "sale_post_username = \"" + post_username + "\" AND post_name = \"" + postName + "\"", null);
+    }
+
+    /**
+     * This method adds a post to save_post tables
+     * @param title a String that is the title of a post
+     * @param username a String that is the name of a user who wishes to save post
+     */
+    public boolean returnListSavedPosts(String username,String title){
         String[] args = {title};
-        String queryString = "SELECT * from sale_posts" +
-                " WHERE (sale_posts.post_name = ?)";
+        boolean result = false;
+        String queryString = "SELECT * from save_posts" +
+                " WHERE (save_posts.post_name = ?)";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(queryString, args);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            values.put("sale_post_username", cursor.getString(0));
-            System.out.println("Look here: "+cursor.getString(0));
-            values.put("save_post_username", username);
-            values.put("post_name",title);
+            System.out.println("LOOK HERE: " + cursor.getString(1));
+            System.out.println("LOOK HERE: " + username);
+            if(username.equals(cursor.getString(1))) {
+                System.out.println("LOOK HERE: " + cursor.getString(1));
+                result = true;
+            }
             cursor.moveToNext();
         }
-        sqliteDataBase.close();
-        db.insert("save_posts", null, values);
+        cursor.close();
         db.close();
+        return result;
+    }
+
+
+    /**
+     * This method can update the user's password, last name and first name
+     * @param password a String that saved user's new password
+     * @param lastname a String that saved user's new last name
+     * @param firstname a String that saved user's new first name
+     * @param username a String that saved user's unique username
+     * @return boolean if success, update the information, else, there will be a error popped up
+     */
+    public boolean editAccount(String password, String lastname, String firstname, String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (!password.isEmpty()){
+            String queryString = "UPDATE regular_user" + " SET password = '" + password + "' WHERE username = '" + username + "'";
+            db.execSQL(queryString);
+        }
+
+        if (!lastname.isEmpty()){
+            String queryString = "UPDATE regular_user" + " SET lname = '" + lastname + "' WHERE username = '" + username + "'";
+            db.execSQL(queryString);
+        }
+
+        if (!firstname.isEmpty()){
+            String queryString = "UPDATE regular_user" + " SET fname = '" + firstname + "' WHERE username = '" + username + "'";
+            db.execSQL(queryString);
+        }
+        db.close();
+        return true;
+    }
+
+    /**
+     * This method will apply the changes of the post to database
+     * @param location a String that saves the location of a post
+     * @param desc a String that saves the description of a post
+     * @param time a String that saves the time of a post
+     * @param img a String that saves the image of a post
+     * @param price a String that saves the price of a post
+     * @param postname a String that saves the post name of a post
+     * @param username a String that saves the user name of a post
+     * @return a Boolean whether it works or not
+     */
+    public boolean editPost(String location, String desc, String time, String img, String price, String postname, String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (!location.equals("::::")){
+            String queryString = "UPDATE sale_posts" + " SET sale_location = '" + location+ "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!desc.isEmpty()){
+            String queryString = "UPDATE sale_posts" + " SET sale_description = '" + desc + "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!time.isEmpty()){
+            String queryString = "UPDATE sale_posts" + " SET sale_time = '" + time + "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!price.isEmpty()){
+            String queryString = "UPDATE sale_posts" + " SET price_range = '" + price + "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!img.isEmpty()){
+            String queryString = "UPDATE sale_posts" + " SET image = '" + img + "' WHERE post_username = '" + username + "' AND post_name = \"" + postname + "\"";
+            db.execSQL(queryString);
+        }
+        System.out.println(location);
+        db.close();
+        return true;
+    }
+
+    /**
+     * This method will delete all the dates of the specific post from a user
+     * @param username a String that saves user name
+     * @param postname a String tha saves post name
+     * @return
+     */
+    public String deleteDate(String username, String postname){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM dates WHERE post_title = \""+ postname + "\" AND sale_post_username = \""+ username + "\"";
+        db.execSQL(queryString);
+        return "All dates are deleted! Please re-enter the date";
     }
 
     @Override
