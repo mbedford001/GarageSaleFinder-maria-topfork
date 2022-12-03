@@ -79,7 +79,7 @@ public class AddDates extends AppCompatActivity {
                 */
 
                 dbhc.addDate(pDate, title, username);
-                Toast.makeText(AddDates.this, "Date was added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddDates.this, "Date was added", Toast.LENGTH_LONG).show();
             }
 
         });
