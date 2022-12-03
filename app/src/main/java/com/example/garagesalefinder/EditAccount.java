@@ -36,7 +36,7 @@ public class EditAccount extends AppCompatActivity {
         //FirstName.setText(username);
 
         /**
-         * Button returns to home
+         * Button returns to View-Account page
          * @param view v
          */
         ReturnBtn.setOnClickListener(new View.OnClickListener(){
@@ -52,6 +52,10 @@ public class EditAccount extends AppCompatActivity {
             }
         });
 
+        /**
+         * Button that saves the update to database
+         * @param view v
+         */
         SaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +72,7 @@ public class EditAccount extends AppCompatActivity {
 
                 if(dbhc.editAccount(pass, lname,fname, username)){
                     //System.out.println("inside if statement! Username "+ email + "Password: "+password);
-                    Intent intent = new Intent(EditAccount.this, Login.class);
+                    Intent intent = new Intent(EditAccount.this, Home.class);
                     startActivity(intent);
                     //startActivity(new Intent(getApplicationContext(), Login.class));
                     finish();
