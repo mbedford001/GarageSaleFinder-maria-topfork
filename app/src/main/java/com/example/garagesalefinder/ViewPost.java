@@ -371,6 +371,8 @@ public class ViewPost extends AppCompatActivity {
                 intent.putExtra("position", position);
                 intent.putExtra("results", results3);
                 intent.putExtra("source", "search");
+
+
                 startActivity(intent);
                 finish();
             }
