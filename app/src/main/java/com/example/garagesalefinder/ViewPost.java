@@ -7,6 +7,16 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
+//package com.example.sample;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.Toast;
+import java.io.InputStream;
+import java.util.concurrent.Executors;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,7 +28,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import android.widget.ImageView;
 import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
 
@@ -197,10 +207,19 @@ public class ViewPost extends AppCompatActivity {
         PriceRangeText = findViewById(R.id.priceRange);
         PriceRangeText.setText(priceRange);
 
+        String image4 = post.getImage();
+        System.out.println("---------------------------PRINTING HERE------------------------------------");
+        System.out.println(image4);
+
+        String image6 = post.getImage();
+        //Uri image = (Uri) item.getImage();
+        Drawable image1 = LoadImageFromWebOperations(image6);
+        new DownloadImageFromInternet((ImageView) findViewById(R.id.imageView)).execute(image6);
+
 
         //String image = getIntent().getStringExtra("image");
         ImageText = findViewById(R.id.image);
-        ImageText.setText(image);
+        //ImageText.setText(image);
 
 
 
@@ -493,6 +512,39 @@ public class ViewPost extends AppCompatActivity {
         });
 
           }
+
+          private class DownloadImageFromInternet extends AsyncTask<String, Void, Bitmap> {
+            ImageView imageView;
+            public DownloadImageFromInternet(ImageView imageView){
+                this.imageView = imageView;
+                Toast.makeText(getApplicationContext(), "Its working", Toast.LENGTH_SHORT);
+            }
+            protected Bitmap doInBackground(String... urls) {
+                String imageURL = urls[0];
+                Bitmap bimage = null;
+                try{
+                    InputStream in = new java.net.URL(imageURL).openStream();
+                    bimage = BitmapFactory.decodeStream(in);
+                }catch (Exception e){
+                    Log.e("Error Message", e.getMessage());
+                    e.printStackTrace();
+                }
+                return bimage;
+            }
+            protected void onPostExecute (Bitmap result) {
+                imageView.setImageBitmap(result);
+            }
+          }
+
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "src name");
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     /**
      * Delete button that deletes the post
