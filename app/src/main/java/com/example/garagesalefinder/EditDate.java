@@ -21,6 +21,7 @@ public class EditDate extends AppCompatActivity {
     Button ReturnBtn;
     EditText date;
     Button createButton;
+    Button deleteAllDatesBtn;
     DataBaseHelperClass dbhc = new DataBaseHelperClass(EditDate.this);
 
     @SuppressLint("MissingInflatedId")
@@ -32,6 +33,7 @@ public class EditDate extends AppCompatActivity {
         ReturnBtn = findViewById(R.id.button);
         date = findViewById(R.id.inputDate);
         createButton = findViewById(R.id.btnCreate);
+        deleteAllDatesBtn = findViewById(R.id.btnDeleteAllDate);
 
         String username = getIntent().getStringExtra("username");
         String title = getIntent().getStringExtra("title");
@@ -85,6 +87,17 @@ public class EditDate extends AppCompatActivity {
                 Toast.makeText(EditDate.this, "Date was added", Toast.LENGTH_SHORT).show();
             }
 
+        });
+
+        /**
+         * Button delete all dates
+         */
+        deleteAllDatesBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String reminder = dbhc.deleteDate(username, title);
+                Toast.makeText(EditDate.this, reminder, Toast.LENGTH_SHORT).show();
+            }
         });
 
         /**
