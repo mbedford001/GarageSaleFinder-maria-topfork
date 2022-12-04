@@ -132,7 +132,7 @@ order for the link to work.-->
         app:layout_constraintLeft_toRightOf="@id/viewPriceRange"
         app:layout_constraintTop_toTopOf="@id/viewPriceRange"/>
 
-    <ImageView
+     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -140,6 +140,7 @@ order for the link to work.-->
         android:layout_marginTop="488dp"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
