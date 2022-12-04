@@ -410,6 +410,38 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.close();
         return results;
     }
+
+    public boolean usernameMatchesItem(String username, String title){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {username};
+        String queryString = "SELECT * from items" +
+                " WHERE (items.sale_post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        List<Items> terms = new ArrayList<Items>();
+        while (!cursor.isAfterLast()) {
+            String pTitle = cursor.getString(0);
+            String iTitle = cursor.getString(1);
+            String uname = cursor.getString(2);
+            String category = cursor.getString(3);
+            String image = cursor.getString(4);
+            String description = cursor.getString(5);
+            String price = cursor.getString(6);
+            String quantity = cursor.getString(7);
+            terms.add(new Items(pTitle, iTitle, uname, category, image, description, price, quantity));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sqliteDataBase.close();
+        for(Items i: terms){
+            if (i.getItem_title().equals(title)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * This method adds an item to the database that corresponds with a certain post
      * @param item the inputted item from user
@@ -545,9 +577,9 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteItem(String username, String postName, String itemName){
+    public void deleteItem(String username, String itemName){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("items", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"" + "AND item_title = \"" + itemName + "\"", null);
+        db.delete("items", "sale_post_username = \"" + username + "\"" + "AND item_title = \"" + itemName + "\"", null);
         db.close();
     }
 
