@@ -33,6 +33,7 @@ public class EditAccount extends AppCompatActivity {
         ReturnBtn = findViewById(R.id.btnReturn);
         SaveBtn = findViewById(R.id.btnSave);
         String username = getIntent().getStringExtra("username");
+        //FirstName.setText(username);
 
         /**
          * Button returns to View-Account page

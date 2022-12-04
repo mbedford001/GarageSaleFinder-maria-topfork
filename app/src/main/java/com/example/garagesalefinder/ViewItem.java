@@ -2,13 +2,18 @@ package com.example.garagesalefinder;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -82,14 +87,24 @@ public class ViewItem extends AppCompatActivity {
         QuantityText = findViewById(R.id.quantity);
         QuantityText.setText(quantity);
 
+
         // String image = getIntent().getStringExtra("image");
         String image = item.getImage();
+        System.out.println("image URL "+image);
         //Uri image = (Uri) item.getImage();
+        //Drawable image1 = LoadImageFromWebOperations(image);
+        //System.out.println("A Drawable: "+image1);
+        //ImageView imageview = (ImageView) findViewById(R.id.imageView3);
+
         Drawable image1 = LoadImageFromWebOperations(image);
-        ImageView imageview = (ImageView) findViewById(R.id.imageView2);
+        new ViewItem.DownloadImageFromInternet((ImageView) findViewById(R.id.imageView)).execute(image);
+
+
+        //String image = getIntent().getStringExtra("image");
+        ImageText = findViewById(R.id.image);
 
         //imageview.setImageURI(Uri image);
-        imageview.setImageDrawable(image1);
+        //imageview.setImageDrawable(image1);
         //imageview.setImageResource(R.drawable.android_green_3d);
 
 
@@ -183,6 +198,29 @@ public class ViewItem extends AppCompatActivity {
             return false;
         }
     }
+    private class DownloadImageFromInternet extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+        public DownloadImageFromInternet(ImageView imageView){
+            this.imageView = imageView;
+            Toast.makeText(getApplicationContext(), "Its working", Toast.LENGTH_SHORT);
+        }
+        protected Bitmap doInBackground(String... urls) {
+            String imageURL = urls[0];
+            Bitmap bimage = null;
+            try{
+                InputStream in = new java.net.URL(imageURL).openStream();
+                bimage = BitmapFactory.decodeStream(in);
+            }catch (Exception e){
+                Log.e("Error Message", e.getMessage());
+                e.printStackTrace();
+            }
+            return bimage;
+        }
+        protected void onPostExecute (Bitmap result) {
+            imageView.setImageBitmap(result);
+        }
+    }
+
     public static Drawable LoadImageFromWebOperations(String url) {
         try {
             InputStream is = (InputStream) new URL(url).getContent();
@@ -192,4 +230,5 @@ public class ViewItem extends AppCompatActivity {
             return null;
         }
     }
+
 }

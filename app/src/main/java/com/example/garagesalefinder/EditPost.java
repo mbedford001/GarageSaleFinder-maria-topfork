@@ -29,6 +29,7 @@ public class EditPost extends AppCompatActivity {
     EditText priceRange;
     Button SaveButton;
     Button ReturnBtn;
+    Button EditDateBtn;
     public TextView UserText;
 
     DataBaseHelperClass dbhc = new DataBaseHelperClass(EditPost.this);
@@ -50,9 +51,34 @@ public class EditPost extends AppCompatActivity {
         priceRange = findViewById(R.id.inputPrice);
         SaveButton = findViewById(R.id.btnSave);
         ReturnBtn = findViewById(R.id.button);
+        EditDateBtn = findViewById(R.id.btnEditDate);
 
         String username = getIntent().getStringExtra("username");
         String postname = getIntent().getStringExtra("title");
+
+        /**
+         * Button returns to View-Account page
+         * @param view v
+         */
+        EditDateBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                //ArrayList<Post> results = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                ArrayList<Post> results = (ArrayList<Post>)dbhc.viewAllOwnPosts(username);
+                int position = getIntent().getIntExtra("position", -1);
+                Intent intent = new Intent(EditPost.this, EditDate.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password", password);
+                intent.putExtra("title", postname);
+                intent.putExtra("source", "myPosts");
+                intent.putExtra("results", results);
+                intent.putExtra("position", position);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         SaveButton.setOnClickListener(new View.OnClickListener(){
             @Override

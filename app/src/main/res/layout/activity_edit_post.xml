@@ -275,6 +275,18 @@
         app:layout_constraintTop_toTopOf="@+id/image" />
 
     <Button
+        android:id="@+id/btnEditDate"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="509dp"
+        android:background="@color/wales"
+        android:text="Edit date"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/btnSave"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
@@ -282,7 +294,6 @@
         android:layout_marginTop="576dp"
         android:layout_marginBottom="-275dp"
         android:background="@color/wales"
-        android:onClick="moveToAddDates"
         android:text="Save"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/image"
@@ -301,8 +312,7 @@
         android:layout_marginTop="635dp"
         android:layout_marginEnd="99dp"
         android:background="@color/wales"
-        android:onClick="returnHomeFromPost"
-        android:text="Back to Menu"
+        android:text="Back to Post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"

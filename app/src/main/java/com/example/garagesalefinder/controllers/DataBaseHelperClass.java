@@ -923,6 +923,19 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return true;
     }
 
+    /**
+     * This method will delete all the dates of the specific post from a user
+     * @param username a String that saves user name
+     * @param postname a String tha saves post name
+     * @return
+     */
+    public String deleteDate(String username, String postname){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM dates WHERE post_title = \""+ postname + "\" AND sale_post_username = \""+ username + "\"";
+        db.execSQL(queryString);
+        return "All dates are deleted! Please re-enter the date";
+    }
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //no need to write the create table query since we are using pre-made database

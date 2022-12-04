@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.garagesalefinder.PostStuff.Items;
 import com.example.garagesalefinder.PostStuff.Post;
@@ -49,6 +50,10 @@ public class ViewItems extends AppCompatActivity implements Serializable {
         for (Items i: itemResults){
             System.out.println("Each item name: "+i.getItem_title());
         }
+        if (itemResults.isEmpty()){
+            Toast.makeText(ViewItems.this, "No items for this post", Toast.LENGTH_LONG).show();
+        }
+        //setContentView(R.layout.activity_view_items);
         list = (ListView) findViewById(R.id.listview);//locates ListView in xml file
         adapter = new ListViewAdapterItems(this, itemResults);//not sure what's up with this error
         list.setAdapter(adapter);
