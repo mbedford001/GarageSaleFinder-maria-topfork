@@ -151,7 +151,8 @@ public class ViewItem extends AppCompatActivity {
                 intent.putExtra("password",password);
                 intent.putExtra("results", postResults);
                 //intent.putExtra("itemResults", itemResults);
-                intent.putExtra("source", "myItems");
+                String source = getIntent().getStringExtra("source");
+                intent.putExtra("source", source);
                 intent.putExtra("position", postPosition);
                 startActivity(intent);
                 finish();
@@ -167,6 +168,7 @@ public class ViewItem extends AppCompatActivity {
                 dbhc.deleteItem(username, title);
                 ArrayList<Post> postResults = (ArrayList<Post>) getIntent().getSerializableExtra("results");
                 Intent intent = new Intent(ViewItem.this, ViewPost.class);
+                String source = getIntent().getStringExtra("source");
 //                if (source.equals("allPosts")) {
 //                    intent = new Intent(ViewItem.this, ViewAllPosts.class);
 //                }
