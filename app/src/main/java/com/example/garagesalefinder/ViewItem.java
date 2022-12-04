@@ -36,6 +36,7 @@ public class ViewItem extends AppCompatActivity {
     String title;
     Button back1Btn;
     Button editItemBtn;
+    Button deleteBtn;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class ViewItem extends AppCompatActivity {
         returnBtn = findViewById(R.id.btnBack);
         back1Btn = findViewById(R.id.back1Btn);
         editItemBtn = findViewById(R.id.editItemBtn);
+        deleteBtn = findViewById(R.id.deleteItem);
         if (results3 == null) {
             System.out.println("---------------------PRINTING HERE-----------------");
             System.out.println("---------------------NOT WORKING-----------------");
@@ -61,10 +63,16 @@ public class ViewItem extends AppCompatActivity {
         }
         item = results3.get(position);
 
+        deleteBtn.setVisibility(View.GONE);
+
         title = item.getItem_title();
         //String title = getIntent().getStringExtra("title");
         TitleText = findViewById(R.id.title);
         TitleText.setText(title);
+
+        if (dbhc.usernameMatchesItem(username, title)){
+            deleteBtn.setVisibility(View.VISIBLE);
+        }
 
         String description = item.getDescription();
         //String description = getIntent().getStringExtra("description");
@@ -153,7 +161,38 @@ public class ViewItem extends AppCompatActivity {
                 intent.putExtra("password",password);
                 intent.putExtra("results", postResults);
                 //intent.putExtra("itemResults", itemResults);
-                intent.putExtra("source", "myItems");
+                String source = getIntent().getStringExtra("source");
+                intent.putExtra("source", source);
+                intent.putExtra("position", postPosition);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                int postPosition = getIntent().getIntExtra("position", -1);
+                dbhc.deleteItem(username, title);
+                ArrayList<Post> postResults = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(ViewItem.this, ViewPost.class);
+                String source = getIntent().getStringExtra("source");
+//                if (source.equals("allPosts")) {
+//                    intent = new Intent(ViewItem.this, ViewAllPosts.class);
+//                }
+//                else if (source.equals("saved")){
+//                    intent = new Intent(ViewItem.this, ViewSavedPosts.class);
+//                }
+//                else if (source.equals("myPosts")){
+//                    intent = new Intent(ViewItem.this, ViewMyPosts.class);
+//                }
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("results", postResults);
+                //intent.putExtra("itemResults", itemResults);
+                intent.putExtra("source", source);
                 intent.putExtra("position", postPosition);
                 startActivity(intent);
                 finish();
