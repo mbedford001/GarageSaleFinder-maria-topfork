@@ -139,6 +139,7 @@ public class EditPost extends AppCompatActivity {
                 intent.putExtra("results", results);
                 intent.putExtra("position", position);
 
+
                 startActivity(intent);
                 finish();
             }

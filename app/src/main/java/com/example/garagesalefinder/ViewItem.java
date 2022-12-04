@@ -35,6 +35,7 @@ public class ViewItem extends AppCompatActivity {
     Button returnBtn;
     String title;
     Button back1Btn;
+    Button editItemBtn;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class ViewItem extends AppCompatActivity {
         String source = getIntent().getStringExtra("source");
         returnBtn = findViewById(R.id.btnBack);
         back1Btn = findViewById(R.id.back1Btn);
+        editItemBtn = findViewById(R.id.editItemBtn);
         if (results3 == null) {
             System.out.println("---------------------PRINTING HERE-----------------");
             System.out.println("---------------------NOT WORKING-----------------");
@@ -94,6 +96,14 @@ public class ViewItem extends AppCompatActivity {
 
         //String image = getIntent().getStringExtra("image");
         ImageText = findViewById(R.id.image);
+
+        editItemBtn.setVisibility(View.GONE);
+
+        String itemUsername = item.getSale_post_username();
+
+        if (username.equals(itemUsername)){
+            editItemBtn.setVisibility(View.VISIBLE);
+        }
 
         //imageview.setImageURI(Uri image);
         //imageview.setImageDrawable(image1);
@@ -145,6 +155,28 @@ public class ViewItem extends AppCompatActivity {
                 //intent.putExtra("itemResults", itemResults);
                 intent.putExtra("source", "myItems");
                 intent.putExtra("position", postPosition);
+                startActivity(intent);
+                finish();
+            }
+        });
+        editItemBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                int postPosition = getIntent().getIntExtra("position",-1);
+                ArrayList<Post> postResults = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Post post = postResults.get(postPosition);
+                Intent intent = new Intent(ViewItem.this,EditItem.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("itemTitle", title);
+                intent.putExtra("source", "myPosts");
+                intent.putExtra("itemResults", results3);//item Results
+                intent.putExtra("itemPosition", position);//item position
+                intent.putExtra("post", post);
+                intent.putExtra("position",postPosition);
+                intent.putExtra("results", postResults);
                 startActivity(intent);
                 finish();
             }

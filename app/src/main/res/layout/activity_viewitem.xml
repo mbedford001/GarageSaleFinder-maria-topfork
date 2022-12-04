@@ -135,6 +135,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewPriceRange"
         app:layout_constraintVertical_bias="0.0" />
+    <Button
+        android:id="@+id/editItemBtn"
+        android:layout_width="48dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="356dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/wales"
+        android:onClick="EditItem"
+        android:text="Edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

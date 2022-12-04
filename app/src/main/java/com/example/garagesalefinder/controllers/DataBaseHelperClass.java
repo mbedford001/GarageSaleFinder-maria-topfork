@@ -902,7 +902,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             db.execSQL(queryString);
         }
 
-        if (!category.isEmpty()){
+        if (!(category==null)){
             String queryString = "UPDATE items" + " SET item_category = '" + category+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
             db.execSQL(queryString);
         }

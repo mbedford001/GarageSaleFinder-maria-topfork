@@ -205,26 +205,15 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnReturn"
-        android:layout_width="212dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/wales"
-        android:onClick="goMenu"
-        android:text="Back to Date"
-        app:layout_constraintLeft_toLeftOf="@id/SaveButton"
-        app:layout_constraintTop_toBottomOf="@id/SaveButton" />
-
-    <Button
         android:id="@+id/button"
         android:layout_width="212dp"
         android:layout_height="49dp"
         android:layout_marginTop="8dp"
         android:background="@color/wales"
         android:onClick="backToMenu3"
-        android:text="Back to Menu"
-        app:layout_constraintTop_toBottomOf="@id/btnReturn"
-        app:layout_constraintLeft_toLeftOf="@id/btnReturn" />
+        android:text="Back to Item"
+        app:layout_constraintTop_toBottomOf="@id/SaveButton"
+        app:layout_constraintLeft_toLeftOf="@id/SaveButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
