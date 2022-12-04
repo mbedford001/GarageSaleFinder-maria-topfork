@@ -69,6 +69,7 @@ public class ViewItems extends AppCompatActivity implements Serializable {
                 //Items anItem = itemResults.get(i);
                 //String itemTitle = anItem.getItem_title();
 
+                String source = getIntent().getStringExtra("source");
                 String title = getIntent().getStringExtra("title");
                 String password = getIntent().getStringExtra("password");
                 System.out.println("PASSWORD IS: "+password);
@@ -82,7 +83,7 @@ public class ViewItems extends AppCompatActivity implements Serializable {
                 intent.putExtra("itemResults", itemResults);
                 intent.putExtra("itemPosition", i);
                 intent.putExtra("position", postPosition);
-                intent.putExtra("source", "myItems");
+                intent.putExtra("source", source);
                 startActivity(intent);
                 finish();
             }
