@@ -459,7 +459,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         values.put("item_price", item.getPrice());
         values.put("item_quantity", item.getQuantity());
         sqliteDataBase.insert("items", null, values);
-        sqliteDataBase.close();
         return true;
     }
 
@@ -520,6 +519,56 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         String split[] = new String[5];
         split = location.split(":");
         return split;
+    }
+
+    /**
+     * method to check if the username entered already exists in the database (not case sensitive)
+     * @param username the username being searched in the database
+     * @return boolean if the username exists or not
+     */
+    public boolean usernameExists(String username) {
+        String[] args = {username};
+        ArrayList<String> results = new ArrayList<String>(0);
+        String queryString2 = "SELECT username from regular_user" +
+                " WHERE (regular_user.username like ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        try {
+            results.add(cursor.getString(0));
+        } catch (Exception e) {
+            if (results.size() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * method to check if the post title entered already exists in the database (not case sensitive)
+     * @param postName the title of the post being searched in the database
+     * @return boolean if the username exists or not
+     */
+    public boolean postExists(String postName){
+        String[] args ={postName};
+        ArrayList<String> results= new ArrayList<String>(0);
+        String queryString2 = "SELECT post_name from sale_posts" +
+                " WHERE (sale_posts.post_name like ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        try {
+            results.add(cursor.getString(0));
+        } catch (Exception e) {
+            if (results.size() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -919,6 +968,35 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             db.execSQL(queryString);
         }
         System.out.println(location);
+        db.close();
+        return true;
+    }
+    public boolean editItem(String desc, String quantity, String img, String price, String itemName,String category, String username, String postname){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (!desc.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_description = '" + desc+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!quantity.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_quantity = '" + quantity+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!(category==null)){
+            String queryString = "UPDATE items" + " SET item_category = '" + category+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!price.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_price = '" + price+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!img.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_image = '" + img+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
         db.close();
         return true;
     }

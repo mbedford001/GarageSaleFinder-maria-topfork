@@ -4,81 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddItems">
+    tools:context=".EditItem">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Add an Item"
-        android:textAllCaps="false"
-
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
-
-    <!--TextView
-        android:id="@+id/postName"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginStart="28dp"
-        android:text="Post name:"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.155" />
-
-    <EditText
-        android:id="@+id/inputPostName"
-        android:layout_width="183dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:hint="Post Name"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/postName" />
-        -->
 
     <TextView
         android:id="@+id/itemTitle"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:layout_marginStart="153dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="154dp"
+        android:layout_marginBottom="567dp"
         android:text="Item Name:"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="40dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintVertical_bias="0.04" />
-
-    <EditText
-        android:id="@+id/inputItemName"
-        android:layout_width="183dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="104dp"
-        android:ems="10"
-        android:hint="Item Name"
-        android:inputType="textPersonName"
-        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/itemTitle" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.037" />
 
     <TextView
         android:id="@+id/description"
@@ -221,12 +166,12 @@
         app:layout_constraintTop_toTopOf="@+id/quantity" />
 
     <Button
-        android:id="@+id/btnCreate"
+        android:id="@+id/SaveButton"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-110dp"
         android:background="@color/wales"
-        android:text="Add Item"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -235,42 +180,15 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnReturn"
-        android:layout_width="212dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/wales"
-        android:onClick="goMenu"
-        android:text="Back to Date"
-        app:layout_constraintLeft_toLeftOf="@id/btnCreate"
-        app:layout_constraintTop_toBottomOf="@id/btnCreate" />
-
-    <Button
-        android:id="@+id/btnReturnToEdit"
-        android:layout_width="212dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/wales"
-        android:text="Back to Edit Post"
-        app:layout_constraintLeft_toLeftOf="@id/btnCreate"
-        app:layout_constraintTop_toBottomOf="@id/btnCreate" />
-
-    <Button
         android:id="@+id/button"
         android:layout_width="212dp"
         android:layout_height="49dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="595dp"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="87dp"
+        android:layout_marginTop="8dp"
         android:background="@color/wales"
         android:onClick="backToMenu3"
-        android:text="Back to Menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:text="Back to Item"
+        app:layout_constraintLeft_toLeftOf="@id/SaveButton"
+        app:layout_constraintTop_toBottomOf="@id/SaveButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

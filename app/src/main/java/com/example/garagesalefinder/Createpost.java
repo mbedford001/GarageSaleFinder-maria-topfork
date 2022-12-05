@@ -117,16 +117,21 @@ public class Createpost extends AppCompatActivity {
                     return;
                 }
 
-                String location = pAddress+":"+pCity+":"+pState+":"+pZip+":"+pCountry;
+                if (dbhc.postExists(pTitle)) {
+                    title.setError("Post title is taken, please enter a different title");
+                    return;
+                } else {
+                    String location = pAddress + ":" + pCity + ":" + pState + ":" + pZip + ":" + pCountry;
 
-                Post p = new Post(username, location, pTitle, pDescription, pTime, pPrice, pImage);
+                    Post p = new Post(username, location, pTitle, pDescription, pTime, pPrice, pImage);
 
 
-                dbhc.addPost(p);
-                Toast.makeText(Createpost.this, "Post was added", Toast.LENGTH_LONG).show();
-                //startActivity(new Intent(getApplicationContext(), ViewPost.class));
-                //finish();
-                moveToAddDates(v);
+                    dbhc.addPost(p);
+                    Toast.makeText(Createpost.this, "Post was added", Toast.LENGTH_SHORT).show();
+                    //startActivity(new Intent(getApplicationContext(), ViewPost.class));
+                    //finish();
+                    moveToAddDates(v);
+                }
             }
 
         });
