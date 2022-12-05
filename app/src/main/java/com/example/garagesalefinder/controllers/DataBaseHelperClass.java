@@ -410,6 +410,38 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         sqliteDataBase.close();
         return results;
     }
+
+    public boolean usernameMatchesItem(String username, String title){
+        sqliteDataBase = this.getWritableDatabase();
+        String name = username;
+        String[] args = {username};
+        String queryString = "SELECT * from items" +
+                " WHERE (items.sale_post_username = ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString, args);
+        cursor.moveToFirst();
+        List<Items> terms = new ArrayList<Items>();
+        while (!cursor.isAfterLast()) {
+            String pTitle = cursor.getString(0);
+            String iTitle = cursor.getString(1);
+            String uname = cursor.getString(2);
+            String category = cursor.getString(3);
+            String image = cursor.getString(4);
+            String description = cursor.getString(5);
+            String price = cursor.getString(6);
+            String quantity = cursor.getString(7);
+            terms.add(new Items(pTitle, iTitle, uname, category, image, description, price, quantity));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        sqliteDataBase.close();
+        for(Items i: terms){
+            if (i.getItem_title().equals(title)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * This method adds an item to the database that corresponds with a certain post
      * @param item the inputted item from user
@@ -427,7 +459,6 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         values.put("item_price", item.getPrice());
         values.put("item_quantity", item.getQuantity());
         sqliteDataBase.insert("items", null, values);
-        sqliteDataBase.close();
         return true;
     }
 
@@ -491,6 +522,56 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
     }
 
     /**
+     * method to check if the username entered already exists in the database (not case sensitive)
+     * @param username the username being searched in the database
+     * @return boolean if the username exists or not
+     */
+    public boolean usernameExists(String username) {
+        String[] args = {username};
+        ArrayList<String> results = new ArrayList<String>(0);
+        String queryString2 = "SELECT username from regular_user" +
+                " WHERE (regular_user.username like ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        try {
+            results.add(cursor.getString(0));
+        } catch (Exception e) {
+            if (results.size() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * method to check if the post title entered already exists in the database (not case sensitive)
+     * @param postName the title of the post being searched in the database
+     * @return boolean if the username exists or not
+     */
+    public boolean postExists(String postName){
+        String[] args ={postName};
+        ArrayList<String> results= new ArrayList<String>(0);
+        String queryString2 = "SELECT post_name from sale_posts" +
+                " WHERE (sale_posts.post_name like ?)";
+        Cursor cursor = sqliteDataBase.rawQuery(queryString2, args);
+        cursor.moveToFirst();
+        try {
+            results.add(cursor.getString(0));
+        } catch (Exception e) {
+            if (results.size() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Right now this method adds a post to the database
      * but it doesn't add items or dates yet maybe add items should be it's own separate method
      * since it has a lot of its own attributes
@@ -545,9 +626,9 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteItem(String username, String postName, String itemName){
+    public void deleteItem(String username, String itemName){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("items", "sale_post_username = \"" + username + "\" AND post_title = \"" + postName + "\"" + "AND item_title = \"" + itemName + "\"", null);
+        db.delete("items", "sale_post_username = \"" + username + "\"" + "AND item_title = \"" + itemName + "\"", null);
         db.close();
     }
 
@@ -887,6 +968,35 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
             db.execSQL(queryString);
         }
         System.out.println(location);
+        db.close();
+        return true;
+    }
+    public boolean editItem(String desc, String quantity, String img, String price, String itemName,String category, String username, String postname){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (!desc.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_description = '" + desc+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!quantity.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_quantity = '" + quantity+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!(category==null)){
+            String queryString = "UPDATE items" + " SET item_category = '" + category+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!price.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_price = '" + price+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
+
+        if (!img.isEmpty()){
+            String queryString = "UPDATE items" + " SET item_image = '" + img+ "' WHERE sale_post_username = '" + username + "' AND post_title = '" + postname + "' AND item_title = \"" + itemName + "\"";
+            db.execSQL(queryString);
+        }
         db.close();
         return true;
     }

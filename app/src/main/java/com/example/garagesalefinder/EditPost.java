@@ -30,6 +30,7 @@ public class EditPost extends AppCompatActivity {
     Button SaveButton;
     Button ReturnBtn;
     Button EditDateBtn;
+    Button AddItemBtn;
     public TextView UserText;
     String check = "CHECK!";
     DataBaseHelperClass dbhc = new DataBaseHelperClass(EditPost.this);
@@ -42,6 +43,7 @@ public class EditPost extends AppCompatActivity {
         setContentView(R.layout.activity_edit_post);
         address = findViewById(R.id.inputLocation);
         city = findViewById(R.id.inputCity);
+
         zip = findViewById(R.id.inputZipcode);
         country = findViewById(R.id.inputCountry);
         state = findViewById(R.id.inputState);
@@ -52,6 +54,7 @@ public class EditPost extends AppCompatActivity {
         SaveButton = findViewById(R.id.btnSave);
         ReturnBtn = findViewById(R.id.button);
         EditDateBtn = findViewById(R.id.btnEditDate);
+        AddItemBtn = findViewById(R.id.btnAddItem);
 
         String username = getIntent().getStringExtra("username");
         String postname = getIntent().getStringExtra("title");
@@ -75,6 +78,27 @@ public class EditPost extends AppCompatActivity {
                 intent.putExtra("source", "myPosts");
                 intent.putExtra("results", results);
                 intent.putExtra("position", position);
+                startActivity(intent);
+                finish();
+            }
+        });
+        AddItemBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                //ArrayList<Post> results = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                ArrayList<Post> results = (ArrayList<Post>)dbhc.viewAllOwnPosts(username);
+                int position = getIntent().getIntExtra("position", -1);
+                Intent intent = new Intent(EditPost.this, AddItems.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password", password);
+                intent.putExtra("title", postname);
+                intent.putExtra("source", "myPosts");
+                intent.putExtra("results", results);
+                intent.putExtra("position", position);
+                String direction = "came";
+                intent.putExtra("direction", direction);
                 startActivity(intent);
                 finish();
             }
@@ -139,9 +163,11 @@ public class EditPost extends AppCompatActivity {
                 intent.putExtra("results", results);
                 intent.putExtra("position", position);
 
+
                 startActivity(intent);
                 finish();
             }
         });
+
     }
 }

@@ -66,7 +66,6 @@ public class ViewMyPosts extends AppCompatActivity {
                 intent.putExtra("position", i);
                 intent.putExtra("source", "myPosts");
                 startActivity(intent);
-                //startActivity(new Intent(getApplicationContext(), ViewPost.class));
                 finish();
             }
         });
