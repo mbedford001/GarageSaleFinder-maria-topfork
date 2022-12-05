@@ -60,14 +60,14 @@ order for the link to work.-->
         android:id="@+id/viewDates"
         android:layout_width="98dp"
         android:layout_height="40dp"
+        android:layout_marginTop="25dp"
         android:text="Date(s):"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@id/viewLocation"
-        app:layout_constraintLeft_toLeftOf="@id/viewLocation"/>
+        app:layout_constraintLeft_toLeftOf="@id/viewLocation"
+        app:layout_constraintTop_toBottomOf="@id/viewLocation" />
 
     <TextView
         android:id="@+id/dates"
@@ -120,7 +120,7 @@ order for the link to work.-->
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/viewPriceRange"
-        app:layout_constraintTop_toBottomOf="@id/priceRange"  />
+        app:layout_constraintTop_toBottomOf="@id/priceRange" />
 
     <TextView
         android:id="@+id/viewPriceRange"
@@ -133,7 +133,7 @@ order for the link to work.-->
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/viewTime"
-        app:layout_constraintTop_toBottomOf="@id/time"   />
+        app:layout_constraintTop_toBottomOf="@id/time" />
 
     <TextView
         android:id="@+id/priceRange"
@@ -146,9 +146,9 @@ order for the link to work.-->
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/viewPriceRange"
-        app:layout_constraintTop_toTopOf="@id/viewPriceRange"/>
+        app:layout_constraintTop_toTopOf="@id/viewPriceRange" />
 
-     <ImageView
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -190,43 +190,37 @@ order for the link to work.-->
         android:id="@+id/deleteBtn"
         android:layout_width="100dp"
         android:layout_height="52dp"
-        android:layout_marginStart="8dp"
         android:background="@color/wales"
         android:onClick="deleteBtn"
         android:text="Delete Post"
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
-        tools:ignore="MissingConstraints" />
+        />
 
     <Button
         android:id="@+id/addToSaved"
         android:layout_width="100dp"
         android:layout_height="52dp"
-        android:layout_marginStart="8dp"
         android:background="@color/wales"
         android:onClick="addToSaved"
         android:text="Add to Saved Posts"
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="@id/btnBack" />
 
     <Button
         android:id="@+id/removeFromSaved"
         android:layout_width="100dp"
         android:layout_height="52dp"
-        android:layout_marginStart="8dp"
         android:background="@color/wales"
         android:onClick="removeFromSaved"
         android:text="Remove Saved Post"
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
-        app:layout_constraintTop_toTopOf="@id/btnBack"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="@id/btnBack"/>
 
     <Button
         android:id="@+id/back1Btn"
@@ -340,23 +334,22 @@ order for the link to work.-->
         android:layout_marginBottom="85dp"
         android:background="@color/wales"
         android:text="Back to All Posts"
-        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/back2Saved"
         android:layout_width="147dp"
         android:layout_height="52dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="85dp"
+        android:layout_marginTop="566dp"
         android:background="@color/wales"
         android:text="My Saved Posts"
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/placeholder1"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button

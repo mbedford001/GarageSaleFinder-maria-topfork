@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -215,8 +216,23 @@ public class Menu extends AppCompatActivity {
         builder.setSmallIcon(R.drawable.bell);
         builder.setAutoCancel(true);
 
+        Intent intent = new Intent(Menu.this, Menu.class);
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        System.out.println("USERNAMEEEEEEEEEEEEEEEEEEEEEEEEe" + username);
+        intent.putExtra("username",username);
+        intent.putExtra("password",password);
+        intent.putExtra("source", "notification");
+        intent.putExtra("clickedPost", p);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        //intent.putExtra("message",message);in
+        PendingIntent pendingIntent=PendingIntent.getActivity(Menu.this,0,intent,PendingIntent.FLAG_IMMUTABLE);
+        builder.setContentIntent(pendingIntent);
+
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(Menu.this);
-        managerCompat.notify(1, builder.build());
+        managerCompat.notify(Integer.parseInt(id), builder.build());
     }
 
 }
