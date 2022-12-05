@@ -14,7 +14,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.garagesalefinder.PostStuff.Items;
+import com.example.garagesalefinder.PostStuff.Post;
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
+
+import java.util.ArrayList;
 
 public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
@@ -28,6 +31,8 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
     EditText quantity;
     Button createButton;
     Button returnBtn;
+    Button backToEditPostBtn;
+    Button button;
     Button doneBtn;
 
     DataBaseHelperClass dbhc = new DataBaseHelperClass(AddItems.this);
@@ -49,8 +54,19 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
         createButton = findViewById(R.id.btnCreate);
         String username = getIntent().getStringExtra("username");
         returnBtn = findViewById(R.id.btnReturn);
+        backToEditPostBtn = findViewById(R.id.btnReturnToEdit);
+        button = findViewById(R.id.button);
         //doneBtn = findViewById(R.id.btnDone);
 
+        backToEditPostBtn.setVisibility(View.GONE);
+        String where = getIntent().getStringExtra("direction");
+        System.out.println("Where equals "+where);
+        if (where.equals("came")){
+            System.out.println("Made it in if statement---direction equals "+ where);
+            backToEditPostBtn.setVisibility(View.VISIBLE);
+            returnBtn.setVisibility(View.GONE);
+
+        }
 
 
         createButton.setOnClickListener(new View.OnClickListener(){
@@ -113,7 +129,25 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                 finish();
             }
         });
-
+        backToEditPostBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String username = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
+                String title = getIntent().getStringExtra("title");
+                int position = getIntent().getIntExtra("position",-1);
+                ArrayList<Post> results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
+                Intent intent = new Intent(AddItems.this,EditPost.class);
+                intent.putExtra("username",username);
+                intent.putExtra("password",password);
+                intent.putExtra("title", title);
+                intent.putExtra("source", "myPosts");
+                intent.putExtra("results", results3);
+                intent.putExtra("position", position);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
     public void showCategoryChoices(View v){
         PopupMenu popup = new PopupMenu(this, v);

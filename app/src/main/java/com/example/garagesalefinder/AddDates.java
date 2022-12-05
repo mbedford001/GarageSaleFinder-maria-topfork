@@ -92,6 +92,7 @@ public class AddDates extends AppCompatActivity {
         intent.putExtra("username",username);
         intent.putExtra("password",password);
         intent.putExtra("title",title);
+        intent.putExtra("direction", "went");
         startActivity(intent);
         //startActivity(new Intent(getApplicationContext(), AddDates.class));
         //Toast.makeText(this, "Item has been added", Toast.LENGTH_SHORT).show();

@@ -275,6 +275,21 @@
         app:layout_constraintTop_toTopOf="@+id/image" />
 
     <Button
+        android:id="@+id/btnAddItem"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-110dp"
+        android:background="@color/wales"
+        android:text="Add Item"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputImage"
+        app:layout_constraintVertical_bias="0.062"
+        tools:ignore="MissingConstraints" />
+
+    <Button
         android:id="@+id/btnEditDate"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
