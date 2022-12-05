@@ -31,7 +31,7 @@ public class EditPost extends AppCompatActivity {
     Button ReturnBtn;
     Button EditDateBtn;
     public TextView UserText;
-
+    String check = "CHECK!";
     DataBaseHelperClass dbhc = new DataBaseHelperClass(EditPost.this);
 
     @SuppressLint("MissingInflatedId")
@@ -55,7 +55,7 @@ public class EditPost extends AppCompatActivity {
 
         String username = getIntent().getStringExtra("username");
         String postname = getIntent().getStringExtra("title");
-
+        //city.setText(username);
         /**
          * Button returns to View-Account page
          * @param view v
