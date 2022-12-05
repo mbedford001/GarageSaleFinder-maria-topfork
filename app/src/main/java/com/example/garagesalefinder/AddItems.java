@@ -87,18 +87,22 @@ public class AddItems extends AppCompatActivity implements PopupMenu.OnMenuItemC
                     return;
                 }
 
-                if(dbhc.itemExists(postName ,pItemTitle)){
-                    itemTitle.setError("You already have an item with this title.");
-                }
+                System.out.println("111$$$$$$$$$ postname: "+postName);
+                System.out.println("111$$$$$$$$$ item title: "+pItemTitle);
 
-                /*if(TextUtils.isEmpty(pPostName)) {
-                    postName.setError("Post Name is required.");
-                    return;
-                }*/
-                Items i = new Items(postName, pItemTitle, username, pCategory, pImage,
-                        pDescription, pPrice, pQuantity);
-                dbhc.addItem(i);
-                Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_LONG).show();
+//                if(dbhc.itemExists(postName ,pItemTitle)){
+//                    itemTitle.setError("You already have an item with this title.");
+//                    return;
+//                }
+
+
+                    Items i = new Items(postName, pItemTitle, username, pCategory, pImage,
+                            pDescription, pPrice, pQuantity);
+                    if(!dbhc.addItem(i)){
+                        itemTitle.setError("this title is already used. Please enter a different one");
+                    }
+                    Toast.makeText(AddItems.this, "Item was added", Toast.LENGTH_LONG).show();
+
             }
         });
 

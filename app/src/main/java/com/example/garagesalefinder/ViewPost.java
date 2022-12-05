@@ -286,7 +286,6 @@ public class ViewPost extends AppCompatActivity {
                 String password = getIntent().getStringExtra("password");
                 Intent intent = new Intent(ViewPost.this, Menu.class);
                 System.out.println("Return button PASSWORD IS: "+password);
-                Intent intent = new Intent(ViewPost.this,Menu.class);
                 intent.putExtra("username", username);
                 intent.putExtra("password", password);
                 startActivity(intent);
@@ -582,7 +581,7 @@ public class ViewPost extends AppCompatActivity {
 
 
     }
-}
+
 
 
 
