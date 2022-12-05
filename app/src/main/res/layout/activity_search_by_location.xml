@@ -83,15 +83,14 @@
         android:layout_width="183dp"
         android:layout_height="50dp"
         android:layout_marginLeft="60dp"
+        android:background="@color/wales"
         android:ems="10"
         android:hint="Category"
-        android:textColorHint="@color/black"
-        android:background="@color/wales"
         android:onClick="showCategoryChoices"
         android:padding="10dp"
+        android:textColorHint="@color/black"
         app:layout_constraintLeft_toRightOf="@id/category"
-        app:layout_constraintTop_toTopOf="@id/category"
-        />
+        app:layout_constraintTop_toTopOf="@id/category" />
 
     <TextView
         android:id="@+id/desc"
@@ -151,16 +150,16 @@
         app:layout_constraintVertical_bias="0.594" />
 
     <!--    <Button-->
-<!--        android:id="@+id/btnReturn"-->
-<!--        android:layout_width="211dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom"-->
-<!--        android:layout_marginLeft="92dp"-->
-<!--        android:layout_marginBottom="-150dp"-->
-<!--        android:text="Return to Menu"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/btnSearchByLocation"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        tools:ignore="MissingConstraints" />-->
+    <!--        android:id="@+id/btnReturn"-->
+    <!--        android:layout_width="211dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="bottom"-->
+    <!--        android:layout_marginLeft="92dp"-->
+    <!--        android:layout_marginBottom="-150dp"-->
+    <!--        android:text="Return to Menu"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/btnSearchByLocation"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        tools:ignore="MissingConstraints" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

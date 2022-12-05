@@ -99,7 +99,7 @@ public class ViewPost extends AppCompatActivity {
         System.out.println("username intent "+ username);
         results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
         String source = getIntent().getStringExtra("source");
-                //dbhc.getPostData(username);
+        //dbhc.getPostData(username);
         returnBtn = findViewById(R.id.btnBack);
         deleteBtn = findViewById(R.id.deleteBtn);
         back1Btn = findViewById(R.id.back1Btn);
@@ -127,11 +127,10 @@ public class ViewPost extends AppCompatActivity {
         Object title1 = list.get(2);
         System.out.println("title should be : " + title1);
 */
-        if(results3 == null) {
+        if (results3 == null) {
             System.out.println("---------------------PRINTING HERE-----------------");
             System.out.println("---------------------NOT WORKING-----------------");
-        }
-        else {
+        } else {
             System.out.println("---------------------PRINTING HERE-----------------");
             System.out.println(results3.toString());
         }
@@ -171,7 +170,7 @@ public class ViewPost extends AppCompatActivity {
         String address = location[0];
         String state = location[2];
         String zip = location[3];
-        String format = address+", "+state+" "+zip;
+        String format = address + ", " + state + " " + zip;
         //String location = getIntent().getStringExtra("location");
         LocationText = findViewById(R.id.location);
         LocationText.setText(format);
@@ -238,28 +237,26 @@ public class ViewPost extends AppCompatActivity {
         editPostBtn.setVisibility(View.GONE);
 
         //if search result and not own post
-        if (source.equals("allPosts")){
+        if (source.equals("allPosts")) {
             back2All.setVisibility(View.VISIBLE);
             viewItemsFromAll.setVisibility(View.VISIBLE);
-        }
-        else if (source.equals("saved")){
+        } else if (source.equals("saved")) {
             back2Saved.setVisibility(View.VISIBLE);
             viewItemsFromSaved.setVisibility(View.VISIBLE);
-        }
-        else if(source.equals("search") && !username.equals(post.getOwner())){
-            System.out.println(username + " is not the same as "+ post.getOwner());
+        } else if (source.equals("search") && !username.equals(post.getOwner())) {
+            System.out.println(username + " is not the same as " + post.getOwner());
             back2Btn.setVisibility(View.VISIBLE);
             viewItemsFromSearch.setVisibility(View.VISIBLE);
         }
         //else if search result and owner
-        else if(source.equals("search") && username.equals(post.getOwner())){
+        else if (source.equals("search") && username.equals(post.getOwner())) {
             back3Btn.setVisibility(View.VISIBLE);
             deleteBtn.setVisibility(View.VISIBLE);
             viewItemsFromSearch.setVisibility(View.VISIBLE);
             editPostBtn.setVisibility(View.VISIBLE);
         }
         //else would have come from view own post
-        else{
+        else {
             System.out.println("this ok");
             back1Btn.setVisibility(View.VISIBLE);
             deleteBtn.setVisibility(View.VISIBLE);
@@ -284,11 +281,11 @@ public class ViewPost extends AppCompatActivity {
  */
         returnBtn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 String username = getIntent().getStringExtra("username");
                 String password = getIntent().getStringExtra("password");
+                Intent intent = new Intent(ViewPost.this, Menu.class);
                 System.out.println("Return button PASSWORD IS: "+password);
-                Intent intent = new Intent(ViewPost.this,Menu.class);
                 intent.putExtra("username", username);
                 intent.putExtra("password", password);
                 startActivity(intent);
@@ -298,16 +295,16 @@ public class ViewPost extends AppCompatActivity {
 
         /**
          * Button that sends user back to view my posts
-          */
+         */
 
         back1Btn.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 String username = getIntent().getStringExtra("username");
                 String password = getIntent().getStringExtra("password");
-                Intent intent = new Intent(ViewPost.this,ViewMyPosts.class);
-                intent.putExtra("username",username);
-                intent.putExtra("password",password);
+                Intent intent = new Intent(ViewPost.this, ViewMyPosts.class);
+                intent.putExtra("username", username);
+                intent.putExtra("password", password);
                 intent.putExtra("results", results3);
                 intent.putExtra("source", "myPosts");
                 startActivity(intent);
@@ -382,9 +379,9 @@ public class ViewPost extends AppCompatActivity {
          * button that sends user to view items
          *
          */
-        viewItems.setOnClickListener(new View.OnClickListener(){
+        viewItems.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
                 String username = getIntent().getStringExtra("username");
                 String password = getIntent().getStringExtra("password");
@@ -552,17 +549,17 @@ public class ViewPost extends AppCompatActivity {
      * Delete button that deletes the post
      * @param view listens for button click
      */
-    public void deleteBtn(View view){
-            DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
-            String username = getIntent().getStringExtra("username");
-            String password = getIntent().getStringExtra("password");
-            dbhc.deletePost(username, title);
-            Intent intent = new Intent(ViewPost.this,ViewMyPosts.class);
-            intent.putExtra("username",username);
-            intent.putExtra("password",password);
-            startActivity(intent);
-            finish();
-        }
+    public void deleteBtn(View view) {
+        DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
+        String username = getIntent().getStringExtra("username");
+        String password = getIntent().getStringExtra("password");
+        dbhc.deletePost(username, title);
+        Intent intent = new Intent(ViewPost.this, ViewMyPosts.class);
+        intent.putExtra("username", username);
+        intent.putExtra("password", password);
+        startActivity(intent);
+        finish();
+    }
 
     public void removeFromSaved(View view){
         DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewPost.this);
@@ -584,6 +581,7 @@ public class ViewPost extends AppCompatActivity {
 
 
     }
+
 
 
 
