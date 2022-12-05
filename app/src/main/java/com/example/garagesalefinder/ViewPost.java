@@ -90,7 +90,7 @@ public class ViewPost extends AppCompatActivity {
         String username = getIntent().getStringExtra("username");
         String password = getIntent().getStringExtra("password");
         System.out.println("ONCREATE VIEW POST PASSWORD IS: "+password);
-        String from = getIntent().getStringExtra("source");
+        String source = getIntent().getStringExtra("source");
         int position = getIntent().getIntExtra("position", -1);
         ArrayList<Post> results = (ArrayList<Post>) getIntent().getSerializableExtra("results");
 
@@ -98,8 +98,6 @@ public class ViewPost extends AppCompatActivity {
         //Integer i = Integer.valueOf(position);
         System.out.println("username intent "+ username);
         results3 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
-        String source = getIntent().getStringExtra("source");
-                //dbhc.getPostData(username);
         returnBtn = findViewById(R.id.btnBack);
         deleteBtn = findViewById(R.id.deleteBtn);
         back1Btn = findViewById(R.id.back1Btn);
@@ -150,7 +148,16 @@ public class ViewPost extends AppCompatActivity {
         System.out.println("---------------------PRINTING TITLE HERE-----------------");
         System.out.println(findViewById(R.id.title));
 
-        post = results3.get(position);
+        if (source.equals("notification")){
+            Bundle extras = getIntent().getExtras();
+            username = extras.getString("username");
+            password = extras.getString("password");
+            post = (Post)getIntent().getSerializableExtra("clickedPost");
+            System.out.println("POOOOOOOOOOOOOOOOOOST" + post.getTitle());
+        }
+        else{
+            post = results3.get(position);
+        }
 
         //UserText = findViewById(R.id.username);
         //UserText.setText(post.getOwner());
@@ -267,6 +274,7 @@ public class ViewPost extends AppCompatActivity {
             editPostBtn.setVisibility(View.VISIBLE);
         }
 
+        System.out.println("USERRRRRRRRRRRRRRRNAME" + username);
         if (dbhc.returnListSavedPosts(username, post.getTitle())){
             removeFromSaved.setVisibility(View.VISIBLE);
             addToSaved.setVisibility(View.GONE);
@@ -581,6 +589,12 @@ public class ViewPost extends AppCompatActivity {
         removeFromSaved.setVisibility(View.VISIBLE);
         addToSaved.setVisibility(View.INVISIBLE);
     }
+
+//    @Override
+//    protected void onNewIntent(Intent intent){
+//        super.onNewIntent(intent);
+//        setIntent(intent);
+//    }
 
 
     }
