@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0FFF6"
     tools:context=".ViewPost">
 
 
@@ -20,6 +21,7 @@ order for the link to work.-->
         android:text="@string/title"
         android:textColor="@color/black"
         android:textSize="35sp"
+        android:fontFamily="@font/roastedchicken1"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +34,7 @@ order for the link to work.-->
         android:text="Location:"
         android:textColor="@android:color/black"
         android:textSize="25sp"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
@@ -48,6 +51,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:text="@string/location"
         android:textColor="@android:color/black"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@id/viewLocation"
         app:layout_constraintLeft_toRightOf="@id/viewLocation" />
 
@@ -59,6 +64,7 @@ order for the link to work.-->
         android:text="Date(s):"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/viewLocation"
         app:layout_constraintTop_toBottomOf="@id/viewLocation" />
@@ -71,6 +77,8 @@ order for the link to work.-->
         android:text="dates"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/viewDates"
         app:layout_constraintTop_toTopOf="@id/viewDates" />
 
@@ -82,6 +90,7 @@ order for the link to work.-->
         android:text="Time:"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/viewDates"
         app:layout_constraintTop_toBottomOf="@id/dates" />
@@ -95,6 +104,8 @@ order for the link to work.-->
         android:text="@string/time"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/viewTime"
         app:layout_constraintTop_toTopOf="@id/viewTime" />
 
@@ -106,6 +117,8 @@ order for the link to work.-->
         android:text="@string/description"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/viewPriceRange"
         app:layout_constraintTop_toBottomOf="@id/priceRange" />
 
@@ -117,6 +130,7 @@ order for the link to work.-->
         android:text="Price Range:"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/viewTime"
         app:layout_constraintTop_toBottomOf="@id/time" />
@@ -129,6 +143,8 @@ order for the link to work.-->
         android:text="@string/priceRange"
         android:textColor="@color/black"
         android:textSize="25sp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/viewPriceRange"
         app:layout_constraintTop_toTopOf="@id/viewPriceRange" />
 
@@ -152,6 +168,8 @@ order for the link to work.-->
         android:layout_marginEnd="132dp"
         android:layout_marginBottom="85dp"
         android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         android:text="Back to results"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
         app:layout_constraintTop_toBottomOf="@id/placeholder1" />
@@ -163,6 +181,8 @@ order for the link to work.-->
         android:layout_marginTop="5dp"
         android:background="@color/wales"
         android:text="Back to Menu"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/placeholder2"
         app:layout_constraintTop_toBottomOf="@id/placeholder2" />
 
@@ -173,9 +193,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="deleteBtn"
         android:text="Delete Post"
-        android:layout_marginStart="8dp"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toTopOf="@id/placeholder2"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
         />
 
@@ -186,7 +205,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="addToSaved"
         android:text="Add to Saved Posts"
-        android:layout_marginStart="8dp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
         app:layout_constraintTop_toTopOf="@id/btnBack" />
 
@@ -197,8 +217,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="removeFromSaved"
         android:text="Remove Saved Post"
-        tools:ignore="MissingConstraints"
-        android:layout_marginStart="8dp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/placeholder2"
         app:layout_constraintTop_toTopOf="@id/btnBack"/>
 
@@ -212,6 +232,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="resultsBtn"
         android:text="Back to my posts"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
         app:layout_constraintTop_toBottomOf="@id/placeholder1"
         tools:ignore="MissingConstraints" />
@@ -226,6 +248,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="resultsBtn"
         android:text="Back to results"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
         app:layout_constraintTop_toBottomOf="@id/placeholder1"
         tools:ignore="MissingConstraints" />
@@ -263,6 +287,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="viewItems"
         android:text="View Items"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -319,6 +345,9 @@ order for the link to work.-->
         android:layout_marginTop="566dp"
         android:background="@color/wales"
         android:text="My Saved Posts"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/placeholder1"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -346,6 +375,8 @@ order for the link to work.-->
         android:background="@color/wales"
         android:onClick="editPost"
         android:text="Edit"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

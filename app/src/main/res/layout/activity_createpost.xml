@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0FFF6"
     tools:context=".Createpost">
 
     <TextView
@@ -11,9 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/roastedchicken"
         android:text="Create Post"
         android:textAllCaps="false"
-        android:textColor="@color/wales"
+        android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,15 +27,17 @@
         android:id="@+id/postName"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="Post name:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintVertical_bias="0.117" />
 
     <EditText
         android:id="@+id/inputPostName"
@@ -53,11 +57,13 @@
         android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="Address:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.698"
+        app:layout_constraintHorizontal_bias="0.644"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/postName"
@@ -78,20 +84,22 @@
         app:layout_constraintTop_toTopOf="@+id/location"
         tools:ignore="DuplicateClickableBoundsCheck" />
 
+
     <TextView
         android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="City:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintHorizontal_bias="0.595"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/location"
         app:layout_constraintVertical_bias="0.043" />
-
 
     <EditText
         android:id="@+id/inputCity"
@@ -111,11 +119,13 @@
         android:id="@+id/state"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="State:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/city"
@@ -139,15 +149,17 @@
         android:id="@+id/country"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="Country:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintHorizontal_bias="0.651"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/state"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.033" />
 
     <EditText
         android:id="@+id/inputCountry"
@@ -167,15 +179,17 @@
         android:id="@+id/zipcode"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="Zipcode:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintHorizontal_bias="0.642"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/country"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <EditText
         android:id="@+id/inputZipcode"
@@ -195,11 +209,13 @@
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="Description:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputPostName"
@@ -223,11 +239,13 @@
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="Time of sale:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/description"
@@ -251,15 +269,17 @@
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="Price range:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/time"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.034" />
 
     <EditText
         android:id="@+id/inputPrice"
@@ -279,15 +299,17 @@
         android:id="@+id/image"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
+        android:fontFamily="@font/bodoni"
         android:text="Image of Sale:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/price"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintVertical_bias="0.046" />
 
     <EditText
         android:id="@+id/inputImage"
@@ -313,6 +335,7 @@
         android:background="@color/wales"
         android:onClick="moveToAddDates"
         android:text="Create"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -332,6 +355,8 @@
         android:background="@color/wales"
         android:onClick="returnHomeFromPost"
         android:text="Back to Menu"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"

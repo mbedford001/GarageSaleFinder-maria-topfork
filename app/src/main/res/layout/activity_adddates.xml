@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0FFF6"
     tools:context=".AddItems">
 
     <TextView
@@ -16,6 +17,7 @@
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
+        android:fontFamily="@font/roastedchicken1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,29 +64,30 @@
 
     <TextView
         android:id="@+id/date_picker_actions"
-        android:layout_width="101dp"
+        android:layout_width="wrap_content"
         android:layout_height="66dp"
+        android:fontFamily="@font/bodoni"
         android:text="Enter Date:"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <EditText
         android:id="@+id/inputDate"
         android:layout_width="183dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="104dp"
         android:ems="10"
         android:hint="yyyy-mm-dd"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.864"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/date_picker_actions" />
 
@@ -95,6 +98,7 @@
         android:layout_marginBottom="-110dp"
         android:text="Add Date"
         android:textStyle="bold"
+        android:fontFamily="@font/bodoni"
         android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,6 +115,7 @@
         android:onClick="moveToAddItems"
         android:text="Go to Add Item page"
         android:textStyle="bold"
+        android:fontFamily="@font/bodoni"
         android:background="@color/wales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -130,6 +135,7 @@
         android:onClick="backToMenu2"
         android:text="Back to Menu"
         android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

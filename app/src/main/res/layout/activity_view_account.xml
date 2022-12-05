@@ -4,43 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0FFF6"
     tools:context=".ViewAccount">
 
     <TextView
-        android:id="@+id/viewUsername"
-        android:layout_width="150dp"
+        android:id="@+id/banner"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Username:"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roastedchicken"
+        android:text="Account"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
+        android:id="@+id/viewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/bodoni"
+        android:text="Username:"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.129"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="116dp"
+        android:fontFamily="@font/bodoni"
         android:text="@string/user"
         android:textColor="@color/black"
         android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintLeft_toRightOf="@id/viewUsername"
-        app:layout_constraintTop_toTopOf="@id/viewUsername" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/viewPassword"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         android:text="Password:"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewUsername" />
 
@@ -48,12 +72,94 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:fontFamily="@font/bodoni"
         android:text="@string/password"
-        android:layout_marginLeft="20dp"
         android:textColor="@color/black"
         android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintLeft_toRightOf="@id/viewPassword"
-        app:layout_constraintTop_toTopOf="@id/viewPassword"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/viewFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/bodoni"
+        android:text="First Name:"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewUsername" />
+
+    <TextView
+        android:id="@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
+        android:text="@string/first"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintLeft_toRightOf="@id/viewPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/viewLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:fontFamily="@font/bodoni"
+        android:text="Last Name:"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewUsername" />
+
+    <TextView
+        android:id="@+id/last"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="292dp"
+        android:fontFamily="@font/bodoni"
+        android:text="@string/last"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintLeft_toRightOf="@id/viewPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/viewSPBtn"
+        android:layout_width="178dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="400dp"
+        android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
+        android:onClick="ViewSavedPosts"
+        android:text="View Saved Posts"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/editBtn"
@@ -62,23 +168,12 @@
         android:layout_marginStart="116dp"
         android:layout_marginTop="68dp"
         android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
         android:onClick="editAccount"
         android:text="Edit Account"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/viewSPBtn"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/viewSPBtn"
-        android:layout_width="178dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="348dp"
-        android:background="@color/wales"
-        android:onClick="ViewSavedPosts"
-        android:text="View Saved Posts"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -86,10 +181,12 @@
         android:layout_width="178dp"
         android:layout_height="59dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="144dp"
         android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
         android:onClick="deleteAccount"
         android:text="Delete Account"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/viewSPBtn"
         tools:ignore="MissingConstraints" />
@@ -99,10 +196,12 @@
         android:layout_width="178dp"
         android:layout_height="59dp"
         android:layout_marginStart="116dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="80dp"
         android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
         android:onClick="returnHomeFromView"
         android:text="Back to Menu"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
