@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0FFF6"
     tools:context=".Register">
 
     <TextView
@@ -16,6 +17,7 @@
         android:textSize="40dp"
         android:textStyle="bold"
         android:textColor="@color/black"
+        android:fontFamily="@font/roastedchicken1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,6 +31,8 @@
         android:text="Enter your first name:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -56,6 +60,8 @@
         android:text="Enter your last name:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -84,6 +90,8 @@
         android:text="Enter your username:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -112,6 +120,8 @@
         android:text="Enter your password:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -138,6 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Register"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         android:background="@color/wales"
         app:layout_constraintBottom_toTopOf="@+id/password"
@@ -152,12 +163,12 @@
         android:layout_width="211dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="Return to Login"
+        android:layout_marginTop="16dp"
         android:background="@color/wales"
+        android:text="Return to Login"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/btnReturn"
-        app:layout_constraintTop_toBottomOf="@id/btnReturn"
-        tools:layout_editor_absoluteX="195dp"
-        tools:layout_editor_absoluteY="832dp" />
+        app:layout_constraintTop_toBottomOf="@id/btnReturn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

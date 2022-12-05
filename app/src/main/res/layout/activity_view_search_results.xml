@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0FFF6"
     tools:context=".ViewSearchResults">
 
 
@@ -25,6 +26,7 @@
       android:layout_marginBottom="-550dp"
       android:text="Back to Menu"
       android:background="@color/wales"
+      android:fontFamily="@font/bodoni"
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +40,7 @@
       android:layout_marginBottom="-450dp"
       android:text="Search Again"
       android:background="@color/wales"
+      android:fontFamily="@font/bodoni"
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="parent"
       app:layout_constraintEnd_toEndOf="parent"

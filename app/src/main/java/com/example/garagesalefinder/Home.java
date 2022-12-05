@@ -34,6 +34,7 @@ public class Home extends AppCompatActivity {
         LoginBtn = findViewById(R.id.btnLogin);
         //ReturnBtn = findViewById(R.id.btnReturn);
 
+
         /**
          * When button is clicked the user attempts to login.
          * If the user logs in with incorrect credentials, the system will inform them
@@ -48,7 +49,7 @@ public class Home extends AppCompatActivity {
                 String email = Email.getText().toString().trim();//converts user input to string
                 String password = Password.getText().toString().trim();//converts user input to string
                 boolean done = true;
-
+                dbhc.getUser(email);
                 if(TextUtils.isEmpty(email)){//verifies a username was entered
                     Email.setError("Username is Required.");
                     Toast.makeText(Home.this, "Login Failed", Toast.LENGTH_LONG).show();

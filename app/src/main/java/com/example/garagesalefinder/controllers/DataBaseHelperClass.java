@@ -40,6 +40,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.example.garagesalefinder.PostStuff.Post;
+import com.example.garagesalefinder.people.User;
+
 /**
  * This class contain all core functions that are on database interaction included get data and add data to the database
  *
@@ -511,6 +513,7 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         return results;
     }
 
+
     /**
      * method to split apart the location string into its separate components.
      * @param location the input location string that needs to be split up
@@ -726,6 +729,19 @@ public class DataBaseHelperClass extends SQLiteOpenHelper {
         cursor.close();
         return results;
     }
+
+    public User getUser(String username){
+        String[] args = {username};
+        String query = "SELECT * from regular_user WHERE (username = ?)";
+        Cursor cursor2 = sqliteDataBase.rawQuery(query,args);
+        cursor2.moveToFirst();
+        User user = new User(cursor2.getString(0), cursor2.getString(1), cursor2.getString(2), cursor2.getString(3),'U',
+                cursor2.getString(4).charAt(0));
+        cursor2.moveToNext();
+        System.out.println(user.getFirstName() + "*************************************");
+        return user;
+    }
+
 
     /**
      * method to combine all search methods and return results that match all criteria

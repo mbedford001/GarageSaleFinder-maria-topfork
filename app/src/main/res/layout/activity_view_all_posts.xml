@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:descendantFocusability="blocksDescendants"
+    android:background="#F0FFF6"
+
     tools:context=".ViewAllPosts">
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="107dp" />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnReturnMenu"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="-100dp"
+        android:layout_marginBottom="-700dp"
         android:text="Return to Menu"
         android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
