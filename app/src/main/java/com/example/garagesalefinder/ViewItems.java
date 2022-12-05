@@ -72,7 +72,6 @@ public class ViewItems extends AppCompatActivity implements Serializable {
                 String source = getIntent().getStringExtra("source");
                 String title = getIntent().getStringExtra("title");
                 String password = getIntent().getStringExtra("password");
-                System.out.println("PASSWORD IS: "+password);
                 String username = getIntent().getStringExtra("username");
                 ArrayList<Post> results4 = (ArrayList<Post>) getIntent().getSerializableExtra("results");
                 Intent intent = new Intent(ViewItems.this, ViewItem.class);
