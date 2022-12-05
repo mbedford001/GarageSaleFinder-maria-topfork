@@ -43,6 +43,7 @@ public class EditPost extends AppCompatActivity {
         setContentView(R.layout.activity_edit_post);
         address = findViewById(R.id.inputLocation);
         city = findViewById(R.id.inputCity);
+
         zip = findViewById(R.id.inputZipcode);
         country = findViewById(R.id.inputCountry);
         state = findViewById(R.id.inputState);

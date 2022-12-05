@@ -26,12 +26,13 @@ public class EditItem extends AppCompatActivity implements PopupMenu.OnMenuItemC
     EditText quantity;
     EditText image;
     EditText priceRange;
+    TextView itemTitle;
     Button SaveButton;
     Button ReturnBtn;
 
     DataBaseHelperClass dbhc = new DataBaseHelperClass(EditItem.this);
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -52,6 +53,9 @@ public class EditItem extends AppCompatActivity implements PopupMenu.OnMenuItemC
         System.out.println("Edit Item info: ");
         System.out.println("Item Name "+itemName);
         System.out.println("Post Name "+postname);
+
+        itemTitle = findViewById(R.id.itemTitle);
+        itemTitle.setText("Edit " +itemName);
 
 
         SaveButton.setOnClickListener(new View.OnClickListener() {
