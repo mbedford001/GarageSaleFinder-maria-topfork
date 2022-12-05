@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0FFF6"
     tools:context=".SearchByLocation">
 
     <TextView
@@ -13,6 +14,7 @@
         android:text="Location:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.188"
@@ -31,22 +33,24 @@
         android:hint="City"
         android:inputType="textPostalAddress"
         android:padding="10dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/locationName"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintLeft_toLeftOf="@id/inputCategory" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputDate"
         android:layout_width="183dp"
         android:layout_height="50dp"
+        android:layout_marginTop="116dp"
         android:ems="10"
         android:hint="YYYY-MM-DD"
         android:inputType="textPostalAddress"
         android:padding="10dp"
-        app:layout_constraintBaseline_toBaselineOf="@id/dateDate"
-        tools:ignore="MissingConstraints"
-
-        app:layout_constraintLeft_toLeftOf="@id/inputCategory" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/locationName" />
 
     <TextView
         android:id="@+id/dateDate"
@@ -55,6 +59,7 @@
         android:text="Date:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.264"
@@ -70,6 +75,7 @@
         android:text="Category:"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.191"
@@ -82,8 +88,10 @@
         android:id="@+id/inputCategory"
         android:layout_width="183dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="60dp"
+        android:layout_marginLeft="28dp"
         android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         android:ems="10"
         android:hint="Category"
         android:onClick="showCategoryChoices"
@@ -94,13 +102,13 @@
 
     <TextView
         android:id="@+id/desc"
-        android:layout_width="394dp"
+        android:layout_width="wrap_content"
         android:layout_height="74dp"
-        android:text="   Please enter at least one search"
+        android:fontFamily="@font/roastedchicken1"
+        android:text="   Please enter at least "
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -108,17 +116,17 @@
 
     <TextView
         android:id="@+id/desc2"
-        android:layout_width="116dp"
+        android:layout_width="wrap_content"
         android:layout_height="34dp"
-        android:text="criteria"
+        android:fontFamily="@font/roastedchicken1"
+        android:text="search criteria"
         android:textColor="@color/black"
-        android:textSize="25dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <Button
         android:id="@+id/btnSearchByLocation"
@@ -128,6 +136,7 @@
         android:background="@color/wales"
         android:text="Search"
         android:textStyle="bold"
+        android:fontFamily="@font/bodoni"
         app:layout_constraintBottom_toTopOf="@id/btnReturn"
         app:layout_constraintLeft_toLeftOf="@id/btnReturn" />
 
@@ -142,6 +151,8 @@
         android:background="@color/wales"
         android:onClick="goMenu"
         android:text="Back to Menu"
+        android:fontFamily="@font/bodoni"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

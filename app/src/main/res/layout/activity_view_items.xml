@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F0FFF6"
     tools:context=".ViewItems">
 
     <ListView
@@ -19,6 +20,7 @@
         android:layout_marginBottom="-500dp"
         android:text="Return to Post"
         android:background="@color/wales"
+        android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

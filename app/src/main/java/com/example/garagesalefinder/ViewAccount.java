@@ -10,14 +10,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.garagesalefinder.controllers.DataBaseHelperClass;
+import com.example.garagesalefinder.people.User;
 
 
 public class ViewAccount extends AppCompatActivity {
 
-    public TextView UserText, PasswordText;
+    public TextView UserText, PasswordText, FirstText, LastText;
     Button viewProfile;
     Button ViewSPBtn;
     Button EditBtn;
+    User user;
     DataBaseHelperClass dbhc = new DataBaseHelperClass(ViewAccount.this);
 
     @SuppressLint("MissingInflatedId")
@@ -36,6 +38,15 @@ public class ViewAccount extends AppCompatActivity {
         String password = getIntent().getStringExtra("password");
         PasswordText = findViewById(R.id.password);
         PasswordText.setText(dbhc.getPassword(username));
+
+        user = dbhc.getUser(username);
+        String first = user.getFirstName();
+        FirstText = findViewById(R.id.first);
+        FirstText.setText(first);
+
+        String last = user.getLastName();
+        LastText = findViewById(R.id.last);
+        LastText.setText(last);
 
         ViewSPBtn.setOnClickListener(new View.OnClickListener(){
             @Override
