@@ -328,12 +328,12 @@ order for the link to work.-->
         android:id="@+id/back2Saved"
         android:layout_width="147dp"
         android:layout_height="52dp"
-        android:layout_marginTop="566dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="132dp"
         android:background="@color/wales"
         android:text="My Saved Posts"
         app:layout_constraintTop_toBottomOf="@id/placeholder1"
         app:layout_constraintLeft_toLeftOf="@id/placeholder1"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <Button
