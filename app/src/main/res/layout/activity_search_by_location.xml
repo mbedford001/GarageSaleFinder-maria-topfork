@@ -90,8 +90,6 @@
         android:layout_height="50dp"
         android:layout_marginLeft="28dp"
         android:background="@color/wales"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         android:ems="10"
         android:hint="Category"
         android:onClick="showCategoryChoices"
@@ -135,8 +133,6 @@
         android:layout_marginBottom="20dp"
         android:background="@color/wales"
         android:text="Search"
-        android:textStyle="bold"
-        android:fontFamily="@font/bodoni"
         app:layout_constraintBottom_toTopOf="@id/btnReturn"
         app:layout_constraintLeft_toLeftOf="@id/btnReturn" />
 
@@ -151,8 +147,6 @@
         android:background="@color/wales"
         android:onClick="goMenu"
         android:text="Back to Menu"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
