@@ -21,8 +21,6 @@
         android:layout_marginBottom="-700dp"
         android:text="Return to Menu"
         android:background="@color/wales"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

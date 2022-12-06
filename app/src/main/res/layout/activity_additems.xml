@@ -138,8 +138,6 @@
         android:ems="10"
         android:hint="Category"
         android:onClick="showCategoryChoices"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         android:padding="10dp"
         android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -242,8 +240,6 @@
         android:layout_marginBottom="-110dp"
         android:background="@color/wales"
         android:text="Add Item"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -259,8 +255,6 @@
         android:background="@color/wales"
         android:onClick="goMenu"
         android:text="Back to Date"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/btnCreate"
         app:layout_constraintTop_toBottomOf="@id/btnCreate" />
 
@@ -271,8 +265,6 @@
         android:layout_marginTop="8dp"
         android:background="@color/wales"
         android:text="Back to Edit Post"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/btnCreate"
         app:layout_constraintTop_toBottomOf="@id/btnCreate" />
 
@@ -287,8 +279,6 @@
         android:background="@color/wales"
         android:onClick="backToMenu3"
         android:text="Back to Menu"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
