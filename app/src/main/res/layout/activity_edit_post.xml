@@ -286,12 +286,11 @@
         android:id="@+id/btnEditDate"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="450dp"
         android:background="@color/wales"
         android:text="Edit date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddItem"
+        app:layout_constraintLeft_toLeftOf="@+id/btnAddItem" />
 
     <Button
         android:id="@+id/btnSave"

@@ -61,6 +61,8 @@ public class ViewItem extends AppCompatActivity {
             System.out.println("---------------------PRINTING HERE-----------------");
             System.out.println(results3.toString());
         }
+
+
         item = results3.get(position);
 
         deleteBtn.setVisibility(View.GONE);
@@ -70,7 +72,7 @@ public class ViewItem extends AppCompatActivity {
         TitleText = findViewById(R.id.title);
         TitleText.setText(title);
 
-        if (dbhc.usernameMatchesItem(username, title)){
+        if (dbhc.usernameMatchesItem(username, title)&&(source.equals("myPosts"))){
             deleteBtn.setVisibility(View.VISIBLE);
         }
 
