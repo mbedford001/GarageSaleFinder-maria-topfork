@@ -79,6 +79,7 @@
         android:hint="City Name"
         android:inputType="textPersonName"
         android:padding="10dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.969"
         app:layout_constraintStart_toStartOf="parent"
@@ -301,8 +302,6 @@
         android:layout_marginBottom="-110dp"
         android:background="@color/wales"
         android:text="Add Item"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -318,8 +317,6 @@
         android:layout_marginTop="509dp"
         android:background="@color/wales"
         android:text="Edit date"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -332,8 +329,6 @@
         android:layout_marginBottom="-275dp"
         android:background="@color/wales"
         android:text="Save"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.057"
@@ -351,8 +346,6 @@
         android:layout_marginEnd="99dp"
         android:background="@color/wales"
         android:text="Back to Post"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.92"
