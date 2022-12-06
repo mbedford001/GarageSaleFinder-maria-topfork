@@ -259,6 +259,7 @@ public class ViewPost extends AppCompatActivity {
         }
         //else if search result and owner
         else if (source.equals("search") && username.equals(post.getOwner())) {
+            System.out.println(username + " is the same as " + post.getOwner());
             back3Btn.setVisibility(View.VISIBLE);
             deleteBtn.setVisibility(View.VISIBLE);
             viewItemsFromSearch.setVisibility(View.VISIBLE);
@@ -274,7 +275,10 @@ public class ViewPost extends AppCompatActivity {
         }
 
         System.out.println("USERRRRRRRRRRRRRRRNAME" + username);
-        if (dbhc.returnListSavedPosts(username, post.getTitle())){
+        if (username.equals(post.getOwner())){
+            //ignore
+        }
+        else if (dbhc.returnListSavedPosts(username, post.getTitle())){
             removeFromSaved.setVisibility(View.VISIBLE);
             addToSaved.setVisibility(View.GONE);
         }
