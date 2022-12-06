@@ -158,15 +158,14 @@
 
     <Button
         android:id="@+id/deleteItem"
-        android:layout_width="wrap_content"
-        android:text="Delete"
+        android:layout_width="70dp"
         android:layout_height="40dp"
-        tools:layout_editor_absoluteX="29dp"
-        app:layout_constraintBottom_toBottomOf="@id/editItemBtn"
-        tools:layout_editor_absoluteY="667dp"
-        tools:ignore="MissingConstraints"
         android:background="@color/wales"
-        />
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="@id/editItemBtn"
+        tools:ignore="MissingConstraints"
+        android:layout_marginRight="280dp"
+        app:layout_constraintRight_toLeftOf="@id/editItemBtn"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

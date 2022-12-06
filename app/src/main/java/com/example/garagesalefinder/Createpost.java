@@ -73,7 +73,7 @@ public class Createpost extends AppCompatActivity {
                 String pTitle = title.getText().toString().trim();
                 String pDescription = description.getText().toString().trim();
                 String pTime = time.getText().toString().trim();
-                String pImage = image.getText().toString().trim();
+                String pImage = "image";
                 String pPrice = priceRange.getText().toString().trim();
 
                 if(TextUtils.isEmpty(pAddress)){//verifies a location was entered
