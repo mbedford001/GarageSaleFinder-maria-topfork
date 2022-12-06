@@ -119,9 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:text="Save"
-        android:textStyle="bold"
         android:background="@color/wales"
-        android:fontFamily="@font/bodoni"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,8 +135,6 @@
         android:layout_marginTop="12dp"
         android:background="@color/wales"
         android:text="Return"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/btnSave"
         app:layout_constraintTop_toBottomOf="@id/btnSave" />
 
