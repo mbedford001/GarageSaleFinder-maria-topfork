@@ -92,8 +92,6 @@
         android:layout_marginEnd="45dp"
         android:background="@color/wales"
         android:text="Back to Menu"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,8 +106,6 @@
         android:layout_marginBottom="8dp"
         android:background="@color/wales"
         android:text="Back to results"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="@id/btnBack"
         app:layout_constraintTop_toBottomOf="@id/btnBack"
         tools:ignore="MissingConstraints" />
@@ -157,8 +153,6 @@
         android:background="@color/wales"
         android:onClick="EditItem"
         android:text="Edit"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -167,8 +161,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete"
-        android:fontFamily="@font/bodoni"
-        android:textStyle="bold"
         tools:layout_editor_absoluteX="29dp"
         tools:layout_editor_absoluteY="667dp"
         tools:ignore="MissingConstraints"

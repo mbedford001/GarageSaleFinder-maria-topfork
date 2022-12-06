@@ -184,13 +184,13 @@ order for the link to work.-->
         android:id="@+id/deleteBtn"
         android:layout_width="100dp"
         android:layout_height="52dp"
+        android:layout_marginLeft="8dp"
         android:background="@color/wales"
         android:onClick="deleteBtn"
         android:text="Delete Post"
         android:layout_marginStart="12dp"
         app:layout_constraintTop_toTopOf="@id/placeholder2"
-        app:layout_constraintLeft_toRightOf="@id/placeholder2"
-        />
+        app:layout_constraintLeft_toRightOf="@id/placeholder2" />
 
     <Button
         android:id="@+id/addToSaved"
