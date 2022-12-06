@@ -49,7 +49,7 @@ public class Home extends AppCompatActivity {
                 String email = Email.getText().toString().trim();//converts user input to string
                 String password = Password.getText().toString().trim();//converts user input to string
                 boolean done = true;
-                dbhc.getUser(email);
+
                 if(TextUtils.isEmpty(email)){//verifies a username was entered
                     Email.setError("Username is Required.");
                     Toast.makeText(Home.this, "Login Failed", Toast.LENGTH_LONG).show();
@@ -66,10 +66,12 @@ public class Home extends AppCompatActivity {
                     //System.out.println("Success! Inside if statement! Username "+ email + "Password: "+password);
                     //startActivity(new Intent(getApplicationContext(), Menu.class));
                     //finish();
-
+                    DataBaseHelperClass dbhc2 = new DataBaseHelperClass(Home.this);
+                    dbhc2.getUser(email);
                     Intent intent = new Intent(Home.this,Menu.class);
                     intent.putExtra("username",email);
                     intent.putExtra("password", password);
+                    dbhc2.close();
                     startActivity(intent);
                     finish();
                 }

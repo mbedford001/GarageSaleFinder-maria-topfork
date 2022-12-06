@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
-<<<<<<< HEAD
 <font
     android:fontStyle="normal"
     android:fontWeight="400"
     android:font="@font/bodoni"
     />
-=======
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="400"
-        android:font="@font/bodoni" />
->>>>>>> aa6296e2129ec6f7b27e38c24439fb82f83e975b
 </font-family>

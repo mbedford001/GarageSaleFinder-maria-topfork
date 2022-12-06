@@ -41,17 +41,14 @@
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
         android:fontFamily="@font/bodoni"
         android:text="@string/user"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
+        android:layout_marginLeft="5dp"
         app:layout_constraintLeft_toRightOf="@id/viewUsername"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/viewUsername" />
 
     <TextView
         android:id="@+id/viewPassword"
@@ -72,17 +69,14 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
         android:fontFamily="@font/bodoni"
         android:text="@string/password"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
+        android:layout_marginLeft="5dp"
         app:layout_constraintLeft_toRightOf="@id/viewPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/viewPassword"/>
 
     <TextView
         android:id="@+id/viewFirstName"
@@ -103,17 +97,14 @@
         android:id="@+id/first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
         android:fontFamily="@font/bodoni"
         android:textStyle="bold"
         android:text="@string/first"
         android:textColor="@color/black"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
-        app:layout_constraintLeft_toRightOf="@id/viewPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@id/viewFirstName"
+        app:layout_constraintTop_toTopOf="@id/viewFirstName" />
 
     <TextView
         android:id="@+id/viewLastName"
@@ -134,17 +125,14 @@
         android:id="@+id/last"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="292dp"
         android:fontFamily="@font/bodoni"
         android:text="@string/last"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
-        app:layout_constraintLeft_toRightOf="@id/viewPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toRightOf="@id/viewLastName"
+        app:layout_constraintTop_toTopOf="@id/viewLastName"/>
 
     <Button
         android:id="@+id/viewSPBtn"
